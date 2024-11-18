@@ -1,0 +1,6 @@
+Anggota Tim:
+Putu adi saputra (42130086)
+Alicia ALFIA ASOKAWATI (42130103)
+Putri AYU CANTIKA WIJAYA (421313248)
+i putu PANDE PRIATAMA JAYA (42130090)
+I KOMANG tri kusuma adnyana (421313252)
