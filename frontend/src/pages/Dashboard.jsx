@@ -1,9 +1,13 @@
 import React from 'react';
 import './Dashboard.css'; // Mengimpor file CSS untuk styling Dashboard
+import SidebarStaff from '../components/SidebarStaff';
 
 // Komponen utama Dashboard
 const Dashboard = () => {
   return (
+    <div>
+    <SidebarStaff/>
+
     <div className="dashboard">
       {/* Header dari Dashboard */}
       <header className="dashboard-header">
@@ -44,6 +48,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+</div>
   );
 };
 
