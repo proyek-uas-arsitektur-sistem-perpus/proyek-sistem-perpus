@@ -1,15 +1,32 @@
 import React from 'react';
-import Dashboard from './pages/Dashboard';
-import SidebarStaff from './components/SidebarStaff';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login'; // Halaman Login
+import Dashboard from './pages/Dashboard'; // Halaman Dashboard
+import SidebarStaff from './components/SidebarStaff'; // Sidebar Staff
 import './App.css'; // Tambahkan CSS global jika diperlukan
-
 
 const App = () => {
   return (
-    <div className="app">
-      <Dashboard />
-      <SidebarStaff/>
-    </div>
+    <Router>
+      <div className="app">
+        {/* Routing */}
+        <Routes>
+          {/* Route ke halaman Login */}
+          <Route path="/" element={<Login />} />
+
+          {/* Route ke halaman Dashboard */}
+          <Route
+            path="/dashboard"
+            element={
+              <div>
+                <SidebarStaff />
+                <Dashboard />
+              </div>
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
