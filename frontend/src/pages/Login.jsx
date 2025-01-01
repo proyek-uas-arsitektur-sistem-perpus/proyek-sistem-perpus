@@ -1,39 +1,43 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Login.css'; // Import file CSS
+import { useNavigate } from "react-router-dom";
+import "./Login.css";
+import loginImage from "../assets/Login.jpg";  // Pastikan path gambar benar
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log("Login successful!");
-    navigate('/dashboard');
+  const handleLogin = (event) => {
+    event.preventDefault();
+    // Lakukan logika login di sini, seperti validasi dan pengalihan halaman
+    navigate("/dashboard");  // Ganti dengan halaman setelah login
   };
 
   return (
-    <div className="login-container">
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <div className="form-group">
-          <label>Email/Username:</label>
-          <input type="text" placeholder="Enter email or username" required />
+    <div className="login-page">
+      <div className="left-side">
+        <img src={loginImage} alt="Login" className="login-image" />
+      </div>
+      <div className="right-side">
+        <div className="form-container">
+          <h1>SELAMAT DATANG</h1>
+          <p>Login ke akun Anda</p>
+          <form onSubmit={handleLogin}>
+            <input
+              type="email"
+              placeholder="Alamat Email"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Kata Sandi"
+              required
+            />
+            <button type="submit">Masuk</button>
+          </form>
+          <div className="signup-link">
+            <p>Belum punya akun? <a href="/register">Daftar</a></p>
+          </div>
         </div>
-        <div className="form-group">
-          <label>Password:</label>
-          <input type="password" placeholder="Enter password" required />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      <p>
-        Belum punya akun?{" "}
-        <span
-          className="register-link"
-          onClick={() => navigate('/register')}
-        >
-          Buat Akun
-        </span>
-      </p>
+      </div>
     </div>
   );
 };
