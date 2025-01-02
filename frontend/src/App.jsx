@@ -1,4 +1,4 @@
-import React from "react";
+import "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login"; // Halaman Login
 import Register from "./pages/Register"; // Halaman Register
