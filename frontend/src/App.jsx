@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login"; // Halaman Login
 import Register from "./pages/Register"; // Halaman Register
 import Dashboard from "./pages/Dashboard"; // Halaman Dashboard
+import ProfilePengguna from './components/ProfilePengguna'; // Halaman Profile Pengguna
+import GantiPassword from './components/GantiPassword'; // Halaman Ganti Password
 import SidebarStaff from "./components/SidebarStaff"; // Sidebar Staff
 import "./App.css"; // Tambahkan CSS global jika diperlukan
 
@@ -23,11 +25,20 @@ const App = () => {
             path="/dashboard"
             element={
               <div>
-                <SidebarStaff />
+                <SidebarStaff /> {/* Menampilkan Sidebar hanya di Dashboard */}
                 <Dashboard />
               </div>
             }
           />
+
+          {/* Route ke halaman Profile Pengguna */}
+          <Route path="/dashboard/profile" element={<ProfilePengguna />} />
+
+          {/* Route ke halaman Ganti Password */}
+          <Route path="/login/change-password" element={<GantiPassword />} />
+          
+          {/* Route untuk halaman Lupa Password */}
+          <Route path="/lupa-password" element={<GantiPassword />} /> {/* Halaman Ganti Password */}
         </Routes>
       </div>
     </Router>

@@ -35,6 +35,8 @@ const Login = () => {
           </form>
           <div className="signup-link">
             <p>Belum punya akun? <a href="/register">Daftar</a></p>
+            {/* Tambahkan link untuk Lupa Password */}
+            <p><a href="/lupa-password">Lupa Password?</a></p>
           </div>
         </div>
       </div>
