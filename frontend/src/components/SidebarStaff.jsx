@@ -10,7 +10,8 @@ import {
   faClipboardList,
   faCogs,
   faChevronDown,
-  faSignOutAlt, // Tambahkan ikon Logout
+  faSignOutAlt,
+  faUserCircle, // Tambahkan ikon untuk Profile Pengguna
 } from "@fortawesome/free-solid-svg-icons";
 
 const SidebarStaff = () => {
@@ -23,6 +24,11 @@ const SidebarStaff = () => {
     <div className="sidebar">
       <h2>PERPUSTAKAAN</h2>
       <ul>
+        {/* Profile Pengguna */}
+        <li>
+          <FontAwesomeIcon icon={faUserCircle} className="icon" /> Profile Pengguna
+        </li>
+
         {/* Dashboard */}
         <li>
           <FontAwesomeIcon icon={faTachometerAlt} className="icon" /> Dashboard
