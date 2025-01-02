@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard"; // Halaman Dashboard
 import ProfilePengguna from './components/ProfilePengguna'; // Halaman Profile Pengguna
 import GantiPassword from './components/GantiPassword'; // Halaman Ganti Password
 import SidebarStaff from "./components/SidebarStaff"; // Sidebar Staff
+import SearchFilter from './components/SearchFilter'; // Halaman Search Filter
 import "./App.css"; // Tambahkan CSS global jika diperlukan
 
 const App = () => {
@@ -38,7 +39,18 @@ const App = () => {
           <Route path="/login/change-password" element={<GantiPassword />} />
           
           {/* Route untuk halaman Lupa Password */}
-          <Route path="/lupa-password" element={<GantiPassword />} /> {/* Halaman Ganti Password */}
+          <Route path="/lupa-password" element={<GantiPassword />} />
+
+          {/* Route ke halaman Search Filter */}
+          <Route
+            path="/search"
+            element={
+              <div>
+                <SidebarStaff /> {/* Sidebar juga muncul di halaman Search */}
+                <SearchFilter /> {/* Halaman Search Filter */}
+              </div>
+            }
+          />
         </Routes>
       </div>
     </Router>
