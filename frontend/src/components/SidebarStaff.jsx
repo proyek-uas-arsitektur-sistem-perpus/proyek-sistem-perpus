@@ -42,7 +42,6 @@ const SidebarStaff = () => {
           {showDataDropdown && (
             <ul className="dropdown-menu">
               <li>Data Buku</li>
-              <li>Cari Buku</li>
               <li>Kategori</li>
               <li>Rak Buku</li>
             </ul>
@@ -83,11 +82,6 @@ const SidebarStaff = () => {
               <li>Laporan Stock Buku</li>
             </ul>
           )}
-        </li>
-
-        {/* Atur Perpustakaan */}
-        <li>
-          <FontAwesomeIcon icon={faCogs} className="icon" /> Atur Perpustakaan
         </li>
       </ul>
     </div>
