@@ -1,6 +1,6 @@
-import  { useState } from 'react';
-import './SidebarStaff.css'; // Tambahkan CSS untuk styling
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from "react";
+import "./SidebarStaff.css"; // Tambahkan CSS untuk styling
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTachometerAlt,
   faUser,
@@ -10,7 +10,9 @@ import {
   faClipboardList,
   faCogs,
   faChevronDown,
-} from '@fortawesome/free-solid-svg-icons';
+  faSignOutAlt,
+  faUserCircle, // Tambahkan ikon untuk Profile Pengguna
+} from "@fortawesome/free-solid-svg-icons";
 
 const SidebarStaff = () => {
   // State untuk dropdown
@@ -22,6 +24,11 @@ const SidebarStaff = () => {
     <div className="sidebar">
       <h2>PERPUSTAKAAN</h2>
       <ul>
+        {/* Profile Pengguna */}
+        <li>
+          <FontAwesomeIcon icon={faUserCircle} className="icon" /> Profile Pengguna
+        </li>
+
         {/* Dashboard */}
         <li>
           <FontAwesomeIcon icon={faTachometerAlt} className="icon" /> Dashboard
@@ -35,7 +42,7 @@ const SidebarStaff = () => {
         {/* Data dengan Dropdown */}
         <li
           onClick={() => setShowDataDropdown(!showDataDropdown)}
-          className={`dropdown ${showDataDropdown ? 'open' : ''}`}
+          className={`dropdown ${showDataDropdown ? "open" : ""}`}
         >
           <FontAwesomeIcon icon={faBook} className="icon" /> Data
           <FontAwesomeIcon icon={faChevronDown} className="chevron-icon" />
@@ -51,7 +58,7 @@ const SidebarStaff = () => {
         {/* Transaksi dengan Dropdown */}
         <li
           onClick={() => setShowTransaksiDropdown(!showTransaksiDropdown)}
-          className={`dropdown ${showTransaksiDropdown ? 'open' : ''}`}
+          className={`dropdown ${showTransaksiDropdown ? "open" : ""}`}
         >
           <FontAwesomeIcon icon={faExchangeAlt} className="icon" /> Transaksi
           <FontAwesomeIcon icon={faChevronDown} className="chevron-icon" />
@@ -71,7 +78,7 @@ const SidebarStaff = () => {
         {/* Stock Opname dengan Dropdown */}
         <li
           onClick={() => setShowStockDropdown(!showStockDropdown)}
-          className={`dropdown ${showStockDropdown ? 'open' : ''}`}
+          className={`dropdown ${showStockDropdown ? "open" : ""}`}
         >
           <FontAwesomeIcon icon={faClipboardList} className="icon" /> Stock Opname
           <FontAwesomeIcon icon={faChevronDown} className="chevron-icon" />
@@ -82,6 +89,11 @@ const SidebarStaff = () => {
               <li>Laporan Stock Buku</li>
             </ul>
           )}
+        </li>
+
+        {/* Logout */}
+        <li className="logout">
+          <FontAwesomeIcon icon={faSignOutAlt} className="icon" /> Logout
         </li>
       </ul>
     </div>
