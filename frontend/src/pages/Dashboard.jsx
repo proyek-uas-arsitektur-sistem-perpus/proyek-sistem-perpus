@@ -1,4 +1,4 @@
-import React from 'react';
+import 'react';
 import { Link } from 'react-router-dom'; // Mengimpor Link untuk navigasi
 import './Dashboard.css'; // Mengimpor file CSS untuk styling Dashboard
 import SidebarStaff from '../components/SidebarStaff'; // Mengimpor SidebarStaff
@@ -48,11 +48,15 @@ const Dashboard = () => {
             <i className="fas fa-credit-card"></i> {/* Ikon denda */}
             1 Denda {/* Menampilkan jumlah denda yang harus dibayar */}
           </div>
+        </div>
 
-          {/* Links to Profile and Change Password */}
-          <div className="settings-links">
-            <Link to="/dashboard/profile">Profile Pengguna</Link> {/* Link ke halaman Profile Pengguna */}
-          </div>
+        {/* Link untuk Profile Pengguna */}
+        <div className="profile-link">
+          <Link to="/dashboard/profile">
+            <div className="profile-image">
+              <img src="Profile.jpg" alt="Profile" />
+            </div>
+          </Link>
         </div>
       </div>
     </div>

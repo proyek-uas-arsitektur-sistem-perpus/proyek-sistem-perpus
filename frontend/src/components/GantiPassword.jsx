@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate untuk mengarahkan pengguna
 import './GantiPassword.css';
 
