@@ -1,66 +1,53 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Register.css'; // CSS untuk styling halaman Register
+import { useNavigate } from "react-router-dom";
+import "./Register.css";
+import registerImage from "../assets/Login.jpg"; // Pastikan path gambar benar
 
 const Register = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleRegister = (e) => {
-    e.preventDefault(); // Mencegah reload halaman
-    console.log("Account created:", formData);
-    // Setelah membuat akun berhasil, arahkan ke halaman login
-    navigate('/');
+  const handleRegister = (event) => {
+    event.preventDefault();
+    alert("Pendaftaran berhasil! Silakan masuk menggunakan akun Anda.");
+    
+    // Setelah pendaftaran selesai, arahkan ke halaman login
+    navigate("/"); // Mengarah ke halaman login
   };
 
   return (
-    <div className="register-container">
-      <h1>Buat Akun</h1>
-      <form onSubmit={handleRegister}>
-        <div className="form-group">
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            placeholder="Masukkan username"
-            required
-          />
+    <div className="login-page">
+      <div className="left-side">
+        <img src={registerImage} alt="Register" className="login-image" />
+      </div>
+      <div className="right-side">
+        <div className="form-container">
+          <h1>DAFTAR AKUN</h1>
+          <p>Buat akun baru Anda</p>
+          <form onSubmit={handleRegister}>
+            <input type="text" placeholder="Nama Lengkap" required />
+            <input type="nik" placeholder="NIK" required />
+            <input type="nomerTelepon" placeholder="Nomer Telepon" required />
+            <input type="email" placeholder="Alamat Email" required />
+            <input type="password" placeholder="Kata Sandi" required />
+            <input type="password" placeholder="Konfirmasi Kata Sandi" required />
+            <button type="submit">Daftar</button>
+          </form>
+          <div className="signup-link">
+            <p>
+              Sudah punya akun?{" "}
+              <span
+                onClick={() => navigate("/")}
+                style={{
+                  color: "#5c6bc0",
+                  cursor: "pointer",
+                  textDecoration: "underline",
+                }}
+              >
+                Masuk
+              </span>
+            </p>
+          </div>
         </div>
-        <div className="form-group">
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Masukkan email"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Masukkan password"
-            required
-          />
-        </div>
-        <button type="submit">Buat Akun</button>
-      </form>
+      </div>
     </div>
   );
 };
