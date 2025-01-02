@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate untuk navigasi
 import "./SidebarStaff.css"; // Tambahkan CSS untuk styling
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,10 +16,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const SidebarStaff = () => {
-  // State untuk dropdown
+  const navigate = useNavigate(); // Hook untuk navigasi
   const [showDataDropdown, setShowDataDropdown] = useState(false);
   const [showTransaksiDropdown, setShowTransaksiDropdown] = useState(false);
   const [showStockDropdown, setShowStockDropdown] = useState(false);
+
+  const handleLogout = () => {
+    // Hapus token atau data autentikasi lainnya
+    localStorage.removeItem('authToken'); // Menghapus token dari localStorage (atau sessionStorage)
+
+    // Setelah logout, arahkan ke halaman login
+    navigate("/login");
+  };
 
   return (
     <div className="sidebar">
@@ -92,7 +101,7 @@ const SidebarStaff = () => {
         </li>
 
         {/* Logout */}
-        <li className="logout">
+        <li className="logout" onClick={handleLogout}>
           <FontAwesomeIcon icon={faSignOutAlt} className="icon" /> Logout
         </li>
       </ul>
