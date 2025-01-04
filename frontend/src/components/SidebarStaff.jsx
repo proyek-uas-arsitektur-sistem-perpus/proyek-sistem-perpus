@@ -23,9 +23,8 @@ const SidebarStaff = () => {
   const handleLogout = () => {
     // Hapus token atau data autentikasi lainnya
     localStorage.removeItem("authToken"); // Menghapus token dari localStorage (atau sessionStorage)
-
-    // Setelah logout, arahkan ke halaman login
-    navigate("/login");
+    alert("Anda telah berhasil logout!"); // Tambahkan alert sebagai konfirmasi logout
+    navigate("/login"); // Setelah logout, arahkan ke halaman login
   };
 
   const handleProfileClick = () => {
@@ -47,7 +46,7 @@ const SidebarStaff = () => {
         </li>
 
         {/* Data Pengguna */}
-        <li>
+        <li onClick={() => navigate("/data-pengguna")}>
           <FontAwesomeIcon icon={faUser} className="icon" /> Data Pengguna
         </li>
 
@@ -60,7 +59,7 @@ const SidebarStaff = () => {
           <FontAwesomeIcon icon={faChevronDown} className="chevron-icon" />
           {showDataDropdown && (
             <ul className="dropdown-menu">
-              <li> <a href="/data-buku">Data Buku</a></li>
+              <li onClick={() => navigate("/data-buku")}>Data Buku</li>
               <li>Kategori</li>
               <li>Rak Buku</li>
             </ul>
@@ -83,7 +82,7 @@ const SidebarStaff = () => {
         </li>
 
         {/* Denda */}
-        <li>
+        <li onClick={() => navigate("/denda")}>
           <FontAwesomeIcon icon={faMoneyBill} className="icon" /> Denda
         </li>
 
