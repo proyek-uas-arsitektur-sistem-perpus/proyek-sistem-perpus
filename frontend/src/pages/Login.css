@@ -1,129 +1,107 @@
-/* Login.css */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f7fa;
-    color: #333;
-  }
-  
-  .login-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
-  }
-  
-  .login-container {
-    display: flex;
-    width: 100%;
-    max-width: 1000px; /* Membatasi lebar kontainer */
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .left-side, .right-side {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .left-side {
-    flex: 1;
-  }
-  
-  .login-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;  /* Menggunakan contain untuk memastikan gambar tidak terpotong atau diperbesar */
-    border-radius: 10px 0 0 10px;  /* Sudut kiri atas dan bawah melengkung */
-  }
-  
-  .right-side {
-    flex: 1;
-  }
-  
-  .form-container h1 {
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .form-container p {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #555;
-  }
-  
-  input {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s ease;
-  }
-  
-  input:focus {
-    border-color: #5c6bc0;
-    outline: none;
-  }
-  
-  button {
-    width: 100%;
-    padding: 14px;
-    background-color: #5c6bc0;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #3f51b5;
-  }
-  
-  button:active {
-    background-color: #3949ab;
-  }
-  
-  .signup-link {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .signup-link a {
-    color: #5c6bc0;
-    text-decoration: none;
-  }
-  
-  .signup-link a:hover {
-    text-decoration: underline;
-  }
-  
-  @media (max-width: 768px) {
-    .login-container {
-      flex-direction: column;
-      padding: 20px;
-    }
-  
-    .left-side,
-    .right-side {
-      width: 100%;
-      margin: 10px 0;
-      height: auto;
-    }
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f7fa;
+  color: #333;
+}
+
+.login-page {
+  display: flex;
+  height: 100vh;
+}
+
+.left-side {
+  flex: 1; /* Bagian kiri (gambar) menempati separuh layar */
+}
+
+.login-image {
+  margin-left: 0%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Menampilkan gambar tanpa memotong */
+}
+
+.right-side {
+  flex: 1; /* Bagian kanan (form login) menempati separuh layar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.login-container h1 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.login-container p {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #5c6bc0;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  background-color: #5c6bc0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #3f51b5;
+}
+
+button:active {
+  background-color: #3949ab;
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.signup-link a {
+  color: #5c6bc0;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
