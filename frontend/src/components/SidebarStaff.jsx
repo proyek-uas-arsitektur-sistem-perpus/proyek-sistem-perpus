@@ -60,7 +60,7 @@ const SidebarStaff = () => {
           <FontAwesomeIcon icon={faChevronDown} className="chevron-icon" />
           {showDataDropdown && (
             <ul className="dropdown-menu">
-              <li>Data Buku</li>
+              <li> <a href="/data-buku">Data Buku</a></li>
               <li>Kategori</li>
               <li>Rak Buku</li>
             </ul>
