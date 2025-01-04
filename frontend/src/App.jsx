@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Dashboardpengguna from "./pages/Dashboardpengguna";
 import GantiPassword from './pages/GantiPassword';
 import SidebarStaff from "./components/SidebarStaff";
+import SidebarPengguna from "./components/SidebarPengguna";
 import SearchFilter from './components/SearchFilter';
 import ProfilePengguna from "./pages/ProfilePengguna";  // Import halaman Profile
 import DataBuku from "./pages/Databuku";
@@ -32,7 +33,7 @@ const App = () => {
           {/* Dashboard untuk Pengguna */}
           <Route path="/dashboard-pengguna" element={
             <div>
-              {/* <SidebarPengguna /> Sidebar khusus Pengguna */}
+              <SidebarPengguna /> 
               <Dashboardpengguna />
             </div>
           } />
