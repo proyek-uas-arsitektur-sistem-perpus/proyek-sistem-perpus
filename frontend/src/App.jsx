@@ -7,6 +7,8 @@ import GantiPassword from './components/GantiPassword';
 import SidebarStaff from "./components/SidebarStaff";
 import SearchFilter from './components/SearchFilter';
 import ProfilePengguna from "./pages/ProfilePengguna";  // Import halaman Profile
+import DataBuku from "./pages/Databuku";
+import TambahBuku from "./pages/Tambahbuku";
 import "./App.css"; // Tambahkan CSS global jika diperlukan
 
 const App = () => {
@@ -34,6 +36,8 @@ const App = () => {
           <Route path="/logout" element={<Logout />} />
           <Route path="/profile" element={<ProfilePengguna />} /> {/* Route untuk halaman Profile */}
           <Route path="*" element={<Login />} />
+          <Route path="/data-buku" element={<DataBuku />} />
+          <Route path="/tambah-buku" element={<TambahBuku />} />
         </Routes>
       </div>
     </Router>
