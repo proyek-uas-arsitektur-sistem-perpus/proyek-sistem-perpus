@@ -10,7 +10,7 @@
 .dashboard-header h1 {
   font-size: 48px;
   font-family: "Poppins", Arial, Helvetica, sans-serif; /* Font estetis */
-  font-weight: 700;
+  font-weight: 00;
   color: #2c3e50;
   margin-bottom: 10px;
   padding-left: 250px;
@@ -56,6 +56,7 @@
   margin: 5px 0 0;
   color: #f5f5f5;
   font-weight: 500;
+  margin-bottom: 12%;
 }
 
 .card i {
@@ -89,15 +90,33 @@
 
 .card-footer {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f4f4f4; /* Latar belakang putih */
+  color: #333; /* Warna teks gelap */
+  text-align: center; /* Teks di tengah */
+  padding: 10px 0; /* Memberikan padding atas dan bawah */
   font-size: 14px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 5px;
-  color: #f5f5f5;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan agar lebih terpisah dari card */
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
 
 .card-footer i {
-  font-size: 16px;
+  margin-left: 5px; /* Jarak antara teks dan ikon */
+  font-size: 12px; /* Mengubah ukuran ikon menjadi lebih kecil */
+  
+}
+
+.card:hover .card-footer {
+  background-color: #f4f4f4;; /* Efek hover, latar belakang berubah */
+  
+}
+
+.card .card-footer span {
+  font-weight: medium; /* Menebalkan teks More Info */
 }

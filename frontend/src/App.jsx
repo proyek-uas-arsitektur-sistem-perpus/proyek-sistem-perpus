@@ -3,8 +3,10 @@ import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import Dashboardpengguna from "./pages/Dashboardpengguna";
 import GantiPassword from './components/GantiPassword';
 import SidebarStaff from "./components/SidebarStaff";
+// import SidebarPengguna from "./components/SidebarPengguna"; // Import SidebarPengguna
 import SearchFilter from './components/SearchFilter';
 import ProfilePengguna from "./pages/ProfilePengguna";  // Import halaman Profile
 import DataBuku from "./pages/Databuku";
@@ -19,12 +21,23 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          
+          {/* Dashboard untuk Staff */}
           <Route path="/dashboard" element={
             <div>
               <SidebarStaff />
               <Dashboard />
             </div>
           } />
+          
+          {/* Dashboard untuk Pengguna */}
+          <Route path="/dashboard-pengguna" element={
+            <div>
+              {/* <SidebarPengguna /> Sidebar khusus Pengguna */}
+              <Dashboardpengguna />
+            </div>
+          } />
+          
           <Route path="/login/change-password" element={<GantiPassword />} />
           <Route path="/lupa-password" element={<GantiPassword />} />
           <Route path="/search" element={
