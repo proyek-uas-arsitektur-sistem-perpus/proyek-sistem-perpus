@@ -15,36 +15,72 @@ const Dashboard = () => {
           <p>Control Panel</p> {/* Deskripsi singkat tentang dashboard */}
         </header>
 
-        {/* Bagian kartu informasi */}
+        {/* Bagian Cards */}
         <div className="dashboard-cards">
-          {/* Kartu untuk jumlah anggota */}
           <div className="card blue">
-            <i className="fas fa-users"></i> {/* Ikon pengguna (Anggota) */}
-            43 Anggota
+            <div className="card-content">
+              <h3>121</h3>
+              <p>Anggota</p>
+            </div>
+            <i className="fas fa-users card-icon"></i> {/* Ikon Anggota */}
+            <div className="card-footer">
+              <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
+            </div>
           </div>
 
-          {/* Kartu untuk jenis buku */}
-          <div className="card green">
-            <i className="fas fa-book"></i> {/* Ikon buku (Jenis Buku) */}
-            5 Jenis Buku
+          <div className="card teal">
+            <div className="card-content">
+              <h3>22</h3>
+              <p>Jenis Buku</p>
+            </div>
+            <i className="fas fa-book card-icon"></i> {/* Ikon Buku */}
+            <div className="card-footer">
+              <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
+            </div>
           </div>
 
-          {/* Kartu untuk jumlah buku yang dipinjamkan */}
-          <div className="card purple">
-            <i className="fas fa-book-reader"></i> {/* Ikon buku yang dipinjam */}
-            2 Dipinjamkan
-          </div>
-
-          {/* Kartu untuk jumlah buku yang dikembalikan bulan ini */}
           <div className="card orange">
-            <i className="fas fa-undo-alt"></i> {/* Ikon pengembalian buku */}
-            10 Dikembalikan (Bulan Ini)
+            <div className="card-content">
+              <h3>10</h3>
+              <p>Kategori</p>
+            </div>
+            <i className="fas fa-tags card-icon"></i> {/* Ikon Kategori */}
+            <div className="card-footer">
+              <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
+            </div>
           </div>
 
-          {/* Kartu untuk jumlah denda yang belum dibayar */}
+          <div className="card green">
+            <div className="card-content">
+              <h3>1</h3>
+              <p>Dipinjamkan</p>
+            </div>
+            <i className="fas fa-hand-holding card-icon"></i> {/* Ikon Dipinjam */}
+            <div className="card-footer">
+              <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
+            </div>
+          </div>
+
+          <div className="card purple">
+            <div className="card-content">
+              <h3>1</h3>
+              <p>Dikembalikan (Bulan Ini)</p>
+            </div>
+            <i className="fas fa-undo card-icon"></i> {/* Ikon Dikembalikan */}
+            <div className="card-footer">
+              <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
+            </div>
+          </div>
+
           <div className="card red">
-            <i className="fas fa-credit-card"></i> {/* Ikon denda */}
-            1 Denda
+            <div className="card-content">
+              <h3>1</h3>
+              <p>Denda</p>
+            </div>
+            <i className="fas fa-money-bill-wave card-icon"></i> {/* Ikon Denda */}
+            <div className="card-footer">
+              <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
+            </div>
           </div>
         </div>
       </div>
