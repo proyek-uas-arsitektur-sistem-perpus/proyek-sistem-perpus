@@ -1,11 +1,14 @@
-import "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login"; // Halaman Login
-import Register from "./pages/Register"; // Halaman Register
-import Dashboard from "./pages/Dashboard"; // Halaman Dashboard
-import ProfilePengguna from './components/ProfilePengguna'; // Halaman Profile Pengguna
-import GantiPassword from './components/GantiPassword'; // Halaman Ganti Password
-import SidebarStaff from "./components/SidebarStaff"; // Sidebar Staff
+import Login from "./pages/Login";
+import Logout from "./pages/Logout";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import GantiPassword from './components/GantiPassword';
+import SidebarStaff from "./components/SidebarStaff";
+import SearchFilter from './components/SearchFilter';
+import ProfilePengguna from "./pages/ProfilePengguna";  // Import halaman Profile
+import DataBuku from "./pages/Databuku";
+import TambahBuku from "./pages/Tambahbuku";
 import "./App.css"; // Tambahkan CSS global jika diperlukan
 
 const App = () => {
@@ -14,31 +17,27 @@ const App = () => {
       <div className="app">
         {/* Routing */}
         <Routes>
-          {/* Route ke halaman Login */}
-          <Route path="/" element={<Login />} />
-
-          {/* Route ke halaman Register */}
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
-          {/* Route ke halaman Dashboard */}
-          <Route
-            path="/dashboard"
-            element={
-              <div>
-                <SidebarStaff /> {/* Menampilkan Sidebar hanya di Dashboard */}
-                <Dashboard />
-              </div>
-            }
-          />
-
-          {/* Route ke halaman Profile Pengguna */}
-          <Route path="/dashboard/profile" element={<ProfilePengguna />} />
-
-          {/* Route ke halaman Ganti Password */}
+          <Route path="/dashboard" element={
+            <div>
+              <SidebarStaff />
+              <Dashboard />
+            </div>
+          } />
           <Route path="/login/change-password" element={<GantiPassword />} />
-          
-          {/* Route untuk halaman Lupa Password */}
-          <Route path="/lupa-password" element={<GantiPassword />} /> {/* Halaman Ganti Password */}
+          <Route path="/lupa-password" element={<GantiPassword />} />
+          <Route path="/search" element={
+            <div>
+              <SidebarStaff />
+              <SearchFilter />
+            </div>
+          } />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/profile" element={<ProfilePengguna />} /> {/* Route untuk halaman Profile */}
+          <Route path="*" element={<Login />} />
+          <Route path="/data-buku" element={<DataBuku />} />
+          <Route path="/tambah-buku" element={<TambahBuku />} />
         </Routes>
       </div>
     </Router>

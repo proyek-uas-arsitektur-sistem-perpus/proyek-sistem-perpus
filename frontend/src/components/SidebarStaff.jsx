@@ -1,6 +1,7 @@
-import  { useState } from 'react';
-import './SidebarStaff.css'; // Tambahkan CSS untuk styling
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate untuk navigasi
+import "./SidebarStaff.css"; // Tambahkan CSS untuk styling
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTachometerAlt,
   faUser,
@@ -8,22 +9,40 @@ import {
   faExchangeAlt,
   faMoneyBill,
   faClipboardList,
-  faCogs,
   faChevronDown,
-} from '@fortawesome/free-solid-svg-icons';
+  faSignOutAlt,
+  faUserCircle, // Tambahkan ikon untuk Profile Pengguna
+} from "@fortawesome/free-solid-svg-icons";
 
 const SidebarStaff = () => {
-  // State untuk dropdown
+  const navigate = useNavigate(); // Hook untuk navigasi
   const [showDataDropdown, setShowDataDropdown] = useState(false);
   const [showTransaksiDropdown, setShowTransaksiDropdown] = useState(false);
   const [showStockDropdown, setShowStockDropdown] = useState(false);
+
+  const handleLogout = () => {
+    // Hapus token atau data autentikasi lainnya
+    localStorage.removeItem("authToken"); // Menghapus token dari localStorage (atau sessionStorage)
+
+    // Setelah logout, arahkan ke halaman login
+    navigate("/login");
+  };
+
+  const handleProfileClick = () => {
+    navigate("/profile"); // Navigasi ke halaman Profile Pengguna
+  };
 
   return (
     <div className="sidebar">
       <h2>PERPUSTAKAAN</h2>
       <ul>
+        {/* Profile Pengguna */}
+        <li onClick={handleProfileClick}>
+          <FontAwesomeIcon icon={faUserCircle} className="icon" /> Profile Pengguna
+        </li>
+
         {/* Dashboard */}
-        <li>
+        <li onClick={() => navigate("/dashboard")}>
           <FontAwesomeIcon icon={faTachometerAlt} className="icon" /> Dashboard
         </li>
 
@@ -35,14 +54,13 @@ const SidebarStaff = () => {
         {/* Data dengan Dropdown */}
         <li
           onClick={() => setShowDataDropdown(!showDataDropdown)}
-          className={`dropdown ${showDataDropdown ? 'open' : ''}`}
+          className={`dropdown ${showDataDropdown ? "open" : ""}`}
         >
           <FontAwesomeIcon icon={faBook} className="icon" /> Data
           <FontAwesomeIcon icon={faChevronDown} className="chevron-icon" />
           {showDataDropdown && (
             <ul className="dropdown-menu">
-              <li>Data Buku</li>
-              <li>Cari Buku</li>
+              <li> <a href="/data-buku">Data Buku</a></li>
               <li>Kategori</li>
               <li>Rak Buku</li>
             </ul>
@@ -52,7 +70,7 @@ const SidebarStaff = () => {
         {/* Transaksi dengan Dropdown */}
         <li
           onClick={() => setShowTransaksiDropdown(!showTransaksiDropdown)}
-          className={`dropdown ${showTransaksiDropdown ? 'open' : ''}`}
+          className={`dropdown ${showTransaksiDropdown ? "open" : ""}`}
         >
           <FontAwesomeIcon icon={faExchangeAlt} className="icon" /> Transaksi
           <FontAwesomeIcon icon={faChevronDown} className="chevron-icon" />
@@ -72,22 +90,23 @@ const SidebarStaff = () => {
         {/* Stock Opname dengan Dropdown */}
         <li
           onClick={() => setShowStockDropdown(!showStockDropdown)}
-          className={`dropdown ${showStockDropdown ? 'open' : ''}`}
+          className={`dropdown ${showStockDropdown ? "open" : ""}`}
         >
           <FontAwesomeIcon icon={faClipboardList} className="icon" /> Stock Opname
           <FontAwesomeIcon icon={faChevronDown} className="chevron-icon" />
           {showStockDropdown && (
             <ul className="dropdown-menu">
-              <li>Input Data Buku Masuk</li>
-              <li>Input Data Buku Keluar</li>
+              <li>Input Data</li>
+              <li>Pencatatan Stock Buku Masuk</li>
+              <li>Pencatatan Stock Buku Keluar</li>
               <li>Laporan Stock Buku</li>
             </ul>
           )}
         </li>
 
-        {/* Atur Perpustakaan */}
-        <li>
-          <FontAwesomeIcon icon={faCogs} className="icon" /> Atur Perpustakaan
+        {/* Logout */}
+        <li className="logout" onClick={handleLogout}>
+          <FontAwesomeIcon icon={faSignOutAlt} className="icon" /> Logout
         </li>
       </ul>
     </div>
