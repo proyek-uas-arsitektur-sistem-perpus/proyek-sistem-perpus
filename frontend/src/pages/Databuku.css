@@ -78,6 +78,7 @@
     border-radius: 4px;
     color: white;
     cursor: pointer;
+    margin: 2px 0;
   }
   
   .btn-action.edit {

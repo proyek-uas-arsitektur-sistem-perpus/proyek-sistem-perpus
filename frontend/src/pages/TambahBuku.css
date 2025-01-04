@@ -8,25 +8,37 @@
     font-weight: bold;
     color: #333;
     margin-bottom: 20px;
+    text-align: center;
   }
   
   .form-container {
     background: white;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Membagi form menjadi 4 kolom */
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
   .form-row {
-    display: flex;
+    grid-column: span 4; /* Setiap baris akan mengambil seluruh kolom */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Membagi kolom dalam baris */
     gap: 20px;
-    margin-bottom: 20px;
   }
   
   .form-group {
-    flex: 1;
     display: flex;
     flex-direction: column;
+    grid-column: span 1; /* Default menempati satu kolom */
+  }
+  
+  .form-group.full-width {
+    grid-column: span 4; /* Untuk elemen yang butuh seluruh lebar */
   }
   
   .form-group label {
@@ -38,30 +50,41 @@
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    width: 100%;
   }
   
   .form-control::placeholder {
     color: #aaa;
   }
   
+  .keterangan-textarea {
+    height: 150px;
+    resize: none;
+  }
+  
+  .optional {
+    font-size: 12px;
+    color: gray;
+  }
+  
   .form-actions {
+    grid-column: span 1;
     display: flex;
-    gap: 10px;
     justify-content: flex-end;
+    gap: 10px;
   }
   
   .btn-submit {
-    background-color: #28a745;
+    background-color: #007bff;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
   }
   
   .btn-submit:hover {
-    background-color: #218838;
+    background-color: #0056b3;
   }
   
   .btn-cancel {
@@ -71,10 +94,24 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
   }
   
   .btn-cancel:hover {
     background-color: #c82333;
+  }
+  
+  /* Responsif */
+  @media (max-width: 768px) {
+    .form-container {
+      grid-template-columns: repeat(2, 1fr); /* Ubah jadi 2 kolom untuk layar kecil */
+    }
+  
+    .form-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .form-group.full-width {
+      grid-column: span 2;
+    }
   }
   

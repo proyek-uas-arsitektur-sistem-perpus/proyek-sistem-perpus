@@ -30,35 +30,82 @@ const TambahBuku = () => {
               <option>Rak 2</option>
             </select>
           </div>
-        </div>
-        <div className="form-row">
           <div className="form-group">
             <label>ISBN</label>
-            <input type="text" className="form-control" placeholder="Masukkan ISBN" />
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Contoh ISBN: 978-602-8123-35-8"
+            />
           </div>
           <div className="form-group">
-            <label>Judul Buku</label>
-            <input type="text" className="form-control" placeholder="Masukkan Judul Buku" />
+            <label>Jumlah Buku</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Jumlah buku: 12"
+            />
           </div>
         </div>
+
         <div className="form-row">
+          <div className="form-group">
+            <label>Judul Buku</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Contoh: Cara Cepat Belajar Pemrograman Web"
+            />
+          </div>
           <div className="form-group">
             <label>Nama Pengarang</label>
             <input
               type="text"
               className="form-control"
-              placeholder="Masukkan Nama Pengarang"
+              placeholder="Nama Pengarang"
             />
           </div>
           <div className="form-group">
             <label>Penerbit</label>
-            <input type="text" className="form-control" placeholder="Masukkan Nama Penerbit" />
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Nama Penerbit"
+            />
+          </div>
+          <div className="form-group">
+            <label>Tahun Buku</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Tahun Buku: 2019"
+            />
           </div>
         </div>
+
+          <div className="form-row">
+             <div className="form-group">
+            <label>Sampul (gambar) <span className="optional">* optional</span></label>
+            <input
+              type="file"
+              className="form-control"
+               accept="image/*" />
+          </div>
+          <div className="form-group">
+            <label>Lampiran Buku (pdf) <span className="optional">* optional</span></label>
+            <input type="file" className="form-control" accept=".pdf" />
+          </div>
+          <div className="form-group full-width">
+            <label>Keterangan Lainnya</label>
+            <textarea
+              className="form-control keterangan-textarea"
+              placeholder="Tambahkan keterangan lain"
+            ></textarea>
+          </div>
+        </div>
+
         <div className="form-actions">
-          <button type="submit" className="btn-submit">
-            Simpan
-          </button>
+          <button type="submit" className="btn-submit">Submit</button>
           <button type="button" className="btn-cancel" onClick={goBack}>
             Kembali
           </button>
