@@ -8,24 +8,25 @@ const Register = () => {
   const handleRegister = (event) => {
     event.preventDefault();
     alert("Pendaftaran berhasil! Silakan masuk menggunakan akun Anda.");
-    
-    // Setelah pendaftaran selesai, arahkan ke halaman login
-    navigate("/"); // Mengarah ke halaman login
+    navigate("/login"); // Redirect ke halaman login setelah pendaftaran
   };
 
   return (
-    <div className="login-page">
+    <div className="register-page">
+      {/* Bagian Kiri: Gambar */}
       <div className="left-side">
-        <img src={registerImage} alt="Register" className="login-image" />
+        <img src={registerImage} alt="Register" className="register-image" />
       </div>
+
+      {/* Bagian Kanan: Form Register */}
       <div className="right-side">
-        <div className="form-container">
+        <div className="register-container">
           <h1>DAFTAR AKUN</h1>
           <p>Buat akun baru Anda</p>
           <form onSubmit={handleRegister}>
             <input type="text" placeholder="Nama Lengkap" required />
-            <input type="nik" placeholder="NIK" required />
-            <input type="nomerTelepon" placeholder="Nomer Telepon" required />
+            <input type="text" placeholder="NIK" required />
+            <input type="text" placeholder="Nomor Telepon" required />
             <input type="email" placeholder="Alamat Email" required />
             <input type="password" placeholder="Kata Sandi" required />
             <input type="password" placeholder="Konfirmasi Kata Sandi" required />
@@ -33,17 +34,7 @@ const Register = () => {
           </form>
           <div className="signup-link">
             <p>
-              Sudah punya akun?{" "}
-              <span
-                onClick={() => navigate("/")}
-                style={{
-                  color: "#5c6bc0",
-                  cursor: "pointer",
-                  textDecoration: "underline",
-                }}
-              >
-                Masuk
-              </span>
+              Sudah punya akun? <a href="/login">Masuk</a>
             </p>
           </div>
         </div>
