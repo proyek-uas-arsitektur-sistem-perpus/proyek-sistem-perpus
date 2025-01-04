@@ -1,78 +1,68 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate untuk navigasi
-import "./ProfilePengguna.css"; // Pastikan Anda memiliki file CSS untuk styling
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./ProfilePengguna.css";
 
 const ProfilePengguna = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    nim: "",
-    phone: "",
-    email: "",
-  });
-
-  const navigate = useNavigate(); // Hook untuk navigasi
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Data form:", formData);
-  };
+  const navigate = useNavigate();
 
   const handleBack = () => {
     navigate(-1); // Navigasi ke halaman sebelumnya
   };
 
   return (
-    <div className="profile-form">
+    <div className="profile-container">
       <h2>Profile Pengguna</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nama:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>NIM:</label>
-          <input
-            type="text"
-            name="nim"
-            value={formData.nim}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>No Telepon:</label>
-          <input
-            type="text"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">Simpan</button>
-      </form>
+      <table className="profile-table">
+        <tbody>
+          <tr>
+            <th>Nama</th>
+            <td>Violet</td>
+          </tr>
+          <tr>
+            <th>NIK</th>
+            <td>2206080090</td>
+          </tr>
+          <tr>
+            <th>Tanggal Lahir</th>
+            <td>28/01/2006</td>
+          </tr>
+          <tr>
+            <th>Telepon</th>
+            <td>082147296580</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>fauzan1892@codekop.com</td>
+          </tr>
+          <tr>
+            <th>Pas Foto</th>
+            <td>
+              <div className="photo-container">
+                <input type="file" id="upload-photo" />
+                <span>Tidak ada file yang dipilih</span>
+                <img
+                  src="https://via.placeholder.com/150" // Ganti URL gambar dengan yang Anda inginkan
+                  alt="Pas Foto"
+                  className="profile-photo"
+                />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>Alamat</th>
+            <td>Mars</td>
+          </tr>
+        </tbody>
+      </table>
 
-      {/* Tombol Kembali */}
-      <button className="back-button" onClick={handleBack}>
-        Kembali
-      </button>
+      <div className="button-group">
+        <button className="edit-button" type="button">
+          Edit Data
+        </button>
+        <button type="button" className="back-button" onClick={handleBack}>
+          Kembali
+        </button>
+      </div>
     </div>
   );
 };
