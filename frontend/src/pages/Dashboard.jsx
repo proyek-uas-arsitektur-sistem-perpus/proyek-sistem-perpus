@@ -1,8 +1,6 @@
-import 'react';
-import { Link } from 'react-router-dom'; // Mengimpor Link untuk navigasi
+import React from "react";
 import './Dashboard.css'; // Mengimpor file CSS untuk styling Dashboard
 import SidebarStaff from '../components/SidebarStaff'; // Mengimpor SidebarStaff
-
 
 // Komponen utama Dashboard
 const Dashboard = () => {
@@ -19,48 +17,39 @@ const Dashboard = () => {
 
         {/* Bagian kartu informasi */}
         <div className="dashboard-cards">
-          {/* Kartu untuk jumlah anggota, dengan ikon 'users' */}
+          {/* Kartu untuk jumlah anggota */}
           <div className="card blue">
             <i className="fas fa-users"></i> {/* Ikon pengguna (Anggota) */}
-            43 Anggota {/* Menampilkan jumlah anggota */}
+            43 Anggota
           </div>
 
-          {/* Kartu untuk jenis buku, dengan ikon 'book' */}
+          {/* Kartu untuk jenis buku */}
           <div className="card green">
             <i className="fas fa-book"></i> {/* Ikon buku (Jenis Buku) */}
-            5 Jenis Buku {/* Menampilkan jumlah jenis buku */}
+            5 Jenis Buku
           </div>
 
-          {/* Kartu untuk jumlah buku yang dipinjamkan, dengan ikon 'book-reader' */}
+          {/* Kartu untuk jumlah buku yang dipinjamkan */}
           <div className="card purple">
             <i className="fas fa-book-reader"></i> {/* Ikon buku yang dipinjam */}
-            2 Dipinjamkan {/* Menampilkan jumlah buku yang dipinjam */}
+            2 Dipinjamkan
           </div>
 
-          {/* Kartu untuk jumlah buku yang dikembalikan bulan ini, dengan ikon 'undo-alt' */}
+          {/* Kartu untuk jumlah buku yang dikembalikan bulan ini */}
           <div className="card orange">
             <i className="fas fa-undo-alt"></i> {/* Ikon pengembalian buku */}
-            10 Dikembalikan (Bulan Ini) {/* Menampilkan jumlah buku yang dikembalikan bulan ini */}
+            10 Dikembalikan (Bulan Ini)
           </div>
 
-          {/* Kartu untuk jumlah denda yang belum dibayar, dengan ikon 'credit-card' */}
+          {/* Kartu untuk jumlah denda yang belum dibayar */}
           <div className="card red">
             <i className="fas fa-credit-card"></i> {/* Ikon denda */}
-            1 Denda {/* Menampilkan jumlah denda yang harus dibayar */}
+            1 Denda
           </div>
-        </div>
-
-        {/* Link untuk Profile Pengguna */}
-        <div className="profile-link">
-          <Link to="/dashboard/profile">
-            <div className="profile-image">
-              <img src="Profile.jpg" alt="Profile" />
-            </div>
-          </Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default Dashboard; // Menyimpan komponen Dashboard agar bisa digunakan di bagian lain aplikasi
+export default Dashboard;

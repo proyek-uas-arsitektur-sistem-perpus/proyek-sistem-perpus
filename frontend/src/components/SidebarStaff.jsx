@@ -9,7 +9,6 @@ import {
   faExchangeAlt,
   faMoneyBill,
   faClipboardList,
-  faCogs,
   faChevronDown,
   faSignOutAlt,
   faUserCircle, // Tambahkan ikon untuk Profile Pengguna
@@ -23,10 +22,14 @@ const SidebarStaff = () => {
 
   const handleLogout = () => {
     // Hapus token atau data autentikasi lainnya
-    localStorage.removeItem('authToken'); // Menghapus token dari localStorage (atau sessionStorage)
+    localStorage.removeItem("authToken"); // Menghapus token dari localStorage (atau sessionStorage)
 
     // Setelah logout, arahkan ke halaman login
     navigate("/login");
+  };
+
+  const handleProfileClick = () => {
+    navigate("/profile"); // Navigasi ke halaman Profile Pengguna
   };
 
   return (
@@ -34,12 +37,12 @@ const SidebarStaff = () => {
       <h2>PERPUSTAKAAN</h2>
       <ul>
         {/* Profile Pengguna */}
-        <li>
+        <li onClick={handleProfileClick}>
           <FontAwesomeIcon icon={faUserCircle} className="icon" /> Profile Pengguna
         </li>
 
         {/* Dashboard */}
-        <li>
+        <li onClick={() => navigate("/dashboard")}>
           <FontAwesomeIcon icon={faTachometerAlt} className="icon" /> Dashboard
         </li>
 
