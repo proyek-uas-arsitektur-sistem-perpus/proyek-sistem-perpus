@@ -5,13 +5,31 @@ import "./DataBuku.css";
 const DataBuku = () => {
   const navigate = useNavigate();
 
+  const goBack = () => {
+    navigate("/dashboard"); 
+  };
+
   const goToTambahBuku = () => {
     navigate("/tambah-buku");
   };
 
+  const goToDetailBuku= () => {
+    navigate("/detail-buku");
+  };
+
+
+  const goToDataBukuEdit = () => {
+    navigate("/data-buku-edit"); // Navigasi ke halaman dashboard
+  };
+
   return (
     <div className="data-buku-container">
+        <div className="header">
       <h2 className="page-title">Data Buku</h2>
+      <p className="breadcrumb">
+          <span onClick={goBack} className="breadcrumb-link">Dashboard</span> &gt; Data Buku
+        </p>
+        </div>
       <div className="table-container">
         <div className="action-buttons">
           {/* Tombol untuk mengarahkan ke halaman Tambah Buku */}
@@ -26,7 +44,7 @@ const DataBuku = () => {
             <tr>
               <th>No</th>
               <th>Sampul</th>
-              <th>Buku ID</th>
+              <th>Data Buku</th>
               <th>ISBN</th>
               <th>Judul Buku</th>
               <th>Kategori</th>
@@ -54,7 +72,8 @@ const DataBuku = () => {
               <td>10</td>
               <td>1</td>
               <td>
-                <button className="btn-action edit">Edit</button>
+                <button className="btn-action edit" onClick={goToDataBukuEdit}>Edit</button>
+                <button className="btn-action detail"onClick={goToDetailBuku}>Detail</button>
                 <button className="btn-action delete">Hapus</button>
               </td>
             </tr>

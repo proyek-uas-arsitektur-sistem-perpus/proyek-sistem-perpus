@@ -11,6 +11,8 @@ import SearchFilter from './components/SearchFilter';
 import ProfilePengguna from "./pages/ProfilePengguna";  // Import halaman Profile
 import DataBuku from "./pages/Databuku";
 import TambahBuku from "./pages/Tambahbuku";
+import DataBukuEdit from "./pages/DataBukuEdit";
+import DetailBuku from "./pages/DetailBuku";
 import DataPengguna from "./pages/DataPengguna"; // Import halaman Data Pengguna
 import "./App.css";
 
@@ -55,6 +57,8 @@ const App = () => {
           <Route path="*" element={<Login />} />
           <Route path="/data-buku" element={<DataBuku />} />
           <Route path="/tambah-buku" element={<TambahBuku />} />
+          <Route path="/data-buku-edit" element={<DataBukuEdit />} />
+          <Route path="/detail-buku" element={<DetailBuku />} />
         </Routes>
       </div>
     </Router>

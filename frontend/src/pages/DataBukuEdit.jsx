@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./TambahBuku.css";
+import "./DataBukuEdit";
 
-const TambahBuku = () => {
+const DataBukuEdit = () => {
   const navigate = useNavigate();
 
   const goBack = () => {
@@ -11,7 +11,7 @@ const TambahBuku = () => {
 
   return (
     <div className="tambah-buku-container">
-      <h2 className="page-title">Tambah Buku</h2>
+      <h2 className="page-title">Data Buku Edit</h2>
       <form className="form-container">
         <div className="form-row">
           <div className="form-group">
@@ -43,7 +43,7 @@ const TambahBuku = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Kode buku: B001"
+              placeholder="Jumlah buku: B001"
             />
           </div>
         </div>
@@ -115,4 +115,4 @@ const TambahBuku = () => {
   );
 };
 
-export default TambahBuku;
+export default DataBukuEdit;

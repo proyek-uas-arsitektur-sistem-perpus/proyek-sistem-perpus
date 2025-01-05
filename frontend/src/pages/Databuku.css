@@ -1,13 +1,36 @@
 .data-buku-container {
     padding: 20px;
     background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
   }
-  
+
+  .header {
+    display: flex;
+    justify-content: space-between; /* Mengatur elemen di kedua sisi */
+    align-items: center;
+}
+
   .page-title {
     font-size: 24px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 20px;
+    margin: 0;
+  }
+
+  .breadcrumb {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+  }
+  
+  .breadcrumb-link {
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .breadcrumb-link:hover {
+    color: #0056b3;
   }
   
   .table-container {
@@ -15,6 +38,7 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 0;
   }
   
   .action-buttons {
@@ -85,6 +109,10 @@
     background-color: #28a745;
   }
   
+  .btn-action.detail {
+    background-color: #4242d4;
+  }
+
   .btn-action.delete {
     background-color: #dc3545;
   }

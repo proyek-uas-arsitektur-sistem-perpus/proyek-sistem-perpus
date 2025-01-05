@@ -1,0 +1,91 @@
+.detail-buku-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    margin-bottom: 20px;
+  }
+  
+  .page-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .breadcrumb {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .breadcrumb-link {
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .breadcrumb-link:hover {
+    color: #0056b3;
+  }
+  
+  .book-details {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .row {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+  
+  .row:last-child {
+    border-bottom: none;
+  }
+  
+  .label {
+    flex: 1;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .value {
+    flex: 2;
+    color: #555;
+  }
+  
+  .barcode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .book-id {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .btn-barcode {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .btn-barcode:hover {
+    background-color: #0056b3;
+  }
+  
+  .value img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
