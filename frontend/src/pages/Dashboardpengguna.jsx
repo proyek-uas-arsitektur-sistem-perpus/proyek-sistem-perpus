@@ -1,12 +1,13 @@
 import React from "react";
 import './Dashboardpengguna.css'; // Mengimpor file CSS untuk styling Dashboard Pengguna
 import SidebarStaff from '../components/SidebarStaff'; // Mengimpor SidebarStaff
+import SidebarPengguna from "../components/SidebarPengguna";
 
 // Komponen utama Dashboard Pengguna
 const Dashboardpengguna = () => {
   return (
     <div>
-      <SidebarStaff /> {/* Menyisipkan SidebarStaff */}
+      <SidebarPengguna /> {/* Menyisipkan SidebarStaff */}
 
       <div className="dashboardpengguna">
         {/* Header dari Dashboard Pengguna */}
