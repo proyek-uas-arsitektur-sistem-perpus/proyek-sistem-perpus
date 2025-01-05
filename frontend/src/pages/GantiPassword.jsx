@@ -35,7 +35,6 @@ const GantiPassword = () => {
     <div className="ganti-password-page">
       <div className="ganti-password-container">
         <h1>UBAH PASSWORD</h1>
-        <p>Masukkan password saat ini dan buat password baru Anda.</p>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <input
