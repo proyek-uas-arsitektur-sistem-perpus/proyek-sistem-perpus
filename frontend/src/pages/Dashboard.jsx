@@ -55,7 +55,10 @@ const Dashboard = () => {
               <p>Kategori</p>
             </div>
             <i className="fas fa-tags card-icon"></i> {/* Ikon Kategori */}
-            <div className="card-footer">
+            <div className="card-footer"
+            onClick={() => navigate("/kategori")} // Navigasi ke halaman Kategori.jsx
+              style={{ cursor: "pointer" }} // Tambahkan kursor pointer untuk menunjukkan bahwa bisa diklik
+            >
               <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
             </div>
           </div>
@@ -66,7 +69,10 @@ const Dashboard = () => {
               <p>Dipinjamkan</p>
             </div>
             <i className="fas fa-hand-holding card-icon"></i> {/* Ikon Dipinjam */}
-            <div className="card-footer">
+            <div className="card-footer"
+            onClick={() => navigate("/kategori")} // Navigasi ke halaman Kategori.jsx
+            style={{ cursor: "pointer" }} // Tambahkan kursor pointer untuk menunjukkan bahwa bisa diklik
+          >
               <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
             </div>
           </div>
@@ -77,7 +83,10 @@ const Dashboard = () => {
               <p>Dikembalikan</p>
             </div>
             <i className="fas fa-undo card-icon"></i> {/* Ikon Dikembalikan */}
-            <div className="card-footer">
+            <div className="card-footer"
+            onClick={() => navigate("/kategori")} // Navigasi ke halaman Kategori.jsx
+            style={{ cursor: "pointer" }} // Tambahkan kursor pointer untuk menunjukkan bahwa bisa diklik
+          >
               <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
             </div>
           </div>
@@ -88,7 +97,10 @@ const Dashboard = () => {
               <p>Denda</p>
             </div>
             <i className="fas fa-money-bill-wave card-icon"></i> {/* Ikon Denda */}
-            <div className="card-footer">
+            <div className="card-footer"
+            onClick={() => navigate("/kategori")} // Navigasi ke halaman Kategori.jsx
+            style={{ cursor: "pointer" }} // Tambahkan kursor pointer untuk menunjukkan bahwa bisa diklik
+          >
               <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
             </div>
           </div>
