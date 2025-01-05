@@ -11,9 +11,19 @@ const TambahBuku = () => {
 
   return (
     <div className="tambah-buku-container">
-      <h2 className="page-title">
-      <i className="fas fa-book"></i> Tambah Buku</h2>
+      <div className="header">
+        <h2 className="page-title">
+          <i className="fas fa-book"></i> Tambah Buku
+        </h2>
+        <p className="breadcrumb">
+          <span onClick={goBack} className="breadcrumb-link">
+            Dashboard
+          </span>{" "}
+          &gt; Tambah Buku
+        </p>
+      </div>
       <form className="form-container">
+        {/* Baris pertama */}
         <div className="form-row">
           <div className="form-group">
             <label>Kategori</label>
@@ -49,6 +59,7 @@ const TambahBuku = () => {
           </div>
         </div>
 
+        {/* Baris kedua */}
         <div className="form-row">
           <div className="form-group">
             <label>Judul Buku</label>
@@ -84,18 +95,32 @@ const TambahBuku = () => {
           </div>
         </div>
 
-          <div className="form-row">
-             <div className="form-group">
-            <label>Sampul (gambar) <span className="optional">* optional</span></label>
+        {/* Baris ketiga */}
+        <div className="form-row">
+          <div className="form-group">
+            <label>
+              Sampul (gambar) <span className="optional">* optional</span>
+            </label>
             <input
               type="file"
               className="form-control"
-               accept="image/*" />
+              accept="image/*"
+            />
           </div>
           <div className="form-group">
-            <label>Lampiran Buku (pdf) <span className="optional">* optional</span></label>
-            <input type="file" className="form-control" accept=".pdf" />
+            <label>
+              Lampiran Buku (pdf) <span className="optional">* optional</span>
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              accept=".pdf"
+            />
           </div>
+        </div>
+
+        {/* Baris keempat */}
+        <div className="form-row">
           <div className="form-group full-width">
             <label>Keterangan Lainnya</label>
             <textarea
@@ -105,8 +130,11 @@ const TambahBuku = () => {
           </div>
         </div>
 
+        {/* Tombol aksi */}
         <div className="form-actions">
-          <button type="submit" className="btn-submit">Submit</button>
+          <button type="submit" className="btn-submit">
+            Submit
+          </button>
           <button type="button" className="btn-cancel" onClick={goBack}>
             Kembali
           </button>
