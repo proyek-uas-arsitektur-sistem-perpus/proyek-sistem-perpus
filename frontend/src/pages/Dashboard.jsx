@@ -1,4 +1,4 @@
-import React from "react";
+import "react";
 import './Dashboard.css'; // Mengimpor file CSS untuk styling Dashboard
 import SidebarStaff from '../components/SidebarStaff'; // Mengimpor SidebarStaff
 import { useNavigate } from "react-router-dom";
