@@ -105,6 +105,12 @@
     margin: 2px 0;
   }
   
+  .aksi-container {
+    display: flex; /* Mengatur elemen anak menjadi berderet horizontal */
+    justify-content: flex-start; /* Menyelaraskan ke kanan */
+    gap: 5px; /* Memberikan jarak antar tombol */
+  }
+
   .btn-action.edit {
     background-color: #28a745;
   }

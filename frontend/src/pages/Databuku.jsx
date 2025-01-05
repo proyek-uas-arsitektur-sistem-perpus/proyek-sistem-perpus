@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./DataBuku.css";
+import "./Databuku.css";
 
 const DataBuku = () => {
   const navigate = useNavigate();
@@ -108,24 +108,23 @@ const DataBuku = () => {
                 <td>{buku.stok}</td>
                 <td>{buku.dipinjam}</td>
                 <td>
+                <div className="aksi-container">
                   <button
                     className="btn-action edit"
                     onClick={() => goToDataBukuEdit(buku.bukuId)}
-                  >
-                    Edit
+                  ><i className="fas fa-edit"></i>
                   </button>
                   <button
                     className="btn-action detail"
                     onClick={() => goToDetailBuku(buku.bukuId)}
-                  >
-                    Detail
+                  ><i className="fas fa-info-circle"></i>
                   </button>
                   <button
                     className="btn-action delete"
                     onClick={() => handleDelete(buku.bukuId)}
-                  >
-                    Hapus
+                  ><i className="fas fa-trash-alt"></i>
                   </button>
+                  </div>
                 </td>
               </tr>
             ))}

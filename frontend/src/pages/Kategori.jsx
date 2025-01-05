@@ -89,6 +89,7 @@ const Kategori = () => {
                   <td>{index + 1}</td>
                   <td>{kategori.nama}</td>
                   <td>
+                  <div className="aksi-container">
                     <button className="btn-action edit">
                     <i className="fas fa-edit"></i></button>
                     <button
@@ -96,6 +97,7 @@ const Kategori = () => {
                       onClick={() => handleDelete(kategori.id)}
                     ><i className="fas fa-trash-alt"></i>
                     </button>
+                    </div>
                   </td>
                 </tr>
               ))}
