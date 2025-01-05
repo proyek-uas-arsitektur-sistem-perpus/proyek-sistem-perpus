@@ -23,7 +23,7 @@
 
 .sidebar ul li {
   padding: 15px 10px;
-  font-size: 16px;
+  font-size: 18px;
   cursor: pointer;
 }
 
@@ -45,4 +45,16 @@
 .sidebar ul li a:hover {
   color: #fff; /* Mengubah warna teks saat hover */
   background-color: #b51010; /* Warna latar belakang saat hover */
+}
+
+/* Gaya untuk item logout */
+.sidebar li.logout {
+  margin-top: auto; /* Posisikan Logout di bawah */
+  background-color: #e74c3c;
+  border-radius: 5px;
+}
+
+/* Efek hover khusus untuk logout */
+.sidebar li.logout:hover {
+  background-color: #e74c3c;
 }
