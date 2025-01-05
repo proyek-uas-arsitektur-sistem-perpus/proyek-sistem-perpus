@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Gunakan useNavigate untuk navigasi
 import "./GantiPassword.css";
 
 const GantiPassword = () => {
@@ -7,6 +8,8 @@ const GantiPassword = () => {
     newPassword: "",
     confirmPassword: "",
   });
+
+  const navigate = useNavigate(); // Inisialisasi fungsi navigasi
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,10 +21,13 @@ const GantiPassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validasi: cek apakah password baru dan konfirmasi cocok
     if (passwords.newPassword !== passwords.confirmPassword) {
       alert("Password baru dan konfirmasi password tidak cocok.");
     } else {
       alert("Password berhasil diubah!");
+      navigate("/login"); // Navigasi ke halaman login
     }
   };
 
