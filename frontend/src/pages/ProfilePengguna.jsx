@@ -11,7 +11,7 @@ const ProfilePengguna = () => {
 
   return (
     <div className="profile-container">
-      <h2>Profile Pengguna</h2>
+      <h2>Profile Staff</h2>
       <table className="profile-table">
         <tbody>
           <tr>

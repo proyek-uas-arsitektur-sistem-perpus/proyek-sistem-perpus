@@ -1,9 +1,13 @@
 import React from "react";
 import './Dashboard.css'; // Mengimpor file CSS untuk styling Dashboard
 import SidebarStaff from '../components/SidebarStaff'; // Mengimpor SidebarStaff
+import { useNavigate } from "react-router-dom";
+
 
 // Komponen utama Dashboard
 const Dashboard = () => {
+  const navigate = useNavigate(); // Hook untuk navigasi
+
   return (
     <div>
       <SidebarStaff /> {/* Menyisipkan SidebarStaff */}
@@ -23,7 +27,10 @@ const Dashboard = () => {
               <p>Anggota</p>
             </div>
             <i className="fas fa-users card-icon"></i> {/* Ikon Anggota */}
-            <div className="card-footer">
+            <div className="card-footer"
+            onClick={() => navigate("/data-pengguna")} // Navigasi ke halaman DataPengguna.jsx
+              style={{ cursor: "pointer" }} // Tambahkan kursor pointer untuk menunjukkan bahwa bisa diklik
+            >
               <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
             </div>
           </div>
@@ -34,7 +41,10 @@ const Dashboard = () => {
               <p>Jenis Buku</p>
             </div>
             <i className="fas fa-book card-icon"></i> {/* Ikon Buku */}
-            <div className="card-footer">
+            <div className="card-footer"
+            onClick={() => navigate("/data-buku")} // Navigasi ke halaman DataBuku.jsx
+              style={{ cursor: "pointer" }} // Tambahkan kursor pointer untuk menunjukkan bahwa bisa diklik
+            >
               <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
             </div>
           </div>
@@ -64,7 +74,7 @@ const Dashboard = () => {
           <div className="card purple">
             <div className="card-content">
               <h3>1</h3>
-              <p>Dikembalikan (Bulan Ini)</p>
+              <p>Dikembalikan</p>
             </div>
             <i className="fas fa-undo card-icon"></i> {/* Ikon Dikembalikan */}
             <div className="card-footer">

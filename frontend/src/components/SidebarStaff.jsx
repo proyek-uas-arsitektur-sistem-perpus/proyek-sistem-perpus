@@ -37,7 +37,7 @@ const SidebarStaff = () => {
       <ul>
         {/* Profile Pengguna */}
         <li onClick={handleProfileClick}>
-          <FontAwesomeIcon icon={faUserCircle} className="icon" /> Profile Pengguna
+          <FontAwesomeIcon icon={faUserCircle} className="icon" /> Profile Staff
         </li>
 
         {/* Dashboard */}
