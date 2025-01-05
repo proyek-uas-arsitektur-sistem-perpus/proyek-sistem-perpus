@@ -1,44 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DataBuku.css";
 
 const DataBuku = () => {
   const navigate = useNavigate();
 
-  const goBack = () => {
-    navigate("/dashboard"); 
-  };
+  // State untuk menyimpan daftar buku
+  const [bukuList, setBukuList] = useState([
+    {
+      no: 1,
+      sampul: "https://via.placeholder.com/50",
+      bukuId: "BK001",
+      isbn: "978-602-8758-07-9",
+      judul: "Matematika Diskrit",
+      kategori: "Buku",
+      rak: "Rak 3",
+      penerbit: "INFORMATIKA Bandung",
+      tahun: 2010,
+      stok: 10,
+      dipinjam: 1,
+    },
+  ]);
 
+  // Navigasi ke halaman Tambah Buku
   const goToTambahBuku = () => {
     navigate("/tambah-buku");
   };
 
-  const goToDetailBuku= () => {
-    navigate("/detail-buku");
+  // Navigasi ke halaman Edit Buku
+  const goToDataBukuEdit = (bukuId) => {
+    navigate("/data-buku-edit", { state: { bukuId } });
   };
 
+  // Navigasi ke halaman Detail Buku
+  const goToDetailBuku = (bukuId) => {
+    navigate("/detail-buku", { state: { bukuId } });
+  };
 
-  const goToDataBukuEdit = () => {
-    navigate("/data-buku-edit"); // Navigasi ke halaman dashboard
+  // Navigasi kembali ke dashboard
+  const goBack = () => {
+    navigate("/dashboard");
+  };
+
+  // Fungsi untuk menghapus data buku
+  const handleDelete = (bukuId) => {
+    const filteredList = bukuList.filter((buku) => buku.bukuId !== bukuId);
+    setBukuList(filteredList); // Perbarui state
   };
 
   return (
     <div className="data-buku-container">
-        <div className="header">
-      <h2 className="page-title">Data Buku</h2>
-      <p className="breadcrumb">
-          <span onClick={goBack} className="breadcrumb-link">Dashboard</span> &gt; Data Buku
+      {/* Header */}
+      <div className="header">
+        <h2 className="page-title">Data Buku</h2>
+        <p className="breadcrumb">
+          <span onClick={goBack} className="breadcrumb-link">
+            Dashboard
+          </span>{" "}
+          &gt; Data Buku
         </p>
-        </div>
+      </div>
+
+      {/* Kontainer Tabel */}
       <div className="table-container">
+        {/* Tombol Aksi */}
         <div className="action-buttons">
-          {/* Tombol untuk mengarahkan ke halaman Tambah Buku */}
           <button className="btn-primary" onClick={goToTambahBuku}>
             Tambah Buku
           </button>
           <button className="btn-secondary">Sortir Kategori</button>
           <button className="btn-secondary">Sortir Rak Buku</button>
         </div>
+
+        {/* Tabel Data Buku */}
         <table className="data-table">
           <thead>
             <tr>
@@ -57,26 +91,43 @@ const DataBuku = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>
-                <img src="https://via.placeholder.com/50" alt="Sampul Buku" />
-              </td>
-              <td>BK001</td>
-              <td>978-602-8758-07-9</td>
-              <td>Matematika Diskrit</td>
-              <td>Buku</td>
-              <td>Rak 3</td>
-              <td>INFORMATIKA Bandung</td>
-              <td>2010</td>
-              <td>10</td>
-              <td>1</td>
-              <td>
-                <button className="btn-action edit" onClick={goToDataBukuEdit}>Edit</button>
-                <button className="btn-action detail"onClick={goToDetailBuku}>Detail</button>
-                <button className="btn-action delete">Hapus</button>
-              </td>
-            </tr>
+            {bukuList.map((buku, index) => (
+              <tr key={index}>
+                <td>{buku.no}</td>
+                <td>
+                  <img src={buku.sampul} alt="Sampul Buku" />
+                </td>
+                <td>{buku.bukuId}</td>
+                <td>{buku.isbn}</td>
+                <td>{buku.judul}</td>
+                <td>{buku.kategori}</td>
+                <td>{buku.rak}</td>
+                <td>{buku.penerbit}</td>
+                <td>{buku.tahun}</td>
+                <td>{buku.stok}</td>
+                <td>{buku.dipinjam}</td>
+                <td>
+                  <button
+                    className="btn-action edit"
+                    onClick={() => goToDataBukuEdit(buku.bukuId)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="btn-action detail"
+                    onClick={() => goToDetailBuku(buku.bukuId)}
+                  >
+                    Detail
+                  </button>
+                  <button
+                    className="btn-action delete"
+                    onClick={() => handleDelete(buku.bukuId)}
+                  >
+                    Hapus
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

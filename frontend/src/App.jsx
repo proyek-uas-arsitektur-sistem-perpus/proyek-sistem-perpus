@@ -13,6 +13,7 @@ import DataBuku from "./pages/Databuku";
 import TambahBuku from "./pages/Tambahbuku";
 import DataBukuEdit from "./pages/DataBukuEdit";
 import DetailBuku from "./pages/DetailBuku";
+import Kategori from "./pages/Kategori";
 import DataPengguna from "./pages/DataPengguna"; // Import halaman Data Pengguna
 import "./App.css";
 
@@ -55,10 +56,15 @@ const App = () => {
           <Route path="/profile" element={<ProfilePengguna />} />
           <Route path="/data-pengguna" element={<DataPengguna />} /> {/* Route untuk Data Pengguna */}
           <Route path="*" element={<Login />} />
+
+          {/* Tambahkan route untuk halaman DataBuku */}
           <Route path="/data-buku" element={<DataBuku />} />
           <Route path="/tambah-buku" element={<TambahBuku />} />
           <Route path="/data-buku-edit" element={<DataBukuEdit />} />
           <Route path="/detail-buku" element={<DetailBuku />} />
+
+          {/* Tambahkan route untuk halaman Kategori */}
+          <Route path="/kategori" element={<Kategori />} />
         </Routes>
       </div>
     </Router>
