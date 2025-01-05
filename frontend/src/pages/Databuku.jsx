@@ -52,7 +52,8 @@ const DataBuku = () => {
     <div className="data-buku-container">
       {/* Header */}
       <div className="header">
-        <h2 className="page-title">Data Buku</h2>
+        <h2 className="page-title">
+        <i className="fas fa-book"></i> Data Buku</h2>
         <p className="breadcrumb">
           <span onClick={goBack} className="breadcrumb-link">
             Dashboard

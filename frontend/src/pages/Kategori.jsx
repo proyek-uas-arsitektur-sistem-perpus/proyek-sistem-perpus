@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Kategori.css";
 
-
 const Kategori = () => {
- const navigate = useNavigate();
+  const navigate = useNavigate();
   const [kategoriList, setKategoriList] = useState([
-    { id: 1, nama: "Pemrograman Web" },
-    { id: 2, nama: "Buku Sakti" },
-    { id: 3, nama: "Jurnal" },
+    { id: 1, nama: "Buku Sakti" },
+    { id: 2, nama: "Tambah Kategori" },
+    { id: 3, nama: "Buku" },
+    { id: 4, nama: "Jurnal" },
+    { id: 5, nama: "Laporan TA" },
+    { id: 6, nama: "Laporan LKP" },
   ]);
 
   const [namaKategori, setNamaKategori] = useState("");
@@ -37,7 +39,9 @@ const Kategori = () => {
   return (
     <div className="kategori-container">
       <div className="header">
-        <h2 className="page-title">Data Kategori</h2>
+        <h2 className="page-title">
+          <i className="fas fa-book"></i> Data Kategori
+        </h2>
         <p className="breadcrumb">
           <span onClick={goBack} className="breadcrumb-link">
             Dashboard
@@ -46,23 +50,31 @@ const Kategori = () => {
         </p>
       </div>
       <div className="content-container">
-        <div className="form-container">
-          <h3>Tambah Kategori</h3>
-          <div className="form-group">
-            <label>Nama Kategori</label>
+      <div className="form-container">
+  <h3 className="form-title">Tambah Kategori</h3>
+  <div className="form-group">
+    <label className="form-label">Nama Kategori</label>
+    <input
+      type="text"
+      placeholder="Contoh: Pemrograman Web"
+      value={namaKategori}
+      onChange={(e) => setNamaKategori(e.target.value)}
+      className="form-control"
+    />
+  </div>
+  <button className="btn-tambah-kategori" onClick={handleTambahKategori}>
+    + Tambah Kategori
+  </button>
+</div>
+        <div className="table-container">
+          <div className="table-header">
+            <span>Show 10 entries</span>
             <input
               type="text"
-              placeholder="Contoh : Pemrograman Web"
-              value={namaKategori}
-              onChange={(e) => setNamaKategori(e.target.value)}
-              className="form-control"
+              placeholder="Search"
+              className="search-input"
             />
           </div>
-          <button className="btn-primary" onClick={handleTambahKategori}>
-            + Tambah Kategori
-          </button>
-        </div>
-        <div className="table-container">
           <table className="data-table">
             <thead>
               <tr>
@@ -77,18 +89,26 @@ const Kategori = () => {
                   <td>{index + 1}</td>
                   <td>{kategori.nama}</td>
                   <td>
-                    <button className="btn-action edit">Edit</button>
+                    <button className="btn-action edit">
+                    <i className="fas fa-edit"></i></button>
                     <button
                       className="btn-action delete"
                       onClick={() => handleDelete(kategori.id)}
-                    >
-                      Hapus
+                    ><i className="fas fa-trash-alt"></i>
                     </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <div className="table-footer">
+            <span>Showing 1 to {kategoriList.length} of {kategoriList.length} entries</span>
+            <div className="pagination">
+              <button className="page-btn">Previous</button>
+              <button className="page-btn active">1</button>
+              <button className="page-btn">Next</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

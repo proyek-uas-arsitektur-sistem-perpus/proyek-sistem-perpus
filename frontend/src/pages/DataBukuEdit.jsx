@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./DataBukuEdit";
+import "./DataBukuEdit.css";
 
 const DataBukuEdit = () => {
   const navigate = useNavigate();
@@ -11,7 +11,8 @@ const DataBukuEdit = () => {
 
   return (
     <div className="tambah-buku-container">
-      <h2 className="page-title">Data Buku Edit</h2>
+      <h2 className="page-title"> 
+      <i className="fas fa-book"></i> Data Buku Edit</h2>
       <form className="form-container">
         <div className="form-row">
           <div className="form-group">

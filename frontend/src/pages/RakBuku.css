@@ -1,4 +1,4 @@
-.kategori-container {
+.rak-container {
     padding: 20px;
     background-color: #f8f9fa;
     font-family: Arial, sans-serif;
@@ -89,7 +89,7 @@
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
   }
   
-  .btn-tambah-kategori {
+  .btn-tambah-rak {
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
@@ -101,7 +101,7 @@
     text-align: center; /* Pastikan teks di tengah */
   }
   
-  .btn-tambah-kategori:hover {
+  .btn-tambah-rak:hover {
     background-color: #0056b3;
   }
   

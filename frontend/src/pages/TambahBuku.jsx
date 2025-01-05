@@ -11,7 +11,8 @@ const TambahBuku = () => {
 
   return (
     <div className="tambah-buku-container">
-      <h2 className="page-title">Tambah Buku</h2>
+      <h2 className="page-title">
+      <i className="fas fa-book"></i> Tambah Buku</h2>
       <form className="form-container">
         <div className="form-row">
           <div className="form-group">
