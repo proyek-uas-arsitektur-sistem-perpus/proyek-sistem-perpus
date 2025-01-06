@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './PengembalianStaff.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import "./PengembalianStaff.css";
 
 const PengembalianStaff = () => {
   const [returns, setReturns] = useState([]);
+  const navigate = useNavigate(); // Tambahkan di sini
 
   useEffect(() => {
     fetchReturns();
@@ -11,27 +13,37 @@ const PengembalianStaff = () => {
 
   const fetchReturns = async () => {
     try {
-        const response = await axios.get('http://localhost:5000/api/borrowing/returns'); // URL harus sesuai
-        setReturns(response.data);
+      const response = await axios.get("http://localhost:5000/api/borrowing/returns");
+      setReturns(response.data);
     } catch (error) {
-        console.error('Error fetching returns:', error);
-        alert('Gagal memuat data pengembalian.');
+      console.error("Error fetching returns:", error);
+      alert("Gagal memuat data pengembalian.");
     }
-};
+  };
 
   const handleAddReturn = async (id_peminjaman) => {
-    const tanggal_pengembalian = new Date().toISOString().split('T')[0];
+    const tanggal_pengembalian = new Date().toISOString().split("T")[0];
     try {
-      await axios.post('http://localhost:5000/api/returns', {
+      await axios.post("http://localhost:5000/api/borrowing/returns", {
         id_peminjaman,
         tanggal_pengembalian,
       });
-      alert('Data pengembalian berhasil ditambahkan!');
-      fetchReturns();
+      alert("Data pengembalian berhasil ditambahkan!");
+      fetchReturns(); // Memuat ulang data setelah pengembalian
     } catch (error) {
-      console.error('Error adding return:', error);
-      alert('Terjadi kesalahan, coba lagi.');
+      console.error("Error adding return:", error);
+      alert("Terjadi kesalahan, coba lagi.");
     }
+  };
+
+  // Fungsi navigasi ke halaman detail
+  const navigateToDetail = (id_peminjaman) => {
+    navigate(`/peminjaman-staff/detail/${id_peminjaman}`);
+  };
+
+  // Fungsi navigasi ke dashboard
+  const handleBackToDashboard = () => {
+    navigate('/dashboard');
   };
 
   return (
@@ -54,13 +66,23 @@ const PengembalianStaff = () => {
             <tr key={item.id_pengembalian}>
               <td>{index + 1}</td>
               <td>{item.id_peminjaman}</td>
-              <td>{item.id_anggota_perpustakaan}</td>
-              <td>{new Date(item.tanggal_pinjam).toLocaleDateString('id-ID')}</td>
-              <td>{new Date(item.tanggal_kembali).toLocaleDateString('id-ID')}</td>
+              <td>{item.nama_anggota || "Tidak Tersedia"}</td>
+              <td>
+                {item.tanggal_pinjam
+                  ? new Date(item.tanggal_pinjam).toLocaleDateString("id-ID")
+                  : "Tidak Tersedia"}
+              </td>
+              <td>
+                {item.tanggal_kembali
+                  ? new Date(item.tanggal_kembali).toLocaleDateString("id-ID")
+                  : "Tidak Tersedia"}
+              </td>
               <td>
                 {item.tanggal_pengembalian
-                  ? new Date(item.tanggal_pengembalian).toLocaleDateString('id-ID')
-                  : 'Belum Dikembalikan'}
+                  ? new Date(item.tanggal_pengembalian).toLocaleDateString(
+                      "id-ID"
+                    )
+                  : "Belum Dikembalikan"}
               </td>
               <td>
                 {!item.tanggal_pengembalian && (
@@ -71,11 +93,20 @@ const PengembalianStaff = () => {
                     Tambah Pengembalian
                   </button>
                 )}
+                <button
+                  className="btn-detail"
+                  onClick={() => navigateToDetail(item.id_peminjaman)}
+                >
+                  Detail Peminjaman
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <button className="btn-dashboard" onClick={handleBackToDashboard}>
+        Kembali ke Dashboard
+      </button>
     </div>
   );
 };

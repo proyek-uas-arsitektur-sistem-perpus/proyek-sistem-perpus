@@ -22,8 +22,12 @@ const DetailPinjaman = () => {
     }
   };
 
-  const handleBack = () => {
-    navigate('/peminjaman-staff'); // Kembali ke halaman daftar peminjaman
+  const handleBackToPrevious = () => {
+    navigate(-1); // Kembali ke halaman sebelumnya
+  };
+
+  const handleBackToDashboard = () => {
+    navigate('/dashboard'); // Kembali ke halaman dashboard
   };
 
   return (
@@ -31,25 +35,37 @@ const DetailPinjaman = () => {
       <h1>Detail Peminjaman Buku</h1>
       {detail ? (
         <div className="detail-card">
-          <p><strong>No Pinjam:</strong> PJ{detail.id_peminjaman.toString().padStart(5, '0')}</p>
-          <p><strong>ID Copy Buku:</strong> {detail.id_copy}</p>
-          <p><strong>Judul Buku:</strong> {detail.judul || 'N/A'}</p>
-          <p><strong>ID Anggota:</strong> {detail.id_anggota_perpustakaan}</p>
-          <p><strong>Nama Anggota:</strong> {detail.nama || 'N/A'}</p>
-          <p><strong>Tanggal Pinjam:</strong> {new Date(detail.tanggal_pinjam).toLocaleDateString('id-ID')}</p>
-          <p><strong>Tanggal Kembali:</strong> {new Date(detail.tanggal_kembali).toLocaleDateString('id-ID')}</p>
-          <p><strong>Status:</strong> {detail.status_kembali ? 'Sudah Kembali' : 'Belum Kembali'}</p>
+          <p><strong>No Pinjam:</strong> PJ{detail.id_peminjaman?.toString().padStart(5, '0') || 'N/A'}</p>
+          <p><strong>ID Copy Buku:</strong> {detail.id_copy || 'Tidak Tersedia'}</p>
+          <p><strong>Judul Buku:</strong> {detail.judul || 'Tidak Tersedia'}</p>
+          <p><strong>ID Anggota:</strong> {detail.id_anggota_perpustakaan || 'Tidak Tersedia'}</p>
+          <p><strong>Nama Anggota:</strong> {detail.nama_anggota || 'Tidak Tersedia'}</p>
+          <p>
+            <strong>Tanggal Pinjam:</strong>{' '}
+            {detail.tanggal_pinjam ? new Date(detail.tanggal_pinjam).toLocaleDateString('id-ID') : 'Tidak Tersedia'}
+          </p>
+          <p><strong>Tanggal Kembali:</strong> {detail.tanggal_kembali ? new Date(detail.tanggal_kembali).toLocaleDateString('id-ID') : 'Tidak Tersedia'}</p>
+          <p>
+            <strong>Status:</strong> {detail.status_kembali ? 'Sudah Kembali' : 'Belum Kembali'}
+          </p>
           {detail.status_kembali && (
             <>
-              <p><strong>Tanggal Pengembalian:</strong> {new Date(detail.tanggal_pengembalian).toLocaleDateString('id-ID')}</p>
-              <p><strong>Denda:</strong> Rp{detail.denda.toLocaleString()}</p>
+              <p><strong>Tanggal Pengembalian:</strong> {detail.tanggal_pengembalian ? new Date(detail.tanggal_pengembalian).toLocaleDateString('id-ID') : 'Tidak Tersedia'}</p>
+              <p><strong>Denda:</strong> {detail.denda ? `Rp${detail.denda.toLocaleString()}` : 'Tidak Ada'}</p>
             </>
           )}
         </div>
       ) : (
         <p>Memuat detail...</p>
       )}
-      <button className="btn-back" onClick={handleBack}>Kembali</button>
+      <div className="button-group">
+        <button className="btn-back" onClick={handleBackToPrevious}>
+          Kembali ke Halaman Sebelumnya
+        </button>
+        <button className="btn-dashboard" onClick={handleBackToDashboard}>
+          Kembali ke Dashboard
+        </button>
+      </div>
     </div>
   );
 };

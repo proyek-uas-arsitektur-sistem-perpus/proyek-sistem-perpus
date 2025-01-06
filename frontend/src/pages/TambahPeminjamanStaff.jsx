@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import './TambahPeminjamanStaff.css';
 
@@ -10,24 +11,19 @@ const TambahPeminjamanStaff = () => {
     tanggal_kembali: '',
   });
 
+  const navigate = useNavigate(); // Deklarasikan navigate
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:5000/api/borrowing', formData);
       alert('Peminjaman berhasil ditambahkan!');
-      setFormData({
-        id_copy: '',
-        id_anggota_perpustakaan: '',
-        tanggal_pinjam: '',
-        tanggal_kembali: '',
-      });
+      navigate(-1); // Navigasi kembali ke halaman sebelumnya
     } catch (error) {
       console.error('Error adding borrowing:', error);
       alert('Gagal menambahkan peminjaman. Periksa kembali data yang diinput.');

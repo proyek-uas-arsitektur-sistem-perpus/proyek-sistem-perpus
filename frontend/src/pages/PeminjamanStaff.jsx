@@ -33,8 +33,6 @@ const PeminjamanStaff = () => {
       alert('Terjadi kesalahan saat mengembalikan buku.');
     }
   };
-  
-  
 
   const navigateToTambahPeminjaman = () => {
     navigate('/peminjaman-staff/tambah'); // Menggunakan React Router untuk navigasi
@@ -44,12 +42,21 @@ const PeminjamanStaff = () => {
     navigate(`/peminjaman-staff/detail/${id}`); // Menggunakan React Router untuk navigasi
   };
 
+  const navigateToDashboard = () => {
+    navigate('/dashboard'); // Navigasi ke dashboard
+  };
+
   return (
     <div className="peminjaman-staff">
       <h1>Daftar Peminjaman Buku</h1>
-      <button className="btn-add" onClick={navigateToTambahPeminjaman}>
-        Tambah Peminjaman
-      </button>
+      <div className="button-group">
+        <button className="btn-add" onClick={navigateToTambahPeminjaman}>
+          Tambah Peminjaman
+        </button>
+        <button className="btn-dashboard" onClick={navigateToDashboard}>
+          Kembali ke Dashboard
+        </button>
+      </div>
       <table className="peminjaman-table">
         <thead>
           <tr>
@@ -77,8 +84,8 @@ const PeminjamanStaff = () => {
                 </button>
                 {!borrow.status_kembali && (
                   <button
-                  className="btn-return"
-                  onClick={() => handleReturn(borrow.id_peminjaman, borrow.tanggal_kembali)}
+                    className="btn-return"
+                    onClick={() => handleReturn(borrow.id_peminjaman, borrow.tanggal_kembali)}
                   >
                     Kembalikan
                   </button>

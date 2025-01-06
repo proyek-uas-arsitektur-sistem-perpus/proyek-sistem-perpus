@@ -27,8 +27,8 @@ import LaporanStock from "./pages/LaporanStock";
 import PeminjamanStaff from "./pages/PeminjamanStaff";
 import PengembalianStaff from "./pages/PengembalianStaff";
 import DendaStaff from "./pages/DendaStaff";
-import TambahPeminjaman from "./pages/TambahPeminjamanStaff";
-import DetailPeminjaman from "./pages/DetailPinjamanStaff";
+import TambahPeminjamanStaff from "./pages/TambahPeminjamanStaff";
+import DetailPeminjamanStaff from "./pages/DetailPinjamanStaff";
 import "./App.css";
 
 const App = () => {
@@ -121,10 +121,10 @@ const App = () => {
           <Route path="/kategori" element={<Kategori />} />
 
           {/* Tambahkan route untuk halaman Tambah Peminjaman */}
-          <Route path="/peminjaman-staff/tambah" element={<TambahPeminjaman />} />
+          <Route path="/peminjaman-staff/tambah" element={<TambahPeminjamanStaff />} />
 
           {/* Tambahkan route untuk halaman DetailPeminjam */}
-          <Route path="/peminjaman-staff/:id" element={<DetailPeminjaman />} />
+          <Route path="/peminjaman-staff/detail/:id" element={<DetailPeminjamanStaff />} />
 
           {/* Rute tambahan untuk TambahDataPengguna dan EditDataPengguna */}
           <Route path="/data-pengguna/tambah" element={<TambahDataPengguna />} />

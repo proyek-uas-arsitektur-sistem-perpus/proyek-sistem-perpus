@@ -133,28 +133,38 @@ const calculatePenalty = (req, res) => {
 
 // 5. Get Borrowing Details by ID
 const getBorrowingById = (req, res) => {
-    const { id } = req.params;
-    const query = `
-        SELECT peminjaman.*, 
-               anggota_perpustakaan.nama_anggota AS nama_anggota, 
-               buku.judul AS judul_buku
-        FROM peminjaman
-        JOIN copy_buku ON peminjaman.id_copy = copy_buku.id_copy
-        JOIN buku ON copy_buku.kode_buku = buku.kode_buku
-        JOIN anggota_perpustakaan ON peminjaman.id_anggota_perpustakaan = anggota_perpustakaan.id_anggota_perpustakaan
-        WHERE peminjaman.id_peminjaman = ?;
-    `;
-    db.query(query, [id], (err, results) => {
-        if (err) {
-            console.error('Error fetching borrowing by ID:', err);
-            res.status(500).json({ error: 'Database error' });
-        } else if (results.length > 0) {
-            res.json(results[0]);
-        } else {
-            res.status(404).json({ error: 'Peminjaman tidak ditemukan' });
-        }
-    });
+  const { id } = req.params;
+  const query = `
+      SELECT 
+          peminjaman.id_peminjaman,
+          peminjaman.id_copy,
+          buku.judul,
+          peminjaman.id_anggota_perpustakaan,
+          anggota_perpustakaan.nama_anggota AS nama_anggota,
+          peminjaman.tanggal_pinjam,
+          peminjaman.tanggal_kembali,
+          peminjaman.status_kembali,
+          pengembalian.tanggal_pengembalian,
+          pengembalian.denda
+      FROM peminjaman
+      LEFT JOIN copy_buku ON peminjaman.id_copy = copy_buku.id_copy
+      LEFT JOIN buku ON copy_buku.kode_buku = buku.kode_buku
+      LEFT JOIN anggota_perpustakaan ON peminjaman.id_anggota_perpustakaan = anggota_perpustakaan.id_anggota_perpustakaan
+      LEFT JOIN pengembalian ON peminjaman.id_peminjaman = pengembalian.id_peminjaman
+      WHERE peminjaman.id_peminjaman = ?;
+  `;
+  db.query(query, [id], (err, results) => {
+      if (err) {
+          console.error('Error fetching borrowing by ID:', err);
+          res.status(500).json({ error: 'Database error' });
+      } else if (results.length > 0) {
+          res.json(results[0]);
+      } else {
+          res.status(404).json({ error: 'Peminjaman tidak ditemukan' });
+      }
+  });
 };
+
 
 // 6. Get All Penalties
 const getPenalties = (req, res) => {
@@ -204,27 +214,24 @@ const calculateLateFee = (tanggal_kembali, tanggal_pengembalian) => {
 
 // 9. Get All Returns
 const getAllReturns = (req, res) => {
-    const query = `
-        SELECT pengembalian.*, 
-               peminjaman.id_copy, 
-               anggota_perpustakaan.nama_anggota, 
-               buku.judul AS judul_buku
-        FROM pengembalian
-        JOIN peminjaman ON pengembalian.id_peminjaman = peminjaman.id_peminjaman
-        JOIN copy_buku ON peminjaman.id_copy = copy_buku.id_copy
-        JOIN buku ON copy_buku.kode_buku = buku.kode_buku
-        JOIN anggota_perpustakaan ON peminjaman.id_anggota_perpustakaan = anggota_perpustakaan.id_anggota_perpustakaan;
-    `;
-
-    db.query(query, (err, results) => {
-        if (err) {
-            console.error('Error fetching returns:', err); // Log error
-            res.status(500).json({ error: 'Database error' });
-        } else {
-            console.log('Results:', results); // Log hasil query
-            res.json(results);
-        }
-    });
+  const query = `
+      SELECT pengembalian.*, 
+             peminjaman.tanggal_pinjam, 
+             peminjaman.tanggal_kembali, 
+             anggota_perpustakaan.nama_anggota AS nama_anggota, 
+             peminjaman.status_kembali
+      FROM pengembalian
+      JOIN peminjaman ON pengembalian.id_peminjaman = peminjaman.id_peminjaman
+      JOIN anggota_perpustakaan ON peminjaman.id_anggota_perpustakaan = anggota_perpustakaan.id_anggota_perpustakaan;
+  `;
+  db.query(query, (err, results) => {
+      if (err) {
+          console.error('Error fetching returns:', err);
+          res.status(500).json({ error: 'Database error' });
+      } else {
+          res.json(results);
+      }
+  });
 };
 
 
