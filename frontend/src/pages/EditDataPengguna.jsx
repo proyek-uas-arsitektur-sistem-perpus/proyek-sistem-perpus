@@ -28,6 +28,10 @@ const EditPengguna = () => {
     navigate("/data-pengguna"); // Kembali ke halaman data pengguna
   };
 
+  const handleBack = () => {
+    navigate("/data-pengguna"); // Navigasi kembali ke halaman sebelumnya
+  };
+
   return (
     <div className="form-container">
       <h2>Edit Pengguna</h2>
@@ -67,7 +71,14 @@ const EditPengguna = () => {
           onChange={handleChange}
           required
         />
-        <button type="submit">Simpan Perubahan</button>
+        <div className="button-group">
+          <button type="submit" className="action-button save-button">
+            Simpan Perubahan
+          </button>
+          <button type="button" className="action-button back-button" onClick={handleBack}>
+            Kembali
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -27,15 +27,37 @@
   border-radius: 5px;
 }
 
-.form-container button {
-  padding: 10px;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
+.button-group {
+  display: flex;
+  justify-content: center; /* Posisikan tombol di tengah */
+  gap: 10px; /* Jarak antar tombol */
 }
 
-.form-container button:hover {
-  background-color: #0055ff; /* Hijau lebih gelap */
+.action-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  flex: 1;
+}
+
+.save-button {
+  background-color: #3498db; /* Biru */
+  color: white;
+}
+
+.save-button:hover {
+  background-color: #2980b9; /* Biru gelap saat hover */
+}
+
+.back-button {
+  background-color: #e74c3c; /* Merah */
+  color: white;
+}
+
+.back-button:hover {
+  background-color: #c0392b; /* Merah gelap saat hover */
 }
