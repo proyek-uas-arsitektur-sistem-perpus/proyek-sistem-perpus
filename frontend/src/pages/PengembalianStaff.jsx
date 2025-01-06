@@ -17,7 +17,7 @@ const PengembalianStaff = () => {
 
   return (
     <div className="pengembalian-staff">
-      <h1>Data Pengembalian Buku</h1>
+      <h1>Daftar Pengembalian</h1>
       <table className="pengembalian-table">
         <thead>
           <tr>

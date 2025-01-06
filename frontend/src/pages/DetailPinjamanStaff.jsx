@@ -1,32 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const DetailPeminjaman = () => {
   const { id } = useParams();
-  const [borrowing, setBorrowing] = useState(null);
+  const [details, setDetails] = useState(null);
 
   useEffect(() => {
-    fetchBorrowingDetail();
-  }, []);
-
-  const fetchBorrowingDetail = () => {
     axios.get(`http://localhost:5000/api/borrowing/${id}`)
-      .then((res) => setBorrowing(res.data))
+      .then((res) => setDetails(res.data))
       .catch((err) => console.error(err));
-  };
+  }, [id]);
 
-  if (!borrowing) return <p>Loading...</p>;
+  if (!details) return <p>Loading...</p>;
 
   return (
-    <div>
+    <div className="detail-peminjaman">
       <h1>Detail Peminjaman</h1>
-      <p>No Peminjaman: PJ{borrowing.id_peminjaman.toString().padStart(5, '0')}</p>
-      <p>ID Anggota: {borrowing.id_anggota_perpustakaan}</p>
-      <p>Nama Anggota: {borrowing.nama || 'N/A'}</p>
-      <p>Tanggal Pinjam: {new Date(borrowing.tgl_pinjam).toLocaleDateString('id-ID')}</p>
-      <p>Tanggal Kembali: {new Date(borrowing.tgl_kembali).toLocaleDateString('id-ID')}</p>
-      <p>Status: {borrowing.status_kembali ? 'Sudah Kembali' : 'Dipinjam'}</p>
+      <p><strong>ID Peminjaman:</strong> {details.id_peminjaman}</p>
+      <p><strong>ID Anggota:</strong> {details.id_anggota_perpustakaan}</p>
+      <p><strong>Nama:</strong> {details.nama}</p>
+      <p><strong>ID Buku:</strong> {details.id_buku}</p>
+      <p><strong>Judul Buku:</strong> {details.judul_buku}</p>
+      <p><strong>Tanggal Pinjam:</strong> {new Date(details.tgl_pinjam).toLocaleDateString('id-ID')}</p>
+      <p><strong>Tanggal Kembali:</strong> {new Date(details.tgl_kembali).toLocaleDateString('id-ID')}</p>
+      <p><strong>Status:</strong> {details.status_kembali ? 'Kembali' : 'Dipinjam'}</p>
     </div>
   );
 };

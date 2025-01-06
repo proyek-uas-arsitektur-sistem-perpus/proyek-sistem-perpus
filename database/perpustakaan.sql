@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 06, 2025 at 02:02 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 06 Jan 2025 pada 16.05
+-- Versi server: 10.4.27-MariaDB
+-- Versi PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,48 +24,47 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `anggota_perpustakaan`
+-- Struktur dari tabel `anggota_perpustakaan`
 --
 
 CREATE TABLE `anggota_perpustakaan` (
   `id_anggota_perpustakaan` varchar(11) NOT NULL,
   `nama_anggota` varchar(255) DEFAULT NULL,
   `nik` varchar(20) DEFAULT NULL,
-  `alamat` text DEFAULT NULL,
-  `no_telp` varchar(15) DEFAULT NULL,
-  `jurusan` varchar(100) DEFAULT NULL
+  `no_telepon` varchar(15) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `anggota_perpustakaan`
+-- Dumping data untuk tabel `anggota_perpustakaan`
 --
 
-INSERT INTO `anggota_perpustakaan` (`id_anggota_perpustakaan`, `nama_anggota`, `nik`, `alamat`, `no_telp`, `jurusan`) VALUES
-('A001', 'Anggota 1', '32750001', 'Jl. Raya No.1, Denpasar', '081234567890', 'Teknik Informatika'),
-('A002', 'Anggota 2', '32750002', 'Jl. Merdeka No.2, Klungkung', '081234567891', 'Sistem Informasi'),
-('A003', 'Anggota 3', '32750003', 'Jl. Pantai No.3, Sanur', '081234567892', 'Ilmu Komputer'),
-('A004', 'Anggota 4', '32750004', 'Jl. Pahlawan No.4, Gianyar', '081234567893', 'Manajemen'),
-('A005', 'Anggota 5', '32750005', 'Jl. Soekarno-Hatta No.5, Tabanan', '081234567894', 'Akuntansi'),
-('A006', 'Anggota 6', '32750006', 'Jl. Merpati No.6, Denpasar', '081234567895', 'Desain Komunikasi Visual'),
-('A007', 'Anggota 7', '32750007', 'Jl. Cendana No.7, Badung', '081234567896', 'Hukum'),
-('A008', 'Anggota 8', '32750008', 'Jl. Gajah Mada No.8, Singaraja', '081234567897', 'Ekonomi Pembangunan'),
-('A009', 'Anggota 9', '32750009', 'Jl. Raya Kuta No.9, Badung', '081234567898', 'Psikologi'),
-('A010', 'Anggota 10', '32750010', 'Jl. Sudirman No.10, Denpasar', '081234567899', 'Sosiologi'),
-('A011', 'Anggota 11', '32750011', 'Jl. Pemuda No.11, Karangasem', '081234567900', 'Biologi'),
-('A012', 'Anggota 12', '32750012', 'Jl. Ciliwung No.12, Jembrana', '081234567901', 'Fisika'),
-('A013', 'Anggota 13', '32750013', 'Jl. Mahendradata No.13, Badung', '081234567902', 'Matematika'),
-('A014', 'Anggota 14', '32750014', 'Jl. Tamblingan No.14, Singaraja', '081234567903', 'Ilmu Politik'),
-('A015', 'Anggota 15', '32750015', 'Jl. Dewi Sartika No.15, Denpasar', '081234567904', 'Pendidikan'),
-('A016', 'Anggota 16', '32750016', 'Jl. Raya No.16, Tabanan', '081234567905', 'Ilmu Komunikasi'),
-('A017', 'Anggota 17', '32750017', 'Jl. Padma No.17, Bali', '081234567906', 'Seni Rupa'),
-('A018', 'Anggota 18', '32750018', 'Jl. Taman Sari No.18, Klungkung', '081234567907', 'Pendidikan Guru Sekolah Dasar'),
-('A019', 'Anggota 19', '32750019', 'Jl. Dewa Ruci No.19, Denpasar', '081234567908', 'Agribisnis'),
-('A020', 'Anggota 20', '32750020', 'Jl. Sidoarjo No.20, Denpasar', '081234567909', 'Teknik Sipil');
+INSERT INTO `anggota_perpustakaan` (`id_anggota_perpustakaan`, `nama_anggota`, `nik`, `no_telepon`, `email`) VALUES
+('A001', 'Ahmad Fajar', '32750001', '081234567890', 'ahmadfajar@example.com'),
+('A002', 'Bella Sari', '32750002', '081234567891', 'bellasari@example.com'),
+('A003', 'Candra Putra', '32750003', '081234567892', 'candra.putra@example.com'),
+('A004', 'Dewi Lestari', '32750004', '081234567893', 'dewilestari@example.com'),
+('A005', 'Eka Prasetya', '32750005', '081234567894', 'ekaprasetya@example.com'),
+('A006', 'Farhan Akbar', '32750006', '081234567895', 'farhanakbar@example.com'),
+('A007', 'Gita Permata', '32750007', '081234567896', 'gitapermata@example.com'),
+('A008', 'Hendra Setiawan', '32750008', '081234567897', 'hendrasetiawan@example.com'),
+('A009', 'Intan Suci', '32750009', '081234567898', 'intansuci@example.com'),
+('A010', 'Joni Kurniawan', '32750010', '081234567899', 'jonikurniawan@example.com'),
+('A011', 'Kartika Rahayu', '32750011', '081234567900', 'kartikarahayu@example.com'),
+('A012', 'Lina Marlina', '32750012', '081234567901', 'linamarlina@example.com'),
+('A013', 'Maya Sari', '32750013', '081234567902', 'mayasari@example.com'),
+('A014', 'Nina Wahyuni', '32750014', '081234567903', 'ninawahyu@example.com'),
+('A015', 'Oscar Pratama', '32750015', '081234567904', 'oscarpratama@example.com'),
+('A016', 'Putri Amalia', '32750016', '081234567905', 'putriamalia@example.com'),
+('A017', 'Qorya Fadhila', '32750017', '081234567906', 'qoryafadhila@example.com'),
+('A018', 'Rudi Santosa', '32750018', '081234567907', 'rudi.santosa@example.com'),
+('A019', 'Siti Aisyah', '32750019', '081234567908', 'sitiaisyah@example.com'),
+('A020', 'Taufik Hidayat', '32750020', '081234567909', 'taufikhidayat@example.com');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `buku`
+-- Struktur dari tabel `buku`
 --
 
 CREATE TABLE `buku` (
@@ -79,35 +78,35 @@ CREATE TABLE `buku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `buku`
+-- Dumping data untuk tabel `buku`
 --
 
 INSERT INTO `buku` (`id_buku`, `kode_buku`, `judul`, `kategori`, `rak`, `penerbit`, `tahun_terbit`) VALUES
-(1, 'B001', 'Pemrograman Dasar', 'Teknik Informatika', 'Rak A1', 'Erlangga', '2020'),
-(2, 'B002', 'Matematika Dasar', 'Sains', 'Rak A2', 'Andi', '2019'),
-(3, 'B003', 'Fisika Lanjut', 'Sains', 'Rak A3', 'Gramedia', '2018'),
-(4, 'B004', 'Teori Bahasa', 'Ilmu Komputer', 'Rak B1', 'Penerbit Universitas', '2021'),
-(5, 'B005', 'Desain Grafis Modern', 'Desain', 'Rak B2', 'Penerbit Karya', '2022'),
-(6, 'B006', 'Sistem Operasi', 'Teknik Informatika', 'Rak C1', 'Penerbit IT', '2020'),
-(7, 'B007', 'Jaringan Komputer', 'Teknik Informatika', 'Rak C2', 'Penerbit Andi', '2021'),
-(8, 'B008', 'Algoritma dan Struktur Data', 'Ilmu Komputer', 'Rak D1', 'Erlangga', '2019'),
-(9, 'B009', 'Manajemen Proyek TI', 'Manajemen', 'Rak D2', 'Gramedia', '2020'),
-(10, 'B010', 'Pemrograman Web', 'Teknik Informatika', 'Rak E1', 'Penerbit Komputer', '2021'),
-(11, 'B011', 'Kecerdasan Buatan', 'Ilmu Komputer', 'Rak E2', 'Erlangga', '2022'),
-(12, 'B012', 'Basis Data', 'Ilmu Komputer', 'Rak F1', 'Penerbit IT', '2019'),
-(13, 'B013', 'Cloud Computing', 'Teknik Informatika', 'Rak F2', 'Andi', '2021'),
-(14, 'B014', 'Jurnalistik Dasar', 'Komunikasi', 'Rak G1', 'Penerbit Karya', '2020'),
-(15, 'B015', 'Pemasaran Digital', 'Pemasaran', 'Rak G2', 'Gramedia', '2022'),
-(16, 'B016', 'E-commerce', 'Manajemen', 'Rak H1', 'Penerbit Universitas', '2021'),
-(17, 'B017', 'Pengenalan AI', 'Ilmu Komputer', 'Rak H2', 'Penerbit Andi', '2020'),
-(18, 'B018', 'Matematika Lanjut', 'Sains', 'Rak I1', 'Penerbit Karya', '2018'),
-(19, 'B019', 'Jaringan Neural', 'Ilmu Komputer', 'Rak I2', 'Gramedia', '2021'),
-(20, 'B020', 'Pembangunan Aplikasi Mobile', 'Teknik Informatika', 'Rak J1', 'Erlangga', '2022');
+(1, 'B001', 'Pemrograman Dasar', 'Teknik Informatika', 'Rak A1', 'Erlangga', 2020),
+(2, 'B002', 'Matematika Dasar', 'Sains', 'Rak A2', 'Andi', 2019),
+(3, 'B003', 'Fisika Lanjut', 'Sains', 'Rak A3', 'Gramedia', 2018),
+(4, 'B004', 'Teori Bahasa', 'Ilmu Komputer', 'Rak B1', 'Penerbit Universitas', 2021),
+(5, 'B005', 'Desain Grafis Modern', 'Desain', 'Rak B2', 'Penerbit Karya', 2022),
+(6, 'B006', 'Sistem Operasi', 'Teknik Informatika', 'Rak C1', 'Penerbit IT', 2020),
+(7, 'B007', 'Jaringan Komputer', 'Teknik Informatika', 'Rak C2', 'Penerbit Andi', 2021),
+(8, 'B008', 'Algoritma dan Struktur Data', 'Ilmu Komputer', 'Rak D1', 'Erlangga', 2019),
+(9, 'B009', 'Manajemen Proyek TI', 'Manajemen', 'Rak D2', 'Gramedia', 2020),
+(10, 'B010', 'Pemrograman Web', 'Teknik Informatika', 'Rak E1', 'Penerbit Komputer', 2021),
+(11, 'B011', 'Kecerdasan Buatan', 'Ilmu Komputer', 'Rak E2', 'Erlangga', 2022),
+(12, 'B012', 'Basis Data', 'Ilmu Komputer', 'Rak F1', 'Penerbit IT', 2019),
+(13, 'B013', 'Cloud Computing', 'Teknik Informatika', 'Rak F2', 'Andi', 2021),
+(14, 'B014', 'Jurnalistik Dasar', 'Komunikasi', 'Rak G1', 'Penerbit Karya', 2020),
+(15, 'B015', 'Pemasaran Digital', 'Pemasaran', 'Rak G2', 'Gramedia', 2022),
+(16, 'B016', 'E-commerce', 'Manajemen', 'Rak H1', 'Penerbit Universitas', 2021),
+(17, 'B017', 'Pengenalan AI', 'Ilmu Komputer', 'Rak H2', 'Penerbit Andi', 2020),
+(18, 'B018', 'Matematika Lanjut', 'Sains', 'Rak I1', 'Penerbit Karya', 2018),
+(19, 'B019', 'Jaringan Neural', 'Ilmu Komputer', 'Rak I2', 'Gramedia', 2021),
+(20, 'B020', 'Pembangunan Aplikasi Mobile', 'Teknik Informatika', 'Rak J1', 'Erlangga', 2022);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `copy_buku`
+-- Struktur dari tabel `copy_buku`
 --
 
 CREATE TABLE `copy_buku` (
@@ -117,7 +116,7 @@ CREATE TABLE `copy_buku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `copy_buku`
+-- Dumping data untuk tabel `copy_buku`
 --
 
 INSERT INTO `copy_buku` (`id_copy`, `kode_buku`, `status`) VALUES
@@ -145,7 +144,7 @@ INSERT INTO `copy_buku` (`id_copy`, `kode_buku`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `denda`
+-- Struktur dari tabel `denda`
 --
 
 CREATE TABLE `denda` (
@@ -156,7 +155,7 @@ CREATE TABLE `denda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `denda`
+-- Dumping data untuk tabel `denda`
 --
 
 INSERT INTO `denda` (`id_denda`, `id_peminjaman`, `jumlah_denda`, `tanggal_denda`) VALUES
@@ -174,7 +173,7 @@ INSERT INTO `denda` (`id_denda`, `id_peminjaman`, `jumlah_denda`, `tanggal_denda
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori`
+-- Struktur dari tabel `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -183,7 +182,7 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `kategori`
+-- Dumping data untuk tabel `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
@@ -201,7 +200,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `peminjaman`
+-- Struktur dari tabel `peminjaman`
 --
 
 CREATE TABLE `peminjaman` (
@@ -209,29 +208,31 @@ CREATE TABLE `peminjaman` (
   `id_copy` int(11) NOT NULL,
   `id_anggota_perpustakaan` varchar(255) NOT NULL,
   `tanggal_pinjam` date NOT NULL,
-  `tanggal_kembali` date DEFAULT NULL
+  `tanggal_kembali` date DEFAULT NULL,
+  `status_kembali` tinyint(4) DEFAULT 0,
+  `denda` decimal(10,2) DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `peminjaman`
+-- Dumping data untuk tabel `peminjaman`
 --
 
-INSERT INTO `peminjaman` (`id_peminjaman`, `id_copy`, `id_anggota_perpustakaan`, `tanggal_pinjam`, `tanggal_kembali`) VALUES
-(11, 1, 'A001', '2025-01-01', NULL),
-(12, 3, 'A002', '2025-01-02', NULL),
-(13, 6, 'A003', '2025-01-03', NULL),
-(14, 7, 'A004', '2025-01-04', NULL),
-(15, 2, 'A005', '2025-01-05', NULL),
-(16, 8, 'A006', '2025-01-06', NULL),
-(17, 11, 'A007', '2025-01-07', NULL),
-(18, 12, 'A008', '2025-01-08', NULL),
-(19, 15, 'A009', '2025-01-09', NULL),
-(20, 16, 'A010', '2025-01-10', NULL);
+INSERT INTO `peminjaman` (`id_peminjaman`, `id_copy`, `id_anggota_perpustakaan`, `tanggal_pinjam`, `tanggal_kembali`, `status_kembali`, `denda`) VALUES
+(11, 1, 'A001', '2025-01-01', NULL, 0, '0.00'),
+(12, 3, 'A002', '2025-01-02', NULL, 0, '0.00'),
+(13, 6, 'A003', '2025-01-03', NULL, 0, '0.00'),
+(14, 7, 'A004', '2025-01-04', NULL, 0, '0.00'),
+(15, 2, 'A005', '2025-01-05', NULL, 0, '0.00'),
+(16, 8, 'A006', '2025-01-06', NULL, 0, '0.00'),
+(17, 11, 'A007', '2025-01-07', NULL, 0, '0.00'),
+(18, 12, 'A008', '2025-01-08', NULL, 0, '0.00'),
+(19, 15, 'A009', '2025-01-09', NULL, 0, '0.00'),
+(20, 16, 'A010', '2025-01-10', NULL, 0, '0.00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengarang`
+-- Struktur dari tabel `pengarang`
 --
 
 CREATE TABLE `pengarang` (
@@ -241,7 +242,7 @@ CREATE TABLE `pengarang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `pengarang`
+-- Dumping data untuk tabel `pengarang`
 --
 
 INSERT INTO `pengarang` (`id_pengarang`, `biografi`, `nama_pengarang`) VALUES
@@ -257,7 +258,7 @@ INSERT INTO `pengarang` (`id_pengarang`, `biografi`, `nama_pengarang`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengembalian`
+-- Struktur dari tabel `pengembalian`
 --
 
 CREATE TABLE `pengembalian` (
@@ -268,7 +269,7 @@ CREATE TABLE `pengembalian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `pengembalian`
+-- Dumping data untuk tabel `pengembalian`
 --
 
 INSERT INTO `pengembalian` (`id_pengembalian`, `id_peminjaman`, `tanggal_pengembalian`, `denda`) VALUES
@@ -286,7 +287,7 @@ INSERT INTO `pengembalian` (`id_pengembalian`, `id_peminjaman`, `tanggal_pengemb
 -- --------------------------------------------------------
 
 --
--- Table structure for table `staf_perpustakaan`
+-- Struktur dari tabel `staf_perpustakaan`
 --
 
 CREATE TABLE `staf_perpustakaan` (
@@ -298,7 +299,7 @@ CREATE TABLE `staf_perpustakaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `staf_perpustakaan`
+-- Dumping data untuk tabel `staf_perpustakaan`
 --
 
 INSERT INTO `staf_perpustakaan` (`id_staf`, `id_user`, `nama_staf`, `jabatan`, `kontak`) VALUES
@@ -308,7 +309,7 @@ INSERT INTO `staf_perpustakaan` (`id_staf`, `id_user`, `nama_staf`, `jabatan`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stock`
+-- Struktur dari tabel `stock`
 --
 
 CREATE TABLE `stock` (
@@ -318,7 +319,7 @@ CREATE TABLE `stock` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `stock`
+-- Dumping data untuk tabel `stock`
 --
 
 INSERT INTO `stock` (`id_stock`, `kode_buku`, `jumlah`) VALUES
@@ -346,7 +347,7 @@ INSERT INTO `stock` (`id_stock`, `kode_buku`, `jumlah`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -357,7 +358,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `role`) VALUES
@@ -372,40 +373,40 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `role`) VALUES
 --
 
 --
--- Indexes for table `anggota_perpustakaan`
+-- Indeks untuk tabel `anggota_perpustakaan`
 --
 ALTER TABLE `anggota_perpustakaan`
   ADD PRIMARY KEY (`id_anggota_perpustakaan`);
 
 --
--- Indexes for table `buku`
+-- Indeks untuk tabel `buku`
 --
 ALTER TABLE `buku`
   ADD PRIMARY KEY (`id_buku`),
   ADD UNIQUE KEY `kode_buku` (`kode_buku`);
 
 --
--- Indexes for table `copy_buku`
+-- Indeks untuk tabel `copy_buku`
 --
 ALTER TABLE `copy_buku`
   ADD PRIMARY KEY (`id_copy`),
   ADD KEY `kode_buku` (`kode_buku`);
 
 --
--- Indexes for table `denda`
+-- Indeks untuk tabel `denda`
 --
 ALTER TABLE `denda`
   ADD PRIMARY KEY (`id_denda`),
   ADD KEY `id_peminjaman` (`id_peminjaman`);
 
 --
--- Indexes for table `kategori`
+-- Indeks untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indexes for table `peminjaman`
+-- Indeks untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
   ADD PRIMARY KEY (`id_peminjaman`),
@@ -413,139 +414,139 @@ ALTER TABLE `peminjaman`
   ADD KEY `fk_id_copy` (`id_copy`);
 
 --
--- Indexes for table `pengarang`
+-- Indeks untuk tabel `pengarang`
 --
 ALTER TABLE `pengarang`
   ADD PRIMARY KEY (`id_pengarang`);
 
 --
--- Indexes for table `pengembalian`
+-- Indeks untuk tabel `pengembalian`
 --
 ALTER TABLE `pengembalian`
   ADD PRIMARY KEY (`id_pengembalian`),
   ADD KEY `fk_id_peminjaman` (`id_peminjaman`);
 
 --
--- Indexes for table `staf_perpustakaan`
+-- Indeks untuk tabel `staf_perpustakaan`
 --
 ALTER TABLE `staf_perpustakaan`
   ADD PRIMARY KEY (`id_staf`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `stock`
+-- Indeks untuk tabel `stock`
 --
 ALTER TABLE `stock`
   ADD PRIMARY KEY (`id_stock`),
   ADD KEY `fk_kode_buku` (`kode_buku`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `buku`
+-- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
   MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `copy_buku`
+-- AUTO_INCREMENT untuk tabel `copy_buku`
 --
 ALTER TABLE `copy_buku`
   MODIFY `id_copy` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `denda`
+-- AUTO_INCREMENT untuk tabel `denda`
 --
 ALTER TABLE `denda`
   MODIFY `id_denda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `kategori`
+-- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `peminjaman`
+-- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
   MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `pengarang`
+-- AUTO_INCREMENT untuk tabel `pengarang`
 --
 ALTER TABLE `pengarang`
   MODIFY `id_pengarang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `pengembalian`
+-- AUTO_INCREMENT untuk tabel `pengembalian`
 --
 ALTER TABLE `pengembalian`
   MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `staf_perpustakaan`
+-- AUTO_INCREMENT untuk tabel `staf_perpustakaan`
 --
 ALTER TABLE `staf_perpustakaan`
   MODIFY `id_staf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `stock`
+-- AUTO_INCREMENT untuk tabel `stock`
 --
 ALTER TABLE `stock`
   MODIFY `id_stock` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `copy_buku`
+-- Ketidakleluasaan untuk tabel `copy_buku`
 --
 ALTER TABLE `copy_buku`
   ADD CONSTRAINT `copy_buku_ibfk_1` FOREIGN KEY (`kode_buku`) REFERENCES `buku` (`kode_buku`);
 
 --
--- Constraints for table `denda`
+-- Ketidakleluasaan untuk tabel `denda`
 --
 ALTER TABLE `denda`
   ADD CONSTRAINT `denda_ibfk_1` FOREIGN KEY (`id_peminjaman`) REFERENCES `peminjaman` (`id_peminjaman`);
 
 --
--- Constraints for table `peminjaman`
+-- Ketidakleluasaan untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
   ADD CONSTRAINT `fk_id_anggota` FOREIGN KEY (`id_anggota_perpustakaan`) REFERENCES `anggota_perpustakaan` (`id_anggota_perpustakaan`),
   ADD CONSTRAINT `fk_id_copy` FOREIGN KEY (`id_copy`) REFERENCES `copy_buku` (`id_copy`);
 
 --
--- Constraints for table `pengembalian`
+-- Ketidakleluasaan untuk tabel `pengembalian`
 --
 ALTER TABLE `pengembalian`
   ADD CONSTRAINT `fk_id_peminjaman` FOREIGN KEY (`id_peminjaman`) REFERENCES `peminjaman` (`id_peminjaman`);
 
 --
--- Constraints for table `staf_perpustakaan`
+-- Ketidakleluasaan untuk tabel `staf_perpustakaan`
 --
 ALTER TABLE `staf_perpustakaan`
   ADD CONSTRAINT `staf_perpustakaan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
--- Constraints for table `stock`
+-- Ketidakleluasaan untuk tabel `stock`
 --
 ALTER TABLE `stock`
   ADD CONSTRAINT `fk_kode_buku` FOREIGN KEY (`kode_buku`) REFERENCES `buku` (`kode_buku`) ON DELETE CASCADE;

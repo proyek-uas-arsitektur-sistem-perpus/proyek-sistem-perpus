@@ -1,0 +1,35 @@
+.tambah-peminjaman {
+    padding: 20px;
+  }
+  
+  .tambah-peminjaman form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .tambah-peminjaman label {
+    margin-bottom: 5px;
+  }
+  
+  .tambah-peminjaman input {
+    margin-bottom: 15px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .tambah-peminjaman button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .tambah-peminjaman button:hover {
+    background-color: #0056b3;
+  }
+  

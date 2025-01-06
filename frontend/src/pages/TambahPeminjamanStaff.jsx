@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './TambahPeminjamanStaff.css';
 
 const TambahPeminjaman = () => {
   const [formData, setFormData] = useState({
     id_anggota_perpustakaan: '',
-    id_buku: '',
+    id_copy: '',
     tgl_pinjam: '',
     tgl_kembali: '',
   });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -21,18 +23,48 @@ const TambahPeminjaman = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className="tambah-peminjaman">
       <h1>Tambah Peminjaman</h1>
-      <label>ID Anggota:</label>
-      <input type="text" name="id_anggota_perpustakaan" onChange={handleChange} required />
-      <label>ID Buku:</label>
-      <input type="text" name="id_buku" onChange={handleChange} required />
-      <label>Tanggal Pinjam:</label>
-      <input type="date" name="tgl_pinjam" onChange={handleChange} required />
-      <label>Tanggal Kembali:</label>
-      <input type="date" name="tgl_kembali" onChange={handleChange} required />
-      <button type="submit">Tambah</button>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <label>ID Anggota</label>
+        <input
+          type="text"
+          name="id_anggota_perpustakaan"
+          value={formData.id_anggota_perpustakaan}
+          onChange={handleInputChange}
+          required
+        />
+
+        <label>ID Copy</label>
+        <input
+          type="text"
+          name="id_copy"
+          value={formData.id_copy}
+          onChange={handleInputChange}
+          required
+        />
+
+        <label>Tanggal Pinjam</label>
+        <input
+          type="date"
+          name="tgl_pinjam"
+          value={formData.tgl_pinjam}
+          onChange={handleInputChange}
+          required
+        />
+
+        <label>Tanggal Kembali</label>
+        <input
+          type="date"
+          name="tgl_kembali"
+          value={formData.tgl_kembali}
+          onChange={handleInputChange}
+          required
+        />
+
+        <button type="submit">Tambah</button>
+      </form>
+    </div>
   );
 };
 
