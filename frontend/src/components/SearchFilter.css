@@ -1,61 +1,96 @@
 .search-and-filter {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-}
-
-.search-and-filter h1 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.filter-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-bottom: 30px;
-}
-
-.search-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-content: space-between; /* This ensures items are spaced out */
-}
-
-.search-input {
-  flex: 1;
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  height: 40px;
-  width: 100%;
-}
-
-.search-button {
-  padding: 8px;
-  font-size: 14px;
-  color: #fff;
-  background-color: #007BFF;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-}
-
-.search-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-.filter-select {
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  height: 40px;
-}
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .search-and-filter h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .filter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .search-group {
+    display: flex;
+    align-items: center; /* Vertically center all elements */
+    gap: 10px;
+    width: 100%; /* Make sure the group takes up full width */
+    justify-content: space-between; /* Ensure that elements are spaced out */
+  }
+  
+  .search-input, .search-button, .filter-select {
+    height: 40px; /* Ensure uniform height */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .search-input {
+    flex: 1; /* Let the input take the remaining space */
+  }
+  
+  .search-button {
+    background-color: #007BFF;
+    color: white;
+    width: 50px; /* Button width */
+    cursor: pointer;
+  }
+  
+  .search-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .filter-select {
+    width: 150px; /* Set a fixed width for the dropdown */
+  }
+  
+  /* Ensuring consistency across the layout */
+  .search-group > * {
+    margin: 0; /* Remove default margin */
+  }
+  
+  /* Results Section */
+  .results {
+    margin-top: 20px;
+  }
+  
+  .result-item {
+    background-color: #ffffff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .result-item h3 {
+    font-size: 18px;
+    margin: 0 0 5px 0;
+  }
+  
+  .result-item p {
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  /* Responsive design for mobile devices */
+  @media (max-width: 768px) {
+    .search-group {
+      flex-direction: column; /* Stack the elements vertically on small screens */
+      gap: 10px;
+    }
+  
+    .search-button, .filter-select {
+      width: 100%; /* Make button and dropdown full width on small screens */
+    }
+  }
+  
