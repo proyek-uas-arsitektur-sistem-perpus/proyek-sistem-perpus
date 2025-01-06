@@ -1,26 +1,18 @@
-import  { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import CatalogManagement from "../components/CatalogManagement";
 import "./Databuku.css";
 
 const DataBuku = () => {
   const navigate = useNavigate();
 
   // State untuk menyimpan daftar buku
-  const [bukuList, setBukuList] = useState([
-    {
-      no: 1,
-      sampul: "https://via.placeholder.com/50",
-      bukuId: "BK001",
-      isbn: "978-602-8758-07-9",
-      judul: "Matematika Diskrit",
-      kategori: "Buku",
-      rak: "Rak 3",
-      penerbit: "INFORMATIKA Bandung",
-      tahun: 2010,
-      stok: 10,
-      dipinjam: 1,
-    },
-  ]);
+  const [bukuList, setBukuList] = useState([]);
+
+  useEffect(() => {
+    // Mendapatkan data buku dari service
+    setBukuList(CatalogManagement.getAllBooks());
+  }, []);
 
   // Fungsi navigasi
   const goToTambahBuku = () => navigate("/tambah-buku");
@@ -36,7 +28,6 @@ const DataBuku = () => {
 
   return (
     <div className="data-buku-container">
-      {/* Header */}
       <div className="header">
         <h2 className="page-title">
           <i className="fas fa-book"></i> Data Buku
@@ -46,22 +37,18 @@ const DataBuku = () => {
         </p>
       </div>
 
-      {/* Kontainer Tabel */}
       <div className="table-container">
-        {/* Tombol Aksi */}
         <div className="action-buttons">
           <button className="btn-primary" onClick={goToTambahBuku}>Tambah Buku</button>
           <button className="btn-secondary">Sortir Kategori</button>
-          <button className="btn-secondary">Sortir Rak Buku</button>
         </div>
 
-        {/* Tabel Data Buku */}
         <table className="data-table">
           <thead>
             <tr>
               <th>No</th>
               <th>Sampul</th>
-              <th>Data Buku</th>
+              <th>Kode Buku</th>
               <th>ISBN</th>
               <th>Judul Buku</th>
               <th>Kategori</th>
@@ -78,8 +65,16 @@ const DataBuku = () => {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>
-                  <img src={buku.sampul} alt="Sampul Buku" />
-                </td>
+  {buku.sampul && (
+    <img
+      src={buku.sampul instanceof File ? URL.createObjectURL(buku.sampul) : buku.sampul}
+      alt="Sampul Buku"
+      width="100"
+      height="150"
+    />
+  )}
+</td>
+
                 <td>{buku.bukuId}</td>
                 <td>{buku.isbn}</td>
                 <td>{buku.judul}</td>

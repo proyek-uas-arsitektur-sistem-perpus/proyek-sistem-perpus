@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Des 2024 pada 13.03
--- Versi server: 10.4.28-MariaDB
--- Versi PHP: 8.2.4
+-- Generation Time: Jan 06, 2025 at 08:30 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `anggota_perpustakaan`
+-- Table structure for table `anggota_perpustakaan`
 --
 
 CREATE TABLE `anggota_perpustakaan` (
@@ -40,11 +40,12 @@ CREATE TABLE `anggota_perpustakaan` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `buku`
+-- Table structure for table `buku`
 --
 
 CREATE TABLE `buku` (
   `id_buku` int(11) NOT NULL,
+  `kode_buku` varchar(255) DEFAULT NULL,
   `judul` varchar(200) NOT NULL,
   `penerbit` varchar(100) DEFAULT NULL,
   `id_anggota_perpustakaan` int(11) DEFAULT NULL,
@@ -56,13 +57,15 @@ CREATE TABLE `buku` (
   `id_peminjaman` int(11) DEFAULT NULL,
   `tahun_terbit` int(11) DEFAULT NULL,
   `kategori` varchar(100) DEFAULT NULL,
-  `halaman` int(11) DEFAULT NULL
+  `halaman` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `copy_buku`
+-- Table structure for table `copy_buku`
 --
 
 CREATE TABLE `copy_buku` (
@@ -75,7 +78,7 @@ CREATE TABLE `copy_buku` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `denda`
+-- Table structure for table `denda`
 --
 
 CREATE TABLE `denda` (
@@ -88,7 +91,7 @@ CREATE TABLE `denda` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -99,7 +102,7 @@ CREATE TABLE `kategori` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `peminjaman`
+-- Table structure for table `peminjaman`
 --
 
 CREATE TABLE `peminjaman` (
@@ -111,13 +114,15 @@ CREATE TABLE `peminjaman` (
   `id_copy_buku` int(11) DEFAULT NULL,
   `judul_buku` varchar(200) DEFAULT NULL,
   `tgl_pinjam` date DEFAULT NULL,
-  `tgl_kembali` date DEFAULT NULL
+  `tgl_kembali` date DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengarang`
+-- Table structure for table `pengarang`
 --
 
 CREATE TABLE `pengarang` (
@@ -131,7 +136,7 @@ CREATE TABLE `pengarang` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengembalian`
+-- Table structure for table `pengembalian`
 --
 
 CREATE TABLE `pengembalian` (
@@ -150,7 +155,7 @@ CREATE TABLE `pengembalian` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `staf_perpustakaan`
+-- Table structure for table `staf_perpustakaan`
 --
 
 CREATE TABLE `staf_perpustakaan` (
@@ -168,21 +173,23 @@ CREATE TABLE `staf_perpustakaan` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `stock`
+-- Table structure for table `stock`
 --
 
 CREATE TABLE `stock` (
   `id_stock` int(11) NOT NULL,
   `nama` varchar(100) DEFAULT NULL,
   `id_buku` int(11) DEFAULT NULL,
+  `kode_buku` varchar(255) NOT NULL,
   `tgl_stock` date DEFAULT NULL,
-  `jumlah` int(11) DEFAULT NULL
+  `jumlah` int(11) DEFAULT NULL,
+  `keterangan` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -193,7 +200,9 @@ CREATE TABLE `user` (
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `id_anggota` int(11) DEFAULT NULL,
-  `id_staf_perpustakaan` int(11) DEFAULT NULL
+  `id_staf_perpustakaan` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -201,134 +210,146 @@ CREATE TABLE `user` (
 --
 
 --
--- Indeks untuk tabel `anggota_perpustakaan`
+-- Indexes for table `anggota_perpustakaan`
 --
 ALTER TABLE `anggota_perpustakaan`
   ADD PRIMARY KEY (`id_anggota_perpustakaan`);
 
 --
--- Indeks untuk tabel `buku`
+-- Indexes for table `buku`
 --
 ALTER TABLE `buku`
-  ADD PRIMARY KEY (`id_buku`);
+  ADD PRIMARY KEY (`id_buku`),
+  ADD UNIQUE KEY `kode_buku` (`kode_buku`);
 
 --
--- Indeks untuk tabel `copy_buku`
+-- Indexes for table `copy_buku`
 --
 ALTER TABLE `copy_buku`
   ADD PRIMARY KEY (`id_copy_buku`);
 
 --
--- Indeks untuk tabel `denda`
+-- Indexes for table `denda`
 --
 ALTER TABLE `denda`
   ADD PRIMARY KEY (`id_denda`);
 
 --
--- Indeks untuk tabel `kategori`
+-- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `peminjaman`
+-- Indexes for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
   ADD PRIMARY KEY (`id_peminjaman`);
 
 --
--- Indeks untuk tabel `pengarang`
+-- Indexes for table `pengarang`
 --
 ALTER TABLE `pengarang`
   ADD PRIMARY KEY (`id_pengarang`);
 
 --
--- Indeks untuk tabel `pengembalian`
+-- Indexes for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
   ADD PRIMARY KEY (`id_pengembalian`);
 
 --
--- Indeks untuk tabel `staf_perpustakaan`
+-- Indexes for table `staf_perpustakaan`
 --
 ALTER TABLE `staf_perpustakaan`
   ADD PRIMARY KEY (`id_staf_perpustakaan`);
 
 --
--- Indeks untuk tabel `stock`
+-- Indexes for table `stock`
 --
 ALTER TABLE `stock`
-  ADD PRIMARY KEY (`id_stock`);
+  ADD PRIMARY KEY (`id_stock`),
+  ADD KEY `fk_kode_buku` (`kode_buku`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `buku`
+-- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
   MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `copy_buku`
+-- AUTO_INCREMENT for table `copy_buku`
 --
 ALTER TABLE `copy_buku`
   MODIFY `id_copy_buku` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `denda`
+-- AUTO_INCREMENT for table `denda`
 --
 ALTER TABLE `denda`
   MODIFY `id_denda` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `kategori`
+-- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `peminjaman`
+-- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
   MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `pengarang`
+-- AUTO_INCREMENT for table `pengarang`
 --
 ALTER TABLE `pengarang`
   MODIFY `id_pengarang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `pengembalian`
+-- AUTO_INCREMENT for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
   MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `staf_perpustakaan`
+-- AUTO_INCREMENT for table `staf_perpustakaan`
 --
 ALTER TABLE `staf_perpustakaan`
   MODIFY `id_staf_perpustakaan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `stock`
+-- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
   MODIFY `id_stock` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `stock`
+--
+ALTER TABLE `stock`
+  ADD CONSTRAINT `fk_kode_buku` FOREIGN KEY (`kode_buku`) REFERENCES `buku` (`kode_buku`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -22,6 +22,9 @@ import EditDataPengguna from "./pages/EditDataPengguna";
 import StockMasuk from "./pages/StockMasuk";
 import StockKeluar from "./pages/StockKeluar";
 import LaporanStock from "./pages/LaporanStock";
+import PeminjamanStaff from "./pages/PeminjamanStaff";
+import PengembalianStaff from "./pages/PengembalianStaff";
+import DendaStaff from "./pages/DendaStaff";
 import "./App.css";
 
 const App = () => {
@@ -80,6 +83,15 @@ const App = () => {
           {/* Tambahkan route untuk halaman Rak */}
           <Route path="/rak-buku" element={<RakBuku />} />
 
+          {/* Tambahkan route untuk halaman Peminjaman */}
+          <Route path="/peminjaman-staff" element={<PeminjamanStaff />} />
+
+          {/* Tambahkan route untuk halaman Pengembalian */}
+          <Route path="/pengembalian-staff" element={<PengembalianStaff />} />
+
+          {/* Tambahkan route untuk halaman Denda */}
+          <Route path="/denda-staff" element={<DendaStaff />} />
+          
           {/* Tambahkan route untuk halaman Kategori */}
           <Route path="/kategori" element={<Kategori />} />
 

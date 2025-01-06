@@ -113,6 +113,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;
     overflow-x: auto;
+    margin-left: 0;
   }
   
   .table-header {
@@ -126,7 +127,7 @@
     border: 1px solid #ddd;
     padding: 5px;
     border-radius: 4px;
-    width: 200px;
+    width: 100px;
   }
   
   .data-table {

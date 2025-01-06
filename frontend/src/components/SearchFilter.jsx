@@ -1,11 +1,11 @@
-// React Component for Search and Filter Service
+// components/SearchFilter.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import './SearchFilter.css';
 
-const SearchFilter = () => {
+const SearchFilter = ({ filterOptions = [], onSearch }) => {
   const [query, setQuery] = useState('');
-  const [filterBy, setFilterBy] = useState('title'); // Default filter by title
+  const [filterBy, setFilterBy] = useState(filterOptions.length > 0 ? filterOptions[0].value : 'title'); // Default filter if options are not passed
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -19,6 +19,7 @@ const SearchFilter = () => {
         },
       });
       setResults(response.data);
+      if (onSearch) onSearch(response.data); // Return results to parent if needed
     } catch (error) {
       console.error('Error fetching search results:', error);
     } finally {
@@ -45,20 +46,22 @@ const SearchFilter = () => {
             onChange={(e) => setFilterBy(e.target.value)}
             className="filter-select"
           >
-            <option value="title">Title</option>
-            <option value="author">Author</option>
-            <option value="category">Category</option>
+            {filterOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         </div>
       </form>
       <div className="results">
         {results.length > 0 ? (
           <ul>
-            {results.map((book) => (
-              <li key={book.id} className="result-item">
-                <h3>{book.title}</h3>
-                <p>Author: {book.author}</p>
-                <p>Category: {book.category}</p>
+            {results.map((item) => (
+              <li key={item.id} className="result-item">
+                <h3>{item.title}</h3>
+                <p>{item.author && `Author: ${item.author}`}</p>
+                <p>{item.category && `Category: ${item.category}`}</p>
               </li>
             ))}
           </ul>

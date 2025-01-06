@@ -1,62 +1,95 @@
 const db = require('../config/db');
 
-// Tambah peminjaman baru
-exports.createBorrowing = async (req, res) => {
-  const { id_anggota, id_buku, tanggal_pinjam, tanggal_kembali } = req.body;
-  try {
-    const query = `
-      INSERT INTO borrowing (id_anggota, id_buku, tanggal_pinjam, tanggal_kembali)
-      VALUES (?, ?, ?, ?)
-    `;
-    await db.execute(query, [id_anggota, id_buku, tanggal_pinjam, tanggal_kembali]);
-    res.status(201).json({ message: 'Peminjaman berhasil ditambahkan!' });
-  } catch (error) {
-    res.status(500).json({ error: 'Terjadi kesalahan saat menambah peminjaman' });
-  }
+const getAllBorrowings = (req, res) => {
+  const query = 'SELECT * FROM peminjaman';
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching borrowings:', err);
+      res.status(500).json({ error: 'Database error' });
+    } else {
+      res.json(results);
+    }
+  });
 };
 
-// Ambil semua peminjaman
-exports.getBorrowings = async (req, res) => {
-  try {
-    const [rows] = await db.execute(`
-      SELECT * FROM borrowing
-    `);
-    res.status(200).json(rows);
-  } catch (error) {
-    res.status(500).json({ error: 'Terjadi kesalahan saat mengambil peminjaman' });
-  }
+const addBorrowing = (req, res) => {
+  const { id_anggota_perpustakaan, id_buku, tgl_pinjam, tgl_kembali } = req.body;
+  const query = `
+    INSERT INTO peminjaman (id_anggota_perpustakaan, id_buku, tgl_pinjam, tgl_kembali)
+    VALUES (?, ?, ?, ?)
+  `;
+  db.query(query, [id_anggota_perpustakaan, id_buku, tgl_pinjam, tgl_kembali], (err, result) => {
+    if (err) {
+      console.error('Error adding borrowing:', err);
+      res.status(500).json({ error: 'Database error' });
+    } else {
+      res.json({ message: 'Borrowing added successfully', id: result.insertId });
+    }
+  });
 };
 
-// Update pengembalian buku
-exports.returnBorrowing = async (req, res) => {
-  const { id_peminjaman } = req.params;
-  const { tanggal_pengembalian, id_denda } = req.body;
-  try {
-    await db.execute(`
-      UPDATE borrowing
-      SET status_kembali = TRUE
-      WHERE id_peminjaman = ?
-    `, [id_peminjaman]);
-
-    await db.execute(`
-      INSERT INTO pengembalian (id_peminjaman, tanggal_pengembalian, id_denda)
-      VALUES (?, ?, ?)
-    `, [id_peminjaman, tanggal_pengembalian, id_denda]);
-
-    res.status(200).json({ message: 'Buku berhasil dikembalikan!' });
-  } catch (error) {
-    res.status(500).json({ error: 'Terjadi kesalahan saat mengembalikan buku' });
-  }
+const returnBook = (req, res) => {
+  const { id } = req.params;
+  const { tgl_pengembalian } = req.body;
+  const query = `
+    UPDATE peminjaman 
+    SET status_kembali = 1, tgl_pengembalian = ?
+    WHERE id_peminjaman = ?
+  `;
+  db.query(query, [tgl_pengembalian, id], (err) => {
+    if (err) {
+      console.error('Error returning book:', err);
+      res.status(500).json({ error: 'Database error' });
+    } else {
+      res.json({ message: 'Book returned successfully' });
+    }
+  });
 };
 
-// Ambil daftar denda
-exports.getFines = async (req, res) => {
-  try {
-    const [rows] = await db.execute(`
-      SELECT * FROM denda
-    `);
-    res.status(200).json(rows);
-  } catch (error) {
-    res.status(500).json({ error: 'Terjadi kesalahan saat mengambil daftar denda' });
-  }
+const calculatePenalty = (req, res) => {
+  const { id } = req.params;
+  const query = `
+    SELECT tgl_kembali, tgl_pengembalian 
+    FROM peminjaman 
+    WHERE id_peminjaman = ?
+  `;
+  db.query(query, [id], (err, results) => {
+    if (err) {
+      console.error('Error calculating penalty:', err);
+      res.status(500).json({ error: 'Database error' });
+    }
+
+    const { tgl_kembali, tgl_pengembalian } = results[0];
+    const dueDate = new Date(tgl_kembali);
+    const returnDate = new Date(tgl_pengembalian);
+    const penaltyPerDay = 5000;
+
+    const diffTime = returnDate - dueDate;
+    const diffDays = Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+
+    const penalty = diffDays * penaltyPerDay;
+
+    res.json({ penalty });
+  });
+};
+
+const getBorrowingById = (req, res) => {
+  const { id } = req.params;
+  const query = 'SELECT * FROM peminjaman WHERE id_peminjaman = ?';
+  db.query(query, [id], (err, results) => {
+    if (err) {
+      console.error('Error fetching borrowing by ID:', err);
+      res.status(500).json({ error: 'Database error' });
+    } else {
+      res.json(results[0]);
+    }
+  });
+};
+
+module.exports = {
+  getAllBorrowings,
+  addBorrowing,
+  returnBook,
+  calculatePenalty,
+  getBorrowingById,
 };
