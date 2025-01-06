@@ -1,18 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const borrowingController = require('../controllers/borrowingController');
+const returnController = require('../controllers/returnController');
+const penaltyController = require('../controllers/penaltyController');
 
-// Endpoint untuk mendapatkan semua data peminjaman
+// Rute untuk peminjaman
 router.get('/', borrowingController.getAllBorrowings);
-// Endpoint untuk menambah peminjaman baru
 router.post('/', borrowingController.addBorrowing);
-// Endpoint untuk mengembalikan buku (update status_kembali dan tgl_pengembalian)
-router.put('/:id/return', borrowingController.returnBook);
-// Endpoint untuk mendapatkan detail peminjaman berdasarkan ID
-router.get('/:id/details', borrowingController.getBorrowingDetails);
-// Endpoint untuk menghitung denda berdasarkan ID peminjaman
-router.get('/:id/penalty', borrowingController.calculatePenalty);
-// Endpoint untuk menghapus data peminjaman berdasarkan ID
-router.delete('/:id', borrowingController.deleteBorrowing);
+
+// Rute untuk pengembalian
+router.post('/return', returnController.addReturn);
+
+// Rute untuk denda
+router.post('/penalty', penaltyController.addPenalty);
 
 module.exports = router;

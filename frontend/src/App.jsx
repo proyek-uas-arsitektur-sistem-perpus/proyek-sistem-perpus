@@ -13,6 +13,7 @@ import ProfileAnggota from "./pages/ProfileAnggota"; // Halaman Profile Anggota
 import EditProfilePengguna from "./pages/EditProfilePengguna"; // Halaman Edit Profile
 import EditProfileAnggota from "./pages/EditProfileAnggota"; 
 import DataBuku from "./pages/Databuku";
+import CariBuku from "./pages/CariBuku";
 import TambahBuku from "./pages/Tambahbuku";
 import DataBukuEdit from "./pages/DataBukuEdit";
 import DetailBuku from "./pages/DetailBuku";
@@ -98,7 +99,10 @@ const App = () => {
           <Route path="/data-buku-edit" element={<DataBukuEdit />} />
           <Route path="/detail-buku" element={<DetailBuku />} />
 
-          {/* Halaman Peminjaman */}
+       {/* Tambahkan route untuk halaman DataBuku */}
+       <Route path="/cari-buku" element={<CariBuku />} />
+
+          {/* Tambahkan route untuk halaman Peminjaman */}
           <Route path="/peminjaman-staff" element={<PeminjamanStaff />} />
           <Route path="/peminjaman-staff/tambah" element={<TambahPeminjaman />} />
           <Route path="/peminjaman-staff/:id" element={<DetailPeminjaman />} />
