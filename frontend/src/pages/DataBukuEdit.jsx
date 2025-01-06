@@ -146,8 +146,8 @@ const DataBukuEdit = () => {
             <img
               src={formData.sampul instanceof File ? URL.createObjectURL(formData.sampul) : formData.sampul}
               alt="Preview Sampul"
-              width="100"
-              height="150"
+              width="50"
+              height="50"
             />
           )}
         </div>

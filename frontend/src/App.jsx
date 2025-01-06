@@ -15,7 +15,6 @@ import TambahBuku from "./pages/Tambahbuku";
 import DataBukuEdit from "./pages/DataBukuEdit";
 import DetailBuku from "./pages/DetailBuku";
 import Kategori from "./pages/Kategori";
-import RakBuku from "./pages/RakBuku";
 import DataPengguna from "./pages/DataPengguna";
 import TambahDataPengguna from "./pages/TambahDataPengguna";
 import EditDataPengguna from "./pages/EditDataPengguna";
@@ -80,8 +79,7 @@ const App = () => {
           <Route path="/data-buku-edit" element={<DataBukuEdit />} />
           <Route path="/detail-buku" element={<DetailBuku />} />
 
-          {/* Tambahkan route untuk halaman Rak */}
-          <Route path="/rak-buku" element={<RakBuku />} />
+       
 
           {/* Tambahkan route untuk halaman Peminjaman */}
           <Route path="/peminjaman-staff" element={<PeminjamanStaff />} />

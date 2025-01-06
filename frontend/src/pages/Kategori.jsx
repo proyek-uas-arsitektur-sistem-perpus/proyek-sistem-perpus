@@ -98,9 +98,9 @@ const Kategori = () => {
           <div className="table-footer">
             <span>Showing 1 to {kategoriList.length} of {kategoriList.length} entries</span>
             <div className="pagination">
-              <button className="page-btn">Previous</button>
-              <button className="page-btn active">1</button>
-              <button className="page-btn">Next</button>
+              <button className="page-btn-previos">Previous</button>
+              <button className="page-btn-active">1</button>
+              <button className="page-btn-next">Next</button>
             </div>
           </div>
         </div>

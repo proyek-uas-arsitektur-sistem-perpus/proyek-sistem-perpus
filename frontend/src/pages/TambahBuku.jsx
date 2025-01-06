@@ -9,7 +9,6 @@ const TambahBuku = () => {
   // State untuk form
   const [formData, setFormData] = useState({
     kategori: "",
-    rak: "",
     isbn: "",
     judul: "",
     pengarang: "",
@@ -39,7 +38,6 @@ const TambahBuku = () => {
       isbn: formData.isbn,
       judul: formData.judul,
       kategori: formData.kategori,
-      rak: formData.rak,
       penerbit: formData.penerbit,
       tahun: formData.tahun,
       stok: 10, // Default stok
@@ -64,16 +62,6 @@ const TambahBuku = () => {
             type="text"
             name="kategori"
             value={formData.kategori}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Rak</label>
-          <input
-            type="text"
-            name="rak"
-            value={formData.rak}
             onChange={handleChange}
             required
           />

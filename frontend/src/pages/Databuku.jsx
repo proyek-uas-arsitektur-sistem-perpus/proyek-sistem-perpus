@@ -52,7 +52,6 @@ const DataBuku = () => {
               <th>ISBN</th>
               <th>Judul Buku</th>
               <th>Kategori</th>
-              <th>Rak</th>
               <th>Penerbit</th>
               <th>Tahun</th>
               <th>Stok</th>
@@ -79,7 +78,6 @@ const DataBuku = () => {
                 <td>{buku.isbn}</td>
                 <td>{buku.judul}</td>
                 <td>{buku.kategori}</td>
-                <td>{buku.rak}</td>
                 <td>{buku.penerbit}</td>
                 <td>{buku.tahun}</td>
                 <td>{buku.stok}</td>

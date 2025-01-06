@@ -34,10 +34,6 @@ const DetailBuku = () => {
                 <td>{buku.kategori}</td>
               </tr>
               <tr>
-                <td><strong>Rak:</strong></td>
-                <td>{buku.rak}</td>
-              </tr>
-              <tr>
                 <td><strong>Penerbit:</strong></td>
                 <td>{buku.penerbit}</td>
               </tr>
@@ -56,21 +52,21 @@ const DetailBuku = () => {
     <img
       src={buku.sampul instanceof File ? URL.createObjectURL(buku.sampul) : buku.sampul}
       alt="Sampul Buku"
-      width="100"
-      height="150"
+      width="50"
+      height="50"
     />
   )}
-</td>
+            </td>
               </tr>
               <tr>
                 <td><strong>Lampiran:</strong></td>
                 <td>
-  {buku.lampiran && (
-    <a href={buku.lampiran instanceof File ? URL.createObjectURL(buku.lampiran) : buku.lampiran} target="_blank" rel="noopener noreferrer">
-      Lihat Lampiran PDF
-    </a>
-  )}
-</td>
+                  {buku.lampiran && (
+                    <a href={buku.lampiran instanceof File ? URL.createObjectURL(buku.lampiran) : buku.lampiran} target="_blank" rel="noopener noreferrer">
+                      Lihat Lampiran PDF
+                    </a>
+                  )}
+                </td>
 
               </tr>
             </tbody>
