@@ -1,6 +1,6 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CatalogManagement from "../components/CatalogManagement";
+import axios from "axios";
 import "./TambahBuku.css";
 
 const TambahBuku = () => {
@@ -28,24 +28,28 @@ const TambahBuku = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Membuat data baru untuk buku
+
+    // Data yang akan dikirim ke backend
     const newBuku = {
-      no: Math.random(), // Gunakan random ID
-      sampul: formData.sampul ? URL.createObjectURL(formData.sampul) : "https://via.placeholder.com/50",
-      bukuId: `BK${Math.floor(Math.random() * 1000)}`,
+      kode_buku: `BK${Math.floor(Math.random() * 1000)}`, // Generate kode_buku unik
       isbn: formData.isbn,
       judul: formData.judul,
       kategori: formData.kategori,
       penerbit: formData.penerbit,
-      tahun: formData.tahun,
-      stok: 10, // Default stok
-      dipinjam: 0, // Default dipinjam
+      tahun_terbit: formData.tahun,
     };
 
-    CatalogManagement.addBook(newBuku); // Menambahkan data buku
-    navigate("/data-buku"); // Navigasi kembali ke halaman Data Buku
+    try {
+      // Mengirim data buku ke backend melalui endpoint POST
+      await axios.post("http://localhost:5000/api/catalog/books", newBuku);
+      alert("Buku berhasil ditambahkan!");
+      navigate("/data-buku"); // Navigasi ke halaman Data Buku
+    } catch (error) {
+      console.error("Error adding book:", error);
+      alert("Terjadi kesalahan saat menambahkan buku.");
+    }
   };
 
   const handleKembali = () => {
@@ -115,32 +119,6 @@ const TambahBuku = () => {
             onChange={handleChange}
             required
           />
-        </div>
-        <div className="form-group">
-          <label>Sampul (Gambar)</label>
-          <input
-            type="file"
-            name="sampul"
-            accept="image/*"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Lampiran Buku (PDF)</label>
-          <input
-            type="file"
-            name="lampiran"
-            accept="application/pdf"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Keterangan Lainnya</label>
-          <textarea
-            name="keterangan"
-            value={formData.keterangan}
-            onChange={handleChange}
-          ></textarea>
         </div>
         <div className="form-actions">
           <button type="button" onClick={handleKembali}>

@@ -6,27 +6,67 @@ import "./Databuku.css";
 const DataBuku = () => {
   const navigate = useNavigate();
 
-  // State untuk menyimpan daftar buku
+  // State untuk menyimpan daftar buku dan kategori
   const [bukuList, setBukuList] = useState([]);
+  const [categories, setCategories] = useState([]); // Daftar kategori
+  const [selectedCategory, setSelectedCategory] = useState(""); // Kategori yang dipilih
 
   // Fungsi untuk mengambil data buku dari server
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/catalog/books") // URL endpoint backend
+      .get("http://localhost:5000/api/catalog/books") // URL endpoint backend untuk data buku
       .then((response) => {
-        setBukuList(response.data); // Simpan data yang diterima ke state
+        setBukuList(response.data); // Simpan data buku ke state
       })
       .catch((error) => {
         console.error("Error fetching data from server:", error); // Tampilkan error jika ada
       });
   }, []);
 
-  // Fungsi navigasi
+  // Fungsi untuk mengambil daftar kategori dari server
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/catalog/categories") // Endpoint untuk mendapatkan daftar kategori
+      .then((response) => {
+        setCategories(response.data); // Simpan daftar kategori ke state
+      })
+      .catch((error) => {
+        console.error("Error fetching categories from server:", error); // Tampilkan error jika ada
+      });
+  }, []);
+
+  // Fungsi untuk menangani perubahan kategori
+  const handleCategoryChange = (e) => {
+    const category = e.target.value;
+    setSelectedCategory(category);
+
+    // Jika kategori kosong, ambil semua data buku
+    if (category === "") {
+      axios
+        .get("http://localhost:5000/api/catalog/books")
+        .then((response) => {
+          setBukuList(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data from server:", error);
+        });
+    } else {
+      // Jika kategori dipilih, filter data buku berdasarkan kategori
+      axios
+        .get(`http://localhost:5000/api/catalog/books?category=${category}`)
+        .then((response) => {
+          setBukuList(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching filtered data from server:", error);
+        });
+    }
+  };
+
   const goToTambahBuku = () => navigate("/tambah-buku");
   const goToDataBukuEdit = (bukuId) =>
     navigate("/data-buku-edit", { state: { bukuId } });
 
-  // Fungsi untuk menghapus data buku
   const handleDelete = (bukuId) => {
     axios
       .delete(`http://localhost:5000/api/catalog/books/${bukuId}`) // Endpoint untuk DELETE
@@ -38,7 +78,6 @@ const DataBuku = () => {
       });
   };
 
-  // Fungsi untuk kembali ke dashboard
   const goBack = () => navigate("/dashboard");
 
   return (
@@ -60,7 +99,18 @@ const DataBuku = () => {
           <button className="btn-primary" onClick={goToTambahBuku}>
             Tambah Buku
           </button>
-          <button className="btn-secondary">Sortir Kategori</button>
+          <select
+            className="btn-secondary"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+          >
+            <option value="">Semua Kategori</option>
+            {categories.map((category) => (
+              <option key={category.id_kategori} value={category.nama_kategori}>
+                {category.nama_kategori}
+              </option>
+            ))}
+          </select>
         </div>
 
         <table className="data-table">

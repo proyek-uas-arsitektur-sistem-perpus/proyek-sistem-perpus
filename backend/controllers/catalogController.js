@@ -59,9 +59,53 @@ const deleteBook = (req, res) => {
     });
 };
 
+const updateBook = (req, res) => {
+    const { id } = req.params; // Ambil ID buku dari parameter URL
+    const { kode_buku, judul, kategori, penerbit, tahun_terbit } = req.body; // Ambil data dari body request
+  
+    const query = `
+      UPDATE buku
+      SET kode_buku = ?, judul = ?, kategori = ?, penerbit = ?, tahun_terbit = ?
+      WHERE id_buku = ?
+    `;
+  
+    db.query(
+      query,
+      [kode_buku, judul, kategori, penerbit, tahun_terbit, id],
+      (err, result) => {
+        if (err) {
+          console.error("Error updating book:", err);
+          return res.status(500).json({ error: "Gagal memperbarui data buku." });
+        }
+  
+        if (result.affectedRows === 0) {
+          return res.status(404).json({ error: "Buku tidak ditemukan." });
+        }
+  
+        res.status(200).json({ message: "Data buku berhasil diperbarui." });
+      }
+    );
+  };
+  
+
+const getCategories = (req, res) => {
+    const query = "SELECT DISTINCT kategori AS nama_kategori FROM buku";
+  
+    db.query(query, (err, results) => {
+      if (err) {
+        console.error("Error fetching categories:", err);
+        res.status(500).json({ message: "Failed to fetch categories" });
+      } else {
+        res.status(200).json(results);
+      }
+    });
+  };
+
 module.exports = {
+    getCategories,
     getAllBooks,
     getBookById,
     addBook,
     deleteBook,
+    updateBook,
 };

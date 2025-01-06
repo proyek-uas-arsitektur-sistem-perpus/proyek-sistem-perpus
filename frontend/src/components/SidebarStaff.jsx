@@ -60,7 +60,6 @@ const SidebarStaff = () => {
           {showDataDropdown && (
             <ul className="dropdown-menu">
               <li onClick={() => navigate("/data-buku")}>Data Buku</li>
-              <li onClick={() => navigate("/kategori")}>Kategori</li>
             </ul>
           )}
         </li>
