@@ -34,32 +34,41 @@
 
 .button-group {
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+  justify-content: center; /* Menyelaraskan tombol di tengah */
+  align-items: center; /* Menyelaraskan tombol secara vertikal */
+  margin-top: 20px; /* Jarak antara tabel dan tombol */
+}
+
+.edit-button,
+.back-button {
+  background: #3498db; /* Warna tombol default */
+  color: #fff;
+  border: none;
+  padding: 10px 20px; /* Padding tombol */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* Ukuran font tombol */
+  height: 50px; /* Tinggi tombol yang sama */
+  width: 150px; /* Lebar tombol yang sama */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Pusatkan teks dalam tombol */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Efek transisi */
+  margin: 0; /* Hilangkan margin default */
 }
 
 .edit-button {
-  background: #3498db;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+  margin-right: 10px; /* Jarak kecil antara tombol "Edit Data" dan "Kembali" */
 }
 
 .edit-button:hover {
-  background: #2980b9;
+  background: #2980b9; /* Warna saat tombol edit di-hover */
 }
 
 .back-button {
-  background: #e74c3c;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+  background: #e74c3c; /* Warna tombol kembali */
 }
 
 .back-button:hover {
-  background: #c0392b;
+  background: #c0392b; /* Warna saat tombol kembali di-hover */
 }

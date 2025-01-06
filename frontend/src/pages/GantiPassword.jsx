@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Gunakan useNavigate untuk navigasi
+import { useNavigate } from "react-router-dom";
 import "./GantiPassword.css";
 
 const GantiPassword = () => {
@@ -9,7 +9,7 @@ const GantiPassword = () => {
     confirmPassword: "",
   });
 
-  const navigate = useNavigate(); // Inisialisasi fungsi navigasi
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,19 +22,22 @@ const GantiPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validasi: cek apakah password baru dan konfirmasi cocok
     if (passwords.newPassword !== passwords.confirmPassword) {
       alert("Password baru dan konfirmasi password tidak cocok.");
     } else {
       alert("Password berhasil diubah!");
-      navigate("/login"); // Navigasi ke halaman login
+      navigate("/login");
     }
+  };
+
+  const handleBack = () => {
+    navigate(-1); // Navigasi ke halaman sebelumnya
   };
 
   return (
     <div className="ganti-password-page">
       <div className="ganti-password-container">
-        <h1>UBAH PASSWORD</h1>
+        <h1>GANTI PASSWORD</h1>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <input
@@ -66,7 +69,14 @@ const GantiPassword = () => {
               required
             />
           </div>
-          <button type="submit">Ubah Password</button>
+          <div className="button-group">
+            <button type="submit" className="action-button">
+              Ganti Password
+            </button>
+            <button type="button" className="action-button back-button" onClick={handleBack}>
+              Kembali
+            </button>
+          </div>
         </form>
       </div>
     </div>
