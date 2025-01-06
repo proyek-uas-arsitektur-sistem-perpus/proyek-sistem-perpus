@@ -95,8 +95,8 @@ const SidebarStaff = () => {
           <FontAwesomeIcon icon={faChevronDown} className="chevron-icon" />
           {showStockDropdown && (
             <ul className="dropdown-menu">
-              <li>Pencatatan Stock Buku Masuk</li>
-              <li>Pencatatan Stock Buku Keluar</li>
+              <li onClick={() => navigate("/stock-masuk")}> Pencatatan Stock Buku Masuk</li>
+              <li onClick={() => navigate("/stock-keluar")}>Pencatatan Stock Buku Keluar</li>
               <li>Laporan Stock Buku</li>
             </ul>
           )}
