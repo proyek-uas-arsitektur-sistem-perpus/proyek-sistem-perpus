@@ -168,23 +168,26 @@ const getBorrowingById = (req, res) => {
 
 // 6. Get All Penalties
 const getPenalties = (req, res) => {
-    const query = `
-        SELECT denda.*, 
-               peminjaman.id_copy, 
-               anggota_perpustakaan.nama_anggota
-        FROM denda
-        JOIN peminjaman ON denda.id_peminjaman = peminjaman.id_peminjaman
-        JOIN anggota_perpustakaan ON peminjaman.id_anggota_perpustakaan = anggota_perpustakaan.id_anggota_perpustakaan;
-    `;
-    db.query(query, (err, results) => {
-        if (err) {
-            console.error('Error fetching penalties:', err);
-            res.status(500).json({ error: 'Database error' });
-        } else {
-            res.json(results);
-        }
-    });
+  const query = `
+      SELECT denda.id_denda, 
+             denda.id_peminjaman, 
+             anggota_perpustakaan.nama_anggota AS nama_anggota, 
+             denda.tanggal_denda, 
+             denda.jumlah_denda
+      FROM denda
+      JOIN peminjaman ON denda.id_peminjaman = peminjaman.id_peminjaman
+      JOIN anggota_perpustakaan ON peminjaman.id_anggota_perpustakaan = anggota_perpustakaan.id_anggota_perpustakaan;
+  `;
+  db.query(query, (err, results) => {
+      if (err) {
+          console.error('Error fetching penalties:', err);
+          res.status(500).json({ error: 'Database error' });
+      } else {
+          res.json(results);
+      }
+  });
 };
+
 
 // 7. Delete Penalty
 const deletePenalty = (req, res) => {
