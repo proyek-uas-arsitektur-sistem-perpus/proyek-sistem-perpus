@@ -1,10 +1,12 @@
 import React from "react";
 import './Dashboardpengguna.css'; // Mengimpor file CSS untuk styling Dashboard Pengguna
-import SidebarStaff from '../components/SidebarStaff'; // Mengimpor SidebarStaff
 import SidebarPengguna from "../components/SidebarPengguna";
+import { useNavigate } from "react-router-dom";
+
 
 // Komponen utama Dashboard Pengguna
 const Dashboardpengguna = () => {
+    const navigate = useNavigate(); // Inisialisasi navigate
   return (
     <div>
       <SidebarPengguna /> {/* Menyisipkan SidebarStaff */}
@@ -24,7 +26,10 @@ const Dashboardpengguna = () => {
               <p>Temukan buku yang Anda inginkan</p>
             </div>
             <i className="fas fa-search card-pengguna-icon"></i> {/* Ikon Cari Buku */}
-            <div className="card-pengguna-footer">
+            <div className="card-pengguna-footer"
+            onClick={() => navigate("/cari-buku")} // Navigasi ke halaman CariBuku.jsx
+              style={{ cursor: "pointer" }} // Tambahkan kursor pointer untuk menunjukkan bahwa bisa diklik
+            >
               <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
             </div>
           </div>

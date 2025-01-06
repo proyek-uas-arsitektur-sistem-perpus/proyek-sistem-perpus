@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate untuk navigasi
 import "./SidebarPengguna.css"; // Ganti dengan file CSS yang sesuai
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,14 +12,9 @@ const SidebarPengguna = () => {
   const navigate = useNavigate(); // Hook untuk navigasi
 
   const handleLogout = () => {
-    // Hapus token atau data autentikasi lainnya
-    localStorage.removeItem("authToken"); // Menghapus token dari localStorage (atau sessionStorage)
+    localStorage.removeItem("authToken"); // Menghapus token dari localStorage
     alert("Anda telah berhasil logout!"); // Tambahkan alert sebagai konfirmasi logout
     navigate("/login"); // Setelah logout, arahkan ke halaman login
-  };
-
-  const handleProfileClick = () => {
-    navigate("/profile"); // Navigasi ke halaman Profile Pengguna
   };
 
   return (
@@ -28,7 +22,7 @@ const SidebarPengguna = () => {
       <h2>PERPUSTAKAAN</h2>
       <ul>
         {/* Profil Anggota */}
-        <li onClick={handleProfileClick}>
+        <li onClick={() => navigate("/profile-anggota")}>
           <FontAwesomeIcon icon={faUserCircle} className="icon" /> Profil Anggota
         </li>
 

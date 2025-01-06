@@ -1,29 +1,18 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
+const catalogRoutes = require("./routes/catalogRoutes");
+
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
-app.use(express.json());  // Middleware untuk parsing JSON request body
+app.use(express.json());
 
-// Import routes
-const userRoutes = require('./routes/userRoutes');
+// Routes
+app.use("/api", catalogRoutes); // Prefix "/api" untuk semua route
 
-// Routes untuk pengguna
-app.use('/user', userRoutes);
-
-// Route default GET
-app.get('/', (req, res) => {
-  res.send('Welcome to the Perpustakaan Backend');
-});
-
-// Route POST untuk tes
-app.post('/', (req, res) => {
-  res.send('POST request received');
-});
-
-// Mulai server pada port 3000
+// Jalankan server
+const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
