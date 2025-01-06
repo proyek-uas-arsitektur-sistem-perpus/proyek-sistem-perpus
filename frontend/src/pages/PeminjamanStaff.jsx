@@ -18,10 +18,10 @@ const PeminjamanStaff = () => {
   };
 
   const handleReturn = (id) => {
-    axios.put(`http://localhost:5000/api/borrowing/${id}/return`, { tgl_pengembalian: new Date().toISOString().split('T')[0] })
+    axios.put(`http://localhost:5000/api/borrowing/${id}/return`, { tanggal_kembali: new Date().toISOString().split('T')[0] })
       .then(() => {
         alert('Buku berhasil dikembalikan!');
-        fetchBorrowings();
+        fetchBorrowings(); // Refresh data setelah pengembalian
       })
       .catch((err) => console.error(err));
   };

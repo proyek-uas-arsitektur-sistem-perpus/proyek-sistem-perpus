@@ -41,13 +41,13 @@ const addBorrowing = (req, res) => {
 // Mengembalikan buku
 const returnBook = (req, res) => {
   const { id } = req.params;
-  const { tgl_pengembalian } = req.body;
+  const { tanggal_kembali } = req.body; // Sesuaikan nama kolom
   const query = `
-    UPDATE peminjaman
-    SET status_kembali = 1, tgl_pengembalian = ?
-    WHERE id_peminjaman = ?;
+    UPDATE peminjaman 
+    SET status_kembali = 1, tanggal_kembali = ?
+    WHERE id_peminjaman = ?
   `;
-  db.query(query, [tgl_pengembalian, id], (err) => {
+  db.query(query, [tanggal_kembali, id], (err) => {
     if (err) {
       console.error('Error returning book:', err);
       res.status(500).json({ error: 'Database error' });
@@ -56,6 +56,7 @@ const returnBook = (req, res) => {
     }
   });
 };
+
 
 // Mendapatkan detail peminjaman
 const getBorrowingDetails = (req, res) => {
