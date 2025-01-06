@@ -46,7 +46,7 @@ const LaporanStock = () => {
   // Fungsi untuk mengunduh PDF laporan
   const handleDownloadPDF = () => {
     const doc = new jsPDF();
-    doc.text("Laporan Stok Buku", 20, 10);
+    doc.text("Laporan Stock Buku", 20, 10);
     doc.autoTable({
       head: [["TGL", "KODE BUKU", "MASUK", "KELUAR", "SISA"]],
       body: filteredData.map((row) => [
@@ -88,23 +88,25 @@ const LaporanStock = () => {
 
   return (
     <div className="laporan-container">
-      <h1>Laporan Stok Per Barang (Kartu Stok)</h1>
+      <h1>Laporan Stock Per Barang</h1>
 
       {/* Filter Data Berdasarkan Kode Barang */}
       <div className="filter-container">
+        <div className="filter-group">
         <label htmlFor="filterKode">Pilih Barang:</label>
         <select id="filterKode" value={filterKode} onChange={handleFilterChange}>
           <option value="">Semua Barang</option>
           <option value="BK001">(BK001)</option>
           <option value="BK002"> (BK002)</option>
         </select>
-        <button onClick={() => setFilteredData(stokData)}>Tampilkan</button>
+        </div>
+        <button onClick={() => setFilteredData(stokData)} className="btn-tampilkan">Tampilkan</button>
       </div>
 
       {/* Tabel Laporan */}
       <div className="table-container">
         <h2>
-          Laporan Stok untuk {filterKode ? `BK001 ~ Matematika Diskrit` : "Semua"}
+          Laporan Stock untuk {filterKode ? `Kode Buku ${filterKode}` : "Semua"}
         </h2>
         <table>
           <thead>
