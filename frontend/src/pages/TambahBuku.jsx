@@ -1,193 +1,164 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CatalogManagement from "../components/CatalogManagement";
 import "./TambahBuku.css";
 
-const TambahBuku = ({ addBook }) => {
+const TambahBuku = () => {
   const navigate = useNavigate();
 
+  // State untuk form
   const [formData, setFormData] = useState({
-    sampul: "https://via.placeholder.com/50",
-    bukuId: "",
-    isbn: "",
-    judul: "",
     kategori: "",
     rak: "",
+    isbn: "",
+    judul: "",
+    pengarang: "",
     penerbit: "",
     tahun: "",
-    stok: 0,
-    dipinjam: 0,
+    sampul: null,
+    lampiran: null,
+    keterangan: "",
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, files } = e.target;
+    if (files) {
+      setFormData({ ...formData, [name]: files[0] });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.bukuId || !formData.judul || !formData.kategori) {
-      alert("Harap isi semua field yang wajib diisi!");
-      return;
-    }
-    addBook(formData);
+    // Membuat data baru untuk buku
+    const newBuku = {
+      no: Math.random(), // Gunakan random ID
+      sampul: formData.sampul ? URL.createObjectURL(formData.sampul) : "https://via.placeholder.com/50",
+      bukuId: `BK${Math.floor(Math.random() * 1000)}`,
+      isbn: formData.isbn,
+      judul: formData.judul,
+      kategori: formData.kategori,
+      rak: formData.rak,
+      penerbit: formData.penerbit,
+      tahun: formData.tahun,
+      stok: 10, // Default stok
+      dipinjam: 0, // Default dipinjam
+    };
+
+    CatalogManagement.addBook(newBuku); // Menambahkan data buku
+    navigate("/data-buku"); // Navigasi kembali ke halaman Data Buku
+  };
+
+  const handleKembali = () => {
     navigate("/data-buku");
   };
 
-    const goBack = () => {
-        navigate("/data-buku");
-      };
-
   return (
-    <div className="tambah-buku-container">
-      <div className="header">
-        <h2 className="page-title">
-          <i className="fas fa-book"></i> Tambah Buku
-        </h2>
-        <p className="breadcrumb">
-          <span onClick={goBack} className="breadcrumb-link">
-            Dashboard
-          </span>{" "}
-          &gt; Tambah Buku
-        </p>
-      </div>
-      <form className="form-container" onSubmit={handleSubmit}>
-        {/* Baris pertama */}
-        <div className="form-row">
-          <div className="form-group">
-            <label>Kategori</label>
-            <select className="form-control" 
+    <div className="form-container">
+      <h2>Tambah Buku</h2>
+      <form onSubmit={handleSubmit} className="form">
+        <div className="form-group">
+          <label>Kategori</label>
+          <input
+            type="text"
             name="kategori"
-            onChange={handleChange}>
-              <option>-- Pilih Kategori --</option>
-              <option>Kategori 1</option>
-              <option>Kategori 2</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label>Rak / Lokasi</label>
-            <select className="form-control"
-                    name="rak / lokasi" 
-                    onChange={handleChange}>
-              <option>-- Pilih Rak / Lokasi --</option>
-              <option>Rak 1</option>
-              <option>Rak 2</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label>ISBN</label>
-            <input
-              type="text"
-              className="form-control"
-              name="isbn"
-              onChange={handleChange}
-              placeholder="Contoh ISBN: 978-602-8123-35-8"
-            />
-          </div>
-          <div className="form-group">
-            <label>Kode Buku</label>
-            <input
-              type="text"
-              className="form-control"
-              name="kode-buku"
-              onChange={handleChange}
-              placeholder="Kode buku: B001"
-            />
-          </div>
+            value={formData.kategori}
+            onChange={handleChange}
+            required
+          />
         </div>
-
-        {/* Baris kedua */}
-        <div className="form-row">
-          <div className="form-group">
-            <label>Judul Buku</label>
-            <input
-              type="text"
-              className="form-control"
-              name="judul-buku"
-              onChange={handleChange}
-              placeholder="Contoh: Cara Cepat Belajar Pemrograman Web"
-            />
-          </div>
-          <div className="form-group">
-            <label>Nama Pengarang</label>
-            <input
-              type="text"
-              className="form-control"
-              name="nama-pengarang"
-              onChange={handleChange}
-              placeholder="Nama Pengarang"
-            />
-          </div>
-          <div className="form-group">
-            <label>Penerbit</label>
-            <input
-              type="text"
-              className="form-control"
-              name="penerbit"
-              onChange={handleChange}
-              placeholder="Nama Penerbit"
-            />
-          </div>
-          <div className="form-group">
-            <label>Tahun Buku</label>
-            <input
-              type="text"
-              className="form-control"
-              name="tahun-buku"
-              onChange={handleChange}
-              placeholder="Tahun Buku: 2019"
-            />
-          </div>
+        <div className="form-group">
+          <label>Rak</label>
+          <input
+            type="text"
+            name="rak"
+            value={formData.rak}
+            onChange={handleChange}
+            required
+          />
         </div>
-
-        {/* Baris ketiga */}
-        <div className="form-row">
-          <div className="form-group">
-            <label>
-              Sampul (gambar) <span className="optional">* optional</span>
-            </label>
-            <input
-              type="file"
-              className="form-control"
-              name="sampul"
-              onChange={handleChange}
-              accept="image/*"
-            />
-          </div>
-          <div className="form-group">
-            <label>
-              Lampiran Buku (pdf) <span className="optional">* optional</span>
-            </label>
-            <input
-              type="file"
-              className="form-control"
-              name="lampiran-buku"
-              onChange={handleChange}
-              accept=".pdf"
-            />
-          </div>
+        <div className="form-group">
+          <label>ISBN</label>
+          <input
+            type="text"
+            name="isbn"
+            value={formData.isbn}
+            onChange={handleChange}
+            required
+          />
         </div>
-
-        {/* Baris keempat */}
-        <div className="form-row">
-          <div className="form-group full-width">
-            <label>Keterangan Lainnya</label>
-            <textarea
-              className="form-control keterangan-textarea"
-              name="keterangan-lainnya"
-              onChange={handleChange}
-              placeholder="Tambahkan keterangan lain"
-            ></textarea>
-          </div>
+        <div className="form-group">
+          <label>Judul Buku</label>
+          <input
+            type="text"
+            name="judul"
+            value={formData.judul}
+            onChange={handleChange}
+            required
+          />
         </div>
-
-        {/* Tombol aksi */}
+        <div className="form-group">
+          <label>Nama Pengarang</label>
+          <input
+            type="text"
+            name="pengarang"
+            value={formData.pengarang}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Penerbit</label>
+          <input
+            type="text"
+            name="penerbit"
+            value={formData.penerbit}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Tahun Buku</label>
+          <input
+            type="number"
+            name="tahun"
+            value={formData.tahun}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Sampul (Gambar)</label>
+          <input
+            type="file"
+            name="sampul"
+            accept="image/*"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>Lampiran Buku (PDF)</label>
+          <input
+            type="file"
+            name="lampiran"
+            accept="application/pdf"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>Keterangan Lainnya</label>
+          <textarea
+            name="keterangan"
+            value={formData.keterangan}
+            onChange={handleChange}
+          ></textarea>
+        </div>
         <div className="form-actions">
-          <button type="submit" className="btn-submit">
-            Submit
-          </button>
-          <button type="button" className="btn-cancel" onClick={goBack}>
+          <button type="button" onClick={handleKembali}>
             Kembali
           </button>
+          <button type="submit">Submit</button>
         </div>
       </form>
     </div>

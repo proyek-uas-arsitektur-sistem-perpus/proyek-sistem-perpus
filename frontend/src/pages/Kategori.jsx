@@ -67,14 +67,6 @@ const Kategori = () => {
   </button>
 </div>
         <div className="table-container">
-          <div className="table-header">
-            <span>Show 10 entries</span>
-            <input
-              type="text"
-              placeholder="Search"
-              className="search-input"
-            />
-          </div>
           <table className="data-table">
             <thead>
               <tr>
