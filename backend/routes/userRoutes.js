@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { getAllUser, addUser } = require('../controllers/userController');
+const { loginUser, registerUser } = require('../controllers/userController');
 
-// Route untuk mendapatkan semua pengguna (GET)
-router.get('/', getAllUser);
+// **Route Login**
+router.post('/login', loginUser);
 
-// Route untuk menambah pengguna baru (POST)
-router.post('/', addUser);
+// **Route Registrasi**
+router.post('/register', registerUser);
 
 module.exports = router;
