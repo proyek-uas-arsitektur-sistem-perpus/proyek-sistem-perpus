@@ -25,7 +25,11 @@ const EditProfilePengguna = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Data berhasil diperbarui!");
-    navigate("/profile"); // Kembali ke halaman profil setelah menyimpan perubahan
+    navigate("/profile"); // Navigasi ke halaman profile
+  };
+
+  const handleBack = () => {
+    navigate(-1); // Navigasi ke halaman sebelumnya
   };
 
   return (
@@ -80,9 +84,14 @@ const EditProfilePengguna = () => {
           placeholder="Alamat"
           required
         />
-        <button type="submit" className="save-button">
-          Simpan Perubahan
-        </button>
+        <div className="button-group">
+          <button type="submit" className="action-button save-button">
+            Simpan Perubahan
+          </button>
+          <button type="button" className="action-button back-button" onClick={handleBack}>
+            Kembali
+          </button>
+        </div>
       </form>
     </div>
   );
