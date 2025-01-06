@@ -1,68 +1,83 @@
-import "react";
-import { useNavigate } from "react-router-dom";
-import "./DetailBuku.css";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import CatalogManagement from "../components/CatalogManagement";
 
 const DetailBuku = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { bukuId } = location.state;
 
-  const goBack = () => {
-    navigate("/data-buku"); // Navigasi ke halaman data buku
-  };
+  const [buku, setBuku] = useState(null);
+
+  useEffect(() => {
+    const bukuDetail = CatalogManagement.getAllBooks().find((b) => b.bukuId === bukuId);
+    setBuku(bukuDetail);
+  }, [bukuId]);
 
   return (
-    <div className="detail-buku-container">
-      <div className="header">
-        <h2 className="page-title"><i className="fas fa-book"></i> Data Buku Detail</h2>
-        <p className="breadcrumb">
-          <span onClick={goBack} className="breadcrumb-link">Data Buku</span> &gt; Data Buku Detail
-        </p>
-      </div>
-      <div className="book-details">
-        <div className="row">
-          <div className="label">Buku ID</div>
-          <div className="value">
-            <div className="barcode">
-              <img src="https://via.placeholder.com/100" alt="Barcode" />
-              <p className="book-id">BK0059</p>
-              <button className="btn-barcode">Cetak Barcode</button>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="label">ISBN</div>
-          <div className="value">656454</div>
-        </div>
-        <div className="row">
-          <div className="label">Sampul Buku</div>
-          <div className="value">
-            <img src="https://via.placeholder.com/150" alt="Sampul Buku" />
-          </div>
-        </div>
-        <div className="row">
-          <div className="label">Judul Buku</div>
-          <div className="value">Sejarah Sumatera Utara, Penerbit Erlangga</div>
-        </div>
-        <div className="row">
-          <div className="label">Kategori</div>
-          <div className="value">Buku</div>
-        </div>
-        <div className="row">
-          <div className="label">Penerbit</div>
-          <div className="value">ASASASASAS</div>
-        </div>
-        <div className="row">
-          <div className="label">Pengarang</div>
-          <div className="value">RECAS</div>
-        </div>
-        <div className="row">
-          <div className="label">Tahun Terbit</div>
-          <div className="value">2019</div>
-        </div>
-        <div className="row">
-          <div className="label">Jumlah Buku</div>
-          <div className="value">33</div>
-        </div>
-      </div>
+    <div className="detail-container">
+      {buku && (
+        <>
+          <h2>Detail Buku</h2>
+          <table>
+            <tbody>
+              <tr>
+                <td><strong>Judul Buku:</strong></td>
+                <td>{buku.judul}</td>
+              </tr>
+              <tr>
+                <td><strong>ISBN:</strong></td>
+                <td>{buku.isbn}</td>
+              </tr>
+              <tr>
+                <td><strong>Kategori:</strong></td>
+                <td>{buku.kategori}</td>
+              </tr>
+              <tr>
+                <td><strong>Rak:</strong></td>
+                <td>{buku.rak}</td>
+              </tr>
+              <tr>
+                <td><strong>Penerbit:</strong></td>
+                <td>{buku.penerbit}</td>
+              </tr>
+              <tr>
+                <td><strong>Tahun:</strong></td>
+                <td>{buku.tahun}</td>
+              </tr>
+              <tr>
+                <td><strong>Stok:</strong></td>
+                <td>{buku.stok}</td>
+              </tr>
+              <tr>
+                <td><strong>Sampul:</strong></td>
+                <td>
+  {buku.sampul && (
+    <img
+      src={buku.sampul instanceof File ? URL.createObjectURL(buku.sampul) : buku.sampul}
+      alt="Sampul Buku"
+      width="100"
+      height="150"
+    />
+  )}
+</td>
+              </tr>
+              <tr>
+                <td><strong>Lampiran:</strong></td>
+                <td>
+  {buku.lampiran && (
+    <a href={buku.lampiran instanceof File ? URL.createObjectURL(buku.lampiran) : buku.lampiran} target="_blank" rel="noopener noreferrer">
+      Lihat Lampiran PDF
+    </a>
+  )}
+</td>
+
+              </tr>
+            </tbody>
+          </table>
+        </>
+      )}
+      <button onClick={() => navigate("/data-buku")}>Kembali</button>
     </div>
   );
 };
