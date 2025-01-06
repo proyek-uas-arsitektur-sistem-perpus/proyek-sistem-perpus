@@ -1,0 +1,18 @@
+.denda-staff {
+padding: 20px;
+}
+      
+.denda-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+      
+.denda-table th, .denda-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+      
+.denda-table th {
+  background-color: #ff5722;
+  color: white;
+}

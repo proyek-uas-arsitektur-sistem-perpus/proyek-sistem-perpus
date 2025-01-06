@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'perpustakaan'  // Pastikan ini adalah nama database yang benar
+  database: 'perpustakaan',
 });
 
 connection.connect((err) => {

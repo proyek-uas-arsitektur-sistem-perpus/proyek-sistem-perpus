@@ -75,14 +75,14 @@ const SidebarStaff = () => {
           <FontAwesomeIcon icon={faChevronDown} className="chevron-icon" />
           {showTransaksiDropdown && (
             <ul className="dropdown-menu">
-              <li>Peminjaman</li>
-              <li>Pengembalian</li>
+              <li onClick={() => navigate("/peminjaman-staff")}>Peminjaman</li>
+              <li onClick={() => navigate("/pengembalian-staff")}>Pengembalian</li>
             </ul>
           )}
         </li>
 
         {/* Denda */}
-        <li onClick={() => navigate("/denda")}>
+        <li onClick={() => navigate("/denda-staff")}>
           <FontAwesomeIcon icon={faMoneyBill} className="icon" /> Denda
         </li>
 

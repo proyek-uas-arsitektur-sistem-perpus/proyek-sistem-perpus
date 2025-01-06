@@ -1,0 +1,19 @@
+.pengembalian-staff {
+    padding: 20px;
+  }
+  
+  .pengembalian-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .pengembalian-table th, .pengembalian-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .pengembalian-table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
