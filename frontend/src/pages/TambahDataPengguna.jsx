@@ -11,6 +11,10 @@ const TambahPengguna = () => {
     navigate("/data-pengguna"); // Kembali ke halaman data pengguna
   };
 
+  const handleBack = () => {
+    navigate("/data-pengguna"); // Kembali ke halaman sebelumnya
+  };
+
   return (
     <div className="form-container">
       <h2>Tambah Pengguna</h2>
@@ -20,7 +24,14 @@ const TambahPengguna = () => {
         <input type="email" placeholder="Email" required />
         <input type="text" placeholder="Nomor Telepon" required />
         <input type="text" placeholder="Alamat" required />
-        <button type="submit">Tambah</button>
+        <div className="button-group">
+          <button type="submit" className="action-button add">
+            Tambah
+          </button>
+          <button type="button" className="action-button back" onClick={handleBack}>
+            Kembali
+          </button>
+        </div>
       </form>
     </div>
   );
