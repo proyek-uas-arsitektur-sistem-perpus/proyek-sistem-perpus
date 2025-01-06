@@ -1,47 +1,61 @@
-.search-filter-page {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .search-filter {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .search-filter input,
-  .search-filter select {
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .search-results h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .search-results ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .search-results li {
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    margin-bottom: 5px;
-    border-radius: 4px;
-  }
-  
-  .search-results p {
-    font-size: 16px;
-    color: #666;
-  }
-  
+.search-and-filter {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.search-and-filter h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.filter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.search-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between; /* This ensures items are spaced out */
+}
+
+.search-input {
+  flex: 1;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 40px;
+  width: 100%;
+}
+
+.search-button {
+  padding: 8px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.search-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.filter-select {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 40px;
+}
