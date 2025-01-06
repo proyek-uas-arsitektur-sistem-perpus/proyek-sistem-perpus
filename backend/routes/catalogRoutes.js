@@ -3,6 +3,8 @@ const {
   getAllBooks,
   getBookById,
   addBook,
+  updateBook,
+  getCategories,
   deleteBook,
 } = require("../controllers/catalogController");
 
@@ -19,5 +21,11 @@ router.post("/books", addBook);
 
 // Endpoint untuk menghapus buku berdasarkan ID
 router.delete("/books/:id", deleteBook);
+
+// Route untuk memperbarui buku berdasarkan ID
+router.put("/books/:id", updateBook);
+
+// Endpoint untuk mendapatkan daftar kategori
+router.get("/categories", getCategories);
 
 module.exports = router;
