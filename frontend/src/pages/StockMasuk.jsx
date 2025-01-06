@@ -13,9 +13,9 @@ const StockMasuk = () => {
 
   // Dummy data untuk dropdown kode buku (simulasi backed)
   const [bukuList] = useState([
-    { id: 1, judul: "Pemrograman Dasar", kode: "B0001" },
-    { id: 2, judul: "Jaringan Komputer", kode: "B0002" },
-    { id: 3, judul: "Desain UI/UX", kode: "B0003" },
+    { id: 1, judul: "Matematika Diskrit", kode: "BK001" },
+    { id: 2, judul: "Jaringan Komputer", kode: "BK002" },
+    { id: 3, judul: "Desain UI/UX", kode: "BK003" },
   ]);
 
 

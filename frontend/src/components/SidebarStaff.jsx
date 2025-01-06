@@ -97,7 +97,7 @@ const SidebarStaff = () => {
             <ul className="dropdown-menu">
               <li onClick={() => navigate("/stock-masuk")}> Pencatatan Stock Buku Masuk</li>
               <li onClick={() => navigate("/stock-keluar")}>Pencatatan Stock Buku Keluar</li>
-              <li>Laporan Stock Buku</li>
+              <li onClick={() => navigate("/laporan-stock")}>Laporan Stock Buku</li>
             </ul>
           )}
         </li>

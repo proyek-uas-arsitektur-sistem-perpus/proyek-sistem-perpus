@@ -21,6 +21,7 @@ import TambahDataPengguna from "./pages/TambahDataPengguna";
 import EditDataPengguna from "./pages/EditDataPengguna";
 import StockMasuk from "./pages/StockMasuk";
 import StockKeluar from "./pages/StockKeluar";
+import LaporanStock from "./pages/LaporanStock";
 import "./App.css";
 
 const App = () => {
@@ -89,6 +90,7 @@ const App = () => {
           {/* Rute untuk fitur stock opname */}
           <Route path="/stock-masuk" element={<StockMasuk />} />
           <Route path="/stock-keluar" element={<StockKeluar />} />
+          <Route path="/laporan-stock" element={<LaporanStock />} />
         </Routes>
       </div>
     </Router>

@@ -1,0 +1,96 @@
+.laporan-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .filter-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px
+  }
+  
+  .filter-container label {
+    margin-right: 10px;
+  }
+
+  .dropdown {
+    flex-grow: 2;
+    padding: 10px;
+  }
+  
+  .table-container {
+    margin-top: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .button-group {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .btn-tampilkan {
+    padding: 5px 10px;
+    background-color: #3949ab;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .btn-tampilkan:hover {
+    background-color: #5c6bc0;
+  }
+  
+  .btn-back,
+  .btn-download {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-back {
+    background-color: #d32f2f;
+    color: white;
+  }
+  
+  .btn-back:hover {
+    background-color: #f44336;
+  }
+  
+  .btn-download {
+    background-color: #3949ab;
+    color: white;
+  }
+  
+  .btn-download:hover {
+    background-color: #5c6bc0;
+  }
+  
