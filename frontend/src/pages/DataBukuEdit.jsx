@@ -1,4 +1,4 @@
-import React from "react";
+import "react";
 import { useNavigate } from "react-router-dom";
 import "./DataBukuEdit.css";
 
@@ -10,9 +10,18 @@ const DataBukuEdit = () => {
   };
 
   return (
-    <div className="tambah-buku-container">
-      <h2 className="page-title"> 
-      <i className="fas fa-book"></i> Data Buku Edit</h2>
+    <div className="data-buku-edit-container">
+      <div className="header">
+        <h2 className="page-title">
+          <i className="fas fa-book"></i> Data Buku Edit
+        </h2>
+        <p className="breadcrumb">
+          <span onClick={goBack} className="breadcrumb-link">
+            Dashboard
+          </span>{" "}
+          &gt; Data Buku Edit
+        </p>
+      </div>
       <form className="form-container">
         <div className="form-row">
           <div className="form-group">
@@ -44,7 +53,7 @@ const DataBukuEdit = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Jumlah buku: B001"
+              placeholder="Kode buku: B001"
             />
           </div>
         </div>
@@ -84,16 +93,17 @@ const DataBukuEdit = () => {
           </div>
         </div>
 
-          <div className="form-row">
-             <div className="form-group">
-            <label>Sampul (gambar) <span className="optional">* optional</span></label>
-            <input
-              type="file"
-              className="form-control"
-               accept="image/*" />
+        <div className="form-row">
+          <div className="form-group">
+            <label>
+              Sampul (gambar) <span className="optional">* optional</span>
+            </label>
+            <input type="file" className="form-control" accept="image/*" />
           </div>
           <div className="form-group">
-            <label>Lampiran Buku (pdf) <span className="optional">* optional</span></label>
+            <label>
+              Lampiran Buku (pdf) <span className="optional">* optional</span>
+            </label>
             <input type="file" className="form-control" accept=".pdf" />
           </div>
           <div className="form-group full-width">
@@ -106,7 +116,9 @@ const DataBukuEdit = () => {
         </div>
 
         <div className="form-actions">
-          <button type="submit" className="btn-submit">Submit</button>
+          <button type="submit" className="btn-submit">
+            Submit
+          </button>
           <button type="button" className="btn-cancel" onClick={goBack}>
             Kembali
           </button>

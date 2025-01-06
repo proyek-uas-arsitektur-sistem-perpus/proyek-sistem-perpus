@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./GantiPassword.css";
 
 const GantiPassword = () => {
@@ -7,6 +8,8 @@ const GantiPassword = () => {
     newPassword: "",
     confirmPassword: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,18 +21,23 @@ const GantiPassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (passwords.newPassword !== passwords.confirmPassword) {
       alert("Password baru dan konfirmasi password tidak cocok.");
     } else {
       alert("Password berhasil diubah!");
+      navigate("/login");
     }
+  };
+
+  const handleBack = () => {
+    navigate(-1); // Navigasi ke halaman sebelumnya
   };
 
   return (
     <div className="ganti-password-page">
       <div className="ganti-password-container">
-        <h1>UBAH PASSWORD</h1>
-        <p>Masukkan password saat ini dan buat password baru Anda.</p>
+        <h1>GANTI PASSWORD</h1>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <input
@@ -61,7 +69,14 @@ const GantiPassword = () => {
               required
             />
           </div>
-          <button type="submit">Ubah Password</button>
+          <div className="button-group">
+            <button type="submit" className="action-button">
+              Ganti Password
+            </button>
+            <button type="button" className="action-button back-button" onClick={handleBack}>
+              Kembali
+            </button>
+          </div>
         </form>
       </div>
     </div>

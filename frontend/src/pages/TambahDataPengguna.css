@@ -1,0 +1,74 @@
+/* Container utama form */
+.form-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Form style */
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-container input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Tombol utama */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.action-button {
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  flex: 1; /* Tombol mengambil ruang yang sama */
+  text-align: center;
+  margin-right: 10px; /* Jarak antar tombol */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Tombol Tambah */
+.action-button.add {
+  background-color: #143ae7; /* Biru */
+}
+
+.action-button.add:hover {
+  background-color: #143ae7; /* Biru lebih gelap saat hover */
+}
+
+/* Tombol Kembali */
+.action-button.back {
+  background-color: #e74c3c; /* Merah */
+}
+
+.action-button.back:hover {
+  background-color: #c0392b; /* Merah lebih gelap saat hover */
+}
+
+/* Menghapus margin kanan pada tombol terakhir */
+.action-button:last-child {
+  margin-right: 0;
+}

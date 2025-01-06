@@ -1,0 +1,63 @@
+.form-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-container input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center; /* Posisikan tombol di tengah */
+  gap: 10px; /* Jarak antar tombol */
+}
+
+.action-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  flex: 1;
+}
+
+.save-button {
+  background-color: #3498db; /* Biru */
+  color: white;
+}
+
+.save-button:hover {
+  background-color: #2980b9; /* Biru gelap saat hover */
+}
+
+.back-button {
+  background-color: #e74c3c; /* Merah */
+  color: white;
+}
+
+.back-button:hover {
+  background-color: #c0392b; /* Merah gelap saat hover */
+}

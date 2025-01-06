@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Databuku.css";
 
@@ -22,30 +22,16 @@ const DataBuku = () => {
     },
   ]);
 
-  // Navigasi ke halaman Tambah Buku
-  const goToTambahBuku = () => {
-    navigate("/tambah-buku");
-  };
-
-  // Navigasi ke halaman Edit Buku
-  const goToDataBukuEdit = (bukuId) => {
-    navigate("/data-buku-edit", { state: { bukuId } });
-  };
-
-  // Navigasi ke halaman Detail Buku
-  const goToDetailBuku = (bukuId) => {
-    navigate("/detail-buku", { state: { bukuId } });
-  };
-
-  // Navigasi kembali ke dashboard
-  const goBack = () => {
-    navigate("/dashboard");
-  };
+  // Fungsi navigasi
+  const goToTambahBuku = () => navigate("/tambah-buku");
+  const goToDataBukuEdit = (bukuId) => navigate("/data-buku-edit", { state: { bukuId } });
+  const goToDetailBuku = (bukuId) => navigate("/detail-buku", { state: { bukuId } });
+  const goBack = () => navigate("/dashboard");
 
   // Fungsi untuk menghapus data buku
   const handleDelete = (bukuId) => {
-    const filteredList = bukuList.filter((buku) => buku.bukuId !== bukuId);
-    setBukuList(filteredList); // Perbarui state
+    const updatedList = bukuList.filter((buku) => buku.bukuId !== bukuId);
+    setBukuList(updatedList);
   };
 
   return (
@@ -53,12 +39,10 @@ const DataBuku = () => {
       {/* Header */}
       <div className="header">
         <h2 className="page-title">
-        <i className="fas fa-book"></i> Data Buku</h2>
+          <i className="fas fa-book"></i> Data Buku
+        </h2>
         <p className="breadcrumb">
-          <span onClick={goBack} className="breadcrumb-link">
-            Dashboard
-          </span>{" "}
-          &gt; Data Buku
+          <span onClick={goBack} className="breadcrumb-link">Dashboard</span> &gt; Data Buku
         </p>
       </div>
 
@@ -66,9 +50,7 @@ const DataBuku = () => {
       <div className="table-container">
         {/* Tombol Aksi */}
         <div className="action-buttons">
-          <button className="btn-primary" onClick={goToTambahBuku}>
-            Tambah Buku
-          </button>
+          <button className="btn-primary" onClick={goToTambahBuku}>Tambah Buku</button>
           <button className="btn-secondary">Sortir Kategori</button>
           <button className="btn-secondary">Sortir Rak Buku</button>
         </div>
@@ -94,7 +76,7 @@ const DataBuku = () => {
           <tbody>
             {bukuList.map((buku, index) => (
               <tr key={index}>
-                <td>{buku.no}</td>
+                <td>{index + 1}</td>
                 <td>
                   <img src={buku.sampul} alt="Sampul Buku" />
                 </td>
@@ -108,22 +90,25 @@ const DataBuku = () => {
                 <td>{buku.stok}</td>
                 <td>{buku.dipinjam}</td>
                 <td>
-                <div className="aksi-container">
-                  <button
-                    className="btn-action edit"
-                    onClick={() => goToDataBukuEdit(buku.bukuId)}
-                  ><i className="fas fa-edit"></i>
-                  </button>
-                  <button
-                    className="btn-action detail"
-                    onClick={() => goToDetailBuku(buku.bukuId)}
-                  ><i className="fas fa-info-circle"></i>
-                  </button>
-                  <button
-                    className="btn-action delete"
-                    onClick={() => handleDelete(buku.bukuId)}
-                  ><i className="fas fa-trash-alt"></i>
-                  </button>
+                  <div className="aksi-container">
+                    <button
+                      className="btn-action edit"
+                      onClick={() => goToDataBukuEdit(buku.bukuId)}
+                    >
+                      <i className="fas fa-edit"></i>
+                    </button>
+                    <button
+                      className="btn-action detail"
+                      onClick={() => goToDetailBuku(buku.bukuId)}
+                    >
+                      <i className="fas fa-info-circle"></i>
+                    </button>
+                    <button
+                      className="btn-action delete"
+                      onClick={() => handleDelete(buku.bukuId)}
+                    >
+                      <i className="fas fa-trash-alt"></i>
+                    </button>
                   </div>
                 </td>
               </tr>

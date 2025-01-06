@@ -4,11 +4,12 @@ import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Dashboardpengguna from "./pages/Dashboardpengguna";
-import GantiPassword from './pages/GantiPassword';
+import GantiPassword from "./pages/GantiPassword";
 import SidebarStaff from "./components/SidebarStaff";
 import SidebarPengguna from "./components/SidebarPengguna";
-import SearchFilter from './components/SearchFilter';
-import ProfilePengguna from "./pages/ProfilePengguna";  // Import halaman Profile
+import SearchFilter from "./components/SearchFilter";
+import ProfilePengguna from "./pages/ProfilePengguna"; // Halaman Profile
+import EditProfilePengguna from "./pages/EditProfilePengguna"; // Halaman Edit Profile
 import DataBuku from "./pages/Databuku";
 import TambahBuku from "./pages/Tambahbuku";
 import DataBukuEdit from "./pages/DataBukuEdit";
@@ -30,20 +31,26 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           
           {/* Dashboard untuk Staff */}
-          <Route path="/dashboard" element={
-            <div>
-              <SidebarStaff />
-              <Dashboard />
-            </div>
-          } />
+          <Route
+            path="/dashboard"
+            element={
+              <div>
+                <SidebarStaff />
+                <Dashboard />
+              </div>
+            }
+          />
           
           {/* Dashboard untuk Pengguna */}
-          <Route path="/dashboard-pengguna" element={
-            <div>
-              <SidebarPengguna /> 
-              <Dashboardpengguna />
-            </div>
-          } />
+          <Route
+            path="/dashboard-pengguna"
+            element={
+              <div>
+                <SidebarPengguna />
+                <Dashboardpengguna />
+              </div>
+            }
+          />
           
           <Route path="/login/change-password" element={<GantiPassword />} />
           <Route path="/lupa-password" element={<GantiPassword />} />
@@ -57,7 +64,8 @@ const App = () => {
             }
           />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/profile" element={<ProfilePengguna />} />
+          <Route path="/profile" element={<ProfilePengguna />} /> {/* Route untuk Profil */}
+          <Route path="/profile/edit" element={<EditProfilePengguna />} /> {/* Route untuk Edit Profil */}
           <Route path="/data-pengguna" element={<DataPengguna />} /> {/* Route untuk Data Pengguna */}
           <Route path="*" element={<Login />} />
 
@@ -81,6 +89,15 @@ const App = () => {
           
           {/* Tambahkan route untuk halaman Kategori */}
           <Route path="/kategori" element={<Kategori />} />
+
+          {/* Rute tambahan untuk TambahDataPengguna dan EditDataPengguna */}
+          <Route path="/data-pengguna/tambah" element={<TambahDataPengguna />} />
+          <Route path="/data-pengguna/edit/:id" element={<EditDataPengguna />} />
+
+          {/* Rute untuk fitur stock opname */}
+          <Route path="/stock-masuk" element={<StockMasuk />} />
+          <Route path="/stock-keluar" element={<StockKeluar />} />
+          <Route path="/laporan-stock" element={<LaporanStock />} />
         </Routes>
       </div>
     </Router>
