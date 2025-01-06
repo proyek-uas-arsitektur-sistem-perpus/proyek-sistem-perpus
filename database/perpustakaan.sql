@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Jan 2025 pada 18.30
+-- Waktu pembuatan: 06 Jan 2025 pada 21.07
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.2.0
 
@@ -209,28 +209,30 @@ CREATE TABLE `peminjaman` (
   `id_copy` int(11) DEFAULT NULL,
   `id_anggota_perpustakaan` int(11) DEFAULT NULL,
   `tanggal_pinjam` date DEFAULT NULL,
-  `tanggal_kembali` date DEFAULT NULL
+  `tanggal_kembali` date DEFAULT NULL,
+  `status_kembali` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `peminjaman`
 --
 
-INSERT INTO `peminjaman` (`id_peminjaman`, `id_copy`, `id_anggota_perpustakaan`, `tanggal_pinjam`, `tanggal_kembali`) VALUES
-(1, 1, 1, '2025-01-01', NULL),
-(2, 3, 2, '2025-01-02', NULL),
-(3, 6, 3, '2025-01-03', NULL),
-(4, 7, 4, '2025-01-04', NULL),
-(5, 2, 5, '2025-01-05', NULL),
-(6, 8, 6, '2025-01-06', NULL),
-(7, 11, 7, '2025-01-07', NULL),
-(8, 12, 8, '2025-01-08', NULL),
-(9, 15, 9, '2025-01-09', NULL),
-(10, 16, 10, '2025-01-10', NULL),
-(11, 17, 11, '2025-01-11', NULL),
-(12, 18, 12, '2025-01-12', NULL),
-(13, 19, 13, '2025-01-13', NULL),
-(14, 20, 14, '2025-01-14', NULL);
+INSERT INTO `peminjaman` (`id_peminjaman`, `id_copy`, `id_anggota_perpustakaan`, `tanggal_pinjam`, `tanggal_kembali`, `status_kembali`) VALUES
+(1, 1, 1, '2025-01-01', NULL, 0),
+(2, 3, 2, '2025-01-02', NULL, 0),
+(3, 6, 3, '2025-01-03', NULL, 0),
+(4, 7, 4, '2025-01-04', NULL, 0),
+(5, 2, 5, '2025-01-05', NULL, 0),
+(6, 8, 6, '2025-01-06', NULL, 0),
+(7, 11, 7, '2025-01-07', NULL, 0),
+(8, 12, 8, '2025-01-08', NULL, 0),
+(9, 15, 9, '2025-01-09', NULL, 0),
+(10, 16, 10, '2025-01-10', NULL, 0),
+(11, 17, 11, '2025-01-11', NULL, 0),
+(12, 18, 12, '2025-01-12', NULL, 0),
+(13, 19, 13, '2025-01-13', NULL, 0),
+(14, 20, 14, '2025-01-14', NULL, 0),
+(15, 4, 22, '2025-01-10', '2025-01-17', 0);
 
 -- --------------------------------------------------------
 
@@ -474,7 +476,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengarang`

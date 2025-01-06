@@ -11,38 +11,49 @@ const PeminjamanStaff = () => {
     fetchBorrowings();
   }, []);
 
-  const fetchBorrowings = () => {
-    axios.get('http://localhost:5000/api/borrowing')
-      .then((res) => setBorrowings(res.data))
-      .catch((err) => console.error(err));
+  const fetchBorrowings = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/borrowing');
+      setBorrowings(response.data);
+    } catch (error) {
+      console.error('Error fetching borrowings:', error);
+    }
   };
 
-  const handleReturn = (id) => {
-    axios.put(`http://localhost:5000/api/borrowing/${id}/return`, { tanggal_kembali: new Date().toISOString().split('T')[0] })
-      .then(() => {
-        alert('Buku berhasil dikembalikan!');
-        fetchBorrowings(); // Refresh data setelah pengembalian
-      })
-      .catch((err) => console.error(err));
+  const handleReturn = async (id, tanggal_kembali) => {
+    const tgl_pengembalian = new Date().toISOString().split('T')[0]; // Tanggal hari ini
+    try {
+      await axios.put(`http://localhost:5000/api/borrowing/${id}/return`, {
+        tgl_pengembalian,
+      });
+      alert('Buku berhasil dikembalikan!');
+      fetchBorrowings(); // Refresh daftar peminjaman
+    } catch (error) {
+      console.error('Error returning book:', error);
+      alert('Terjadi kesalahan saat mengembalikan buku.');
+    }
+  };
+  
+  
+
+  const navigateToTambahPeminjaman = () => {
+    navigate('/peminjaman-staff/tambah'); // Menggunakan React Router untuk navigasi
   };
 
-  const handleDetail = (id) => {
-    navigate(`/peminjaman-staff/${id}`);
-  };
-
-  const handleAddBorrowing = () => {
-    navigate('/peminjaman-staff/tambah');
+  const navigateToDetail = (id) => {
+    navigate(`/peminjaman-staff/detail/${id}`); // Menggunakan React Router untuk navigasi
   };
 
   return (
     <div className="peminjaman-staff">
-      <h1>Daftar Peminjaman</h1>
-      <button className="btn-tambah" onClick={handleAddBorrowing}>Tambah Peminjaman</button>
+      <h1>Daftar Peminjaman Buku</h1>
+      <button className="btn-add" onClick={navigateToTambahPeminjaman}>
+        Tambah Peminjaman
+      </button>
       <table className="peminjaman-table">
         <thead>
           <tr>
             <th>No</th>
-            <th>No Pinjam</th>
             <th>ID Anggota</th>
             <th>Nama</th>
             <th>Tgl Pinjam</th>
@@ -55,15 +66,23 @@ const PeminjamanStaff = () => {
           {borrowings.map((borrow, index) => (
             <tr key={borrow.id_peminjaman}>
               <td>{index + 1}</td>
-              <td>PJ{borrow.id_peminjaman.toString().padStart(5, '0')}</td>
               <td>{borrow.id_anggota_perpustakaan}</td>
-              <td>{borrow.nama_anggota || 'N/A'}</td>
-              <td>{borrow.tgl_pinjam ? new Date(borrow.tgl_pinjam).toLocaleDateString('id-ID') : 'N/A'}</td>
-              <td>{borrow.tgl_kembali ? new Date(borrow.tgl_kembali).toLocaleDateString('id-ID') : 'N/A'}</td>
+              <td>{borrow.nama_anggota}</td>
+              <td>{new Date(borrow.tanggal_pinjam).toLocaleDateString('id-ID')}</td>
+              <td>{new Date(borrow.tanggal_kembali).toLocaleDateString('id-ID')}</td>
               <td>{borrow.status_kembali ? 'Kembali' : 'Dipinjam'}</td>
               <td>
-                <button className="btn-detail" onClick={() => handleDetail(borrow.id_peminjaman)}>👁️</button>
-                <button className="btn-kembalikan" onClick={() => handleReturn(borrow.id_peminjaman)}>Kembalikan</button>
+                <button className="btn-detail" onClick={() => navigateToDetail(borrow.id_peminjaman)}>
+                  Detail
+                </button>
+                {!borrow.status_kembali && (
+                  <button
+                  className="btn-return"
+                  onClick={() => handleReturn(borrow.id_peminjaman, borrow.tanggal_kembali)}
+                  >
+                    Kembalikan
+                  </button>
+                )}
               </td>
             </tr>
           ))}

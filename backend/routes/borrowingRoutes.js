@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const borrowingController = require('../controllers/borrowingController');
-const returnController = require('../controllers/returnController');
-const penaltyController = require('../controllers/penaltyController');
 
-// Rute untuk peminjaman
-router.get('/', borrowingController.getAllBorrowings);
+// Route yang lebih spesifik
+router.get('/returns', borrowingController.getAllReturns);
+router.get('/penalties', borrowingController.getPenalties);
+router.get('/:id/penalty', borrowingController.calculatePenalty);
+router.get('/:id', borrowingController.getBorrowingById);
+
+// Route umum
+router.put('/:id/return', borrowingController.returnBook);
 router.post('/', borrowingController.addBorrowing);
-
-// Rute untuk pengembalian
-router.post('/return', returnController.addReturn);
-
-// Rute untuk denda
-router.post('/penalty', penaltyController.addPenalty);
+router.delete('/penalties/:id', borrowingController.deletePenalty);
+router.get('/', borrowingController.getAllBorrowings);
 
 module.exports = router;

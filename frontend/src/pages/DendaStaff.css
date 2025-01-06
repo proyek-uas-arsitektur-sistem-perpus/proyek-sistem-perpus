@@ -1,4 +1,4 @@
-.denda-staff {
+.denda-container {
     padding: 20px;
   }
   
@@ -8,14 +8,15 @@
     margin-top: 20px;
   }
   
-  .denda-table th, .denda-table td {
+  .denda-table th,
+  .denda-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
   }
   
   .denda-table th {
-    background-color: #ff5722;
+    background-color: #dc3545;
     color: white;
   }
   
@@ -27,7 +28,12 @@
     background-color: #dc3545;
     color: white;
     padding: 5px 10px;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
+  }
+  
+  .btn-delete:hover {
+    background-color: #bd2130;
   }
   

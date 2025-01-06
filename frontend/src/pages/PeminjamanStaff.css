@@ -5,9 +5,11 @@
 .peminjaman-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
-.peminjaman-table th, .peminjaman-table td {
+.peminjaman-table th,
+.peminjaman-table td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
@@ -22,26 +24,27 @@
   background-color: #f9f9f9;
 }
 
-.btn-detail {
+.btn-add {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-detail,
+.btn-return {
   background-color: #17a2b8;
   color: white;
   padding: 5px 10px;
+  margin-right: 5px;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.btn-kembalikan {
+.btn-return {
   background-color: #28a745;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn-delete {
-  background-color: #dc3545;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
 }

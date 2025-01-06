@@ -2,70 +2,88 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './TambahPeminjamanStaff.css';
 
-const TambahPeminjaman = () => {
+const TambahPeminjamanStaff = () => {
   const [formData, setFormData] = useState({
-    id_anggota_perpustakaan: '',
     id_copy: '',
-    tgl_pinjam: '',
-    tgl_kembali: '',
+    id_anggota_perpustakaan: '',
+    tanggal_pinjam: '',
+    tanggal_kembali: '',
   });
 
-  const handleInputChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/api/borrowing', formData)
-      .then(() => alert('Peminjaman berhasil ditambahkan!'))
-      .catch((err) => console.error(err));
+    try {
+      await axios.post('http://localhost:5000/api/borrowing', formData);
+      alert('Peminjaman berhasil ditambahkan!');
+      setFormData({
+        id_copy: '',
+        id_anggota_perpustakaan: '',
+        tanggal_pinjam: '',
+        tanggal_kembali: '',
+      });
+    } catch (error) {
+      console.error('Error adding borrowing:', error);
+      alert('Gagal menambahkan peminjaman. Periksa kembali data yang diinput.');
+    }
   };
 
   return (
-    <div className="tambah-peminjaman">
-      <h1>Tambah Peminjaman</h1>
-      <form onSubmit={handleSubmit}>
-        <label>ID Anggota</label>
-        <input
-          type="text"
-          name="id_anggota_perpustakaan"
-          value={formData.id_anggota_perpustakaan}
-          onChange={handleInputChange}
-          required
-        />
-
-        <label>ID Copy</label>
-        <input
-          type="text"
-          name="id_copy"
-          value={formData.id_copy}
-          onChange={handleInputChange}
-          required
-        />
-
-        <label>Tanggal Pinjam</label>
-        <input
-          type="date"
-          name="tgl_pinjam"
-          value={formData.tgl_pinjam}
-          onChange={handleInputChange}
-          required
-        />
-
-        <label>Tanggal Kembali</label>
-        <input
-          type="date"
-          name="tgl_kembali"
-          value={formData.tgl_kembali}
-          onChange={handleInputChange}
-          required
-        />
-
-        <button type="submit">Tambah</button>
+    <div className="tambah-peminjaman-container">
+      <h1>Tambah Peminjaman Buku</h1>
+      <form onSubmit={handleSubmit} className="tambah-peminjaman-form">
+        <label>
+          ID Copy Buku:
+          <input
+            type="text"
+            name="id_copy"
+            value={formData.id_copy}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          ID Anggota:
+          <input
+            type="text"
+            name="id_anggota_perpustakaan"
+            value={formData.id_anggota_perpustakaan}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Tanggal Pinjam:
+          <input
+            type="date"
+            name="tanggal_pinjam"
+            value={formData.tanggal_pinjam}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Tanggal Kembali:
+          <input
+            type="date"
+            name="tanggal_kembali"
+            value={formData.tanggal_kembali}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <button type="submit" className="btn-submit">
+          Tambah Peminjaman
+        </button>
       </form>
     </div>
   );
 };
 
-export default TambahPeminjaman;
+export default TambahPeminjamanStaff;
