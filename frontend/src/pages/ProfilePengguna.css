@@ -41,7 +41,6 @@
 
 .edit-button,
 .back-button {
-  background: #3498db; /* Warna tombol default */
   color: #fff;
   border: none;
   padding: 10px 20px; /* Padding tombol */
@@ -57,18 +56,10 @@
   margin: 0; /* Hilangkan margin default */
 }
 
-.edit-button {
-  margin-right: 10px; /* Jarak kecil antara tombol "Edit Data" dan "Kembali" */
+.button-group .edit-button {
+  background: #3498db; /* Tambahkan !important untuk memastikan prioritas */
 }
 
-.edit-button:hover {
-  background: #2980b9; /* Warna saat tombol edit di-hover */
-}
-
-.back-button {
-  background: #e74c3c; /* Warna tombol kembali */
-}
-
-.back-button:hover {
-  background: #c0392b; /* Warna saat tombol kembali di-hover */
+.button-group .edit-button:hover {
+  background: #2980b9; /* Biru lebih gelap saat hover */
 }
