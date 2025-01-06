@@ -55,6 +55,7 @@ body {
   color: #555;
 }
 
+/* Styling input yang sama untuk username dan password */
 input {
   width: 100%;
   padding: 14px;
@@ -64,6 +65,8 @@ input {
   font-size: 16px;
   background-color: #f9f9f9;
   transition: border-color 0.3s ease;
+  height: 50px; /* Pastikan tinggi input sama */
+  box-sizing: border-box;
 }
 
 input:focus {
@@ -71,6 +74,7 @@ input:focus {
   outline: none;
 }
 
+/* Styling untuk tombol login */
 button {
   width: 100%;
   padding: 14px;
@@ -91,6 +95,7 @@ button:active {
   background-color: #3949ab;
 }
 
+/* Styling untuk link signup */
 .signup-link {
   text-align: center;
   margin-top: 20px;
