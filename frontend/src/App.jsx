@@ -16,7 +16,12 @@ import DataBukuEdit from "./pages/DataBukuEdit";
 import DetailBuku from "./pages/DetailBuku";
 import Kategori from "./pages/Kategori";
 import RakBuku from "./pages/RakBuku";
-import DataPengguna from "./pages/DataPengguna"; // Import halaman Data Pengguna
+import DataPengguna from "./pages/DataPengguna";
+import TambahDataPengguna from "./pages/TambahDataPengguna";
+import EditDataPengguna from "./pages/EditDataPengguna";
+import StockMasuk from "./pages/StockMasuk";
+import StockKeluar from "./pages/StockKeluar";
+import LaporanStock from "./pages/LaporanStock";
 import PeminjamanStaff from "./pages/PeminjamanStaff";
 import PengembalianStaff from "./pages/PengembalianStaff";
 import DendaStaff from "./pages/DendaStaff";
