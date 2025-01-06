@@ -70,7 +70,7 @@ const DataPengguna = () => {
               <td>{user.nama}</td>
               <td>{user.email}</td>
               <td>{user.telp}</td>
-              <td>{user.alamat}</td>
+              <td>{user.alamat}</td> <br></br>
               <td className="action-buttons">
                 <button
                   className="action-button edit"
