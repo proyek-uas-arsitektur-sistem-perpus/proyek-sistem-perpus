@@ -6,20 +6,20 @@ const DendaStaff = () => {
   const [penalties, setPenalties] = useState([]);
 
   useEffect(() => {
-    fetchData();
+    fetchPenalties();
   }, []);
 
-  const fetchData = () => {
-    axios.get('http://localhost:5000/api/borrowing')
-      .then((res) => setPenalties(res.data.filter((b) => b.denda > 0)))
+  const fetchPenalties = () => {
+    axios.get('http://localhost:5000/api/borrowing/penalties')
+      .then((res) => setPenalties(res.data))
       .catch((err) => console.error(err));
   };
 
-  const handlePayment = (id) => {
-    axios.put(`http://localhost:5000/api/borrowing/${id}/pay`, { status_denda: true })
+  const handleDeletePenalty = (id) => {
+    axios.delete(`http://localhost:5000/api/borrowing/${id}/penalty`)
       .then(() => {
-        alert('Denda berhasil dibayar!');
-        fetchData();
+        alert('Denda berhasil dihapus!');
+        fetchPenalties();
       })
       .catch((err) => console.error(err));
   };
@@ -34,24 +34,22 @@ const DendaStaff = () => {
             <th>No Pinjam</th>
             <th>ID Anggota</th>
             <th>Nama</th>
-            <th>Pinjam</th>
-            <th>Balik</th>
-            <th>Denda</th>
+            <th>Tanggal Denda</th>
+            <th>Jumlah</th>
             <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
           {penalties.map((penalty, index) => (
-            <tr key={penalty.id_peminjaman}>
+            <tr key={penalty.id_denda}>
               <td>{index + 1}</td>
               <td>PJ{penalty.id_peminjaman.toString().padStart(5, '0')}</td>
               <td>{penalty.id_anggota_perpustakaan}</td>
-              <td>{penalty.nama || 'N/A'}</td>
-              <td>{penalty.tgl_pinjam}</td>
-              <td>{penalty.tgl_kembali}</td>
-              <td>Rp{penalty.denda}</td>
+              <td>{penalty.nama}</td>
+              <td>{new Date(penalty.tanggal_denda).toLocaleDateString('id-ID')}</td>
+              <td>Rp{penalty.jumlah_denda.toLocaleString()}</td>
               <td>
-                <button onClick={() => handlePayment(penalty.id_peminjaman)}>Bayar</button>
+                <button className="btn-delete" onClick={() => handleDeletePenalty(penalty.id_denda)}>Hapus</button>
               </td>
             </tr>
           ))}
@@ -62,6 +60,3 @@ const DendaStaff = () => {
 };
 
 export default DendaStaff;
-
-
-  

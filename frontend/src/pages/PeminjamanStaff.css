@@ -2,17 +2,6 @@
   padding: 20px;
 }
 
-.filter-section {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.filter-section select,
-.filter-section button {
-  padding: 5px 10px;
-}
-
 .peminjaman-table {
   width: 100%;
   border-collapse: collapse;
@@ -21,9 +10,38 @@
 .peminjaman-table th, .peminjaman-table td {
   border: 1px solid #ddd;
   padding: 8px;
+  text-align: left;
 }
 
 .peminjaman-table th {
   background-color: #007bff;
   color: white;
+}
+
+.peminjaman-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.btn-detail {
+  background-color: #17a2b8;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-kembalikan {
+  background-color: #28a745;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }

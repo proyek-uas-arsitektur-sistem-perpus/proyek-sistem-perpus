@@ -4,10 +4,6 @@ import './PeminjamanStaff.css';
 
 const PeminjamanStaff = () => {
   const [borrowings, setBorrowings] = useState([]);
-  const [filters, setFilters] = useState({
-    bulan: '',
-    tahun: '',
-  });
 
   useEffect(() => {
     fetchBorrowings();
@@ -19,17 +15,8 @@ const PeminjamanStaff = () => {
       .catch((err) => console.error(err));
   };
 
-  const handleFilterChange = (e) => {
-    setFilters({ ...filters, [e.target.name]: e.target.value });
-  };
-
-  const handleSearch = () => {
-    // Implement API filter if backend supports it
-    console.log('Filters applied:', filters);
-  };
-
   const handleReturn = (id) => {
-    axios.put(`http://localhost:5000/api/borrowing/${id}/return`, { tgl_pengembalian: new Date() })
+    axios.put(`http://localhost:5000/api/borrowing/${id}/return`, { tgl_pengembalian: new Date().toISOString().split('T')[0] })
       .then(() => {
         alert('Buku berhasil dikembalikan!');
         fetchBorrowings();
@@ -48,22 +35,7 @@ const PeminjamanStaff = () => {
 
   return (
     <div className="peminjaman-staff">
-      <h1>Data Peminjaman Buku</h1>
-      <div className="filter-section">
-        <select name="bulan" onChange={handleFilterChange}>
-          <option value="">Pilih Bulan</option>
-          <option value="01">Januari</option>
-          <option value="02">Februari</option>
-          {/* Tambahkan opsi bulan lainnya */}
-        </select>
-        <select name="tahun" onChange={handleFilterChange}>
-          <option value="">Pilih Tahun</option>
-          <option value="2024">2024</option>
-          <option value="2023">2023</option>
-          {/* Tambahkan opsi tahun lainnya */}
-        </select>
-        <button onClick={handleSearch}>Cari</button>
-      </div>
+      <h1>Daftar Peminjaman</h1>
       <table className="peminjaman-table">
         <thead>
           <tr>
@@ -71,10 +43,9 @@ const PeminjamanStaff = () => {
             <th>No Pinjam</th>
             <th>ID Anggota</th>
             <th>Nama</th>
-            <th>Pinjam</th>
-            <th>Balik</th>
+            <th>Tgl Pinjam</th>
+            <th>Tgl Kembali</th>
             <th>Status</th>
-            <th>Denda</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -85,13 +56,13 @@ const PeminjamanStaff = () => {
               <td>PJ{borrow.id_peminjaman.toString().padStart(5, '0')}</td>
               <td>{borrow.id_anggota_perpustakaan}</td>
               <td>{borrow.nama || 'N/A'}</td>
-              <td>{borrow.tgl_pinjam}</td>
-              <td>{borrow.tgl_kembali}</td>
+              <td>{new Date(borrow.tgl_pinjam).toLocaleDateString('id-ID')}</td>
+              <td>{new Date(borrow.tgl_kembali).toLocaleDateString('id-ID')}</td>
               <td>{borrow.status_kembali ? 'Kembali' : 'Dipinjam'}</td>
-              <td>{borrow.denda ? `Rp${borrow.denda}` : 'Rp0,-'}</td>
               <td>
-                <button onClick={() => handleReturn(borrow.id_peminjaman)}>Kembalikan</button>
-                <button onClick={() => handleDelete(borrow.id_peminjaman)}>Hapus</button>
+                <button className="btn-detail">👁️</button>
+                <button className="btn-kembalikan" onClick={() => handleReturn(borrow.id_peminjaman)}>Kembalikan</button>
+                <button className="btn-delete" onClick={() => handleDelete(borrow.id_peminjaman)}>Hapus</button>
               </td>
             </tr>
           ))}
@@ -102,3 +73,4 @@ const PeminjamanStaff = () => {
 };
 
 export default PeminjamanStaff;
+ 

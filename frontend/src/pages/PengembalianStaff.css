@@ -5,15 +5,21 @@
   .pengembalian-table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
   }
   
   .pengembalian-table th, .pengembalian-table td {
     border: 1px solid #ddd;
     padding: 8px;
+    text-align: left;
   }
   
   .pengembalian-table th {
-    background-color: #007bff;
+    background-color: #28a745;
     color: white;
+  }
+  
+  .pengembalian-table tr:nth-child(even) {
+    background-color: #f9f9f9;
   }
   
