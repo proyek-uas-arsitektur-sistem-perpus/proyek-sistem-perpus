@@ -169,38 +169,42 @@ const getBorrowingById = (req, res) => {
 // 6. Get All Penalties
 const getPenalties = (req, res) => {
   const query = `
-      SELECT denda.id_denda, 
-             denda.id_peminjaman, 
-             anggota_perpustakaan.nama_anggota AS nama_anggota, 
-             denda.tanggal_denda, 
-             denda.jumlah_denda
-      FROM denda
-      JOIN peminjaman ON denda.id_peminjaman = peminjaman.id_peminjaman
-      JOIN anggota_perpustakaan ON peminjaman.id_anggota_perpustakaan = anggota_perpustakaan.id_anggota_perpustakaan;
+    SELECT 
+      denda.id_denda, 
+      denda.id_peminjaman, 
+      anggota_perpustakaan.nama_anggota AS nama_anggota, 
+      denda.tanggal_denda, 
+      denda.jumlah_denda, 
+      buku.judul AS judul_buku
+    FROM denda
+    JOIN peminjaman ON denda.id_peminjaman = peminjaman.id_peminjaman
+    JOIN anggota_perpustakaan ON peminjaman.id_anggota_perpustakaan = anggota_perpustakaan.id_anggota_perpustakaan
+    JOIN copy_buku ON peminjaman.id_copy = copy_buku.id_copy
+    JOIN buku ON copy_buku.kode_buku = buku.kode_buku;
   `;
   db.query(query, (err, results) => {
-      if (err) {
-          console.error('Error fetching penalties:', err);
-          res.status(500).json({ error: 'Database error' });
-      } else {
-          res.json(results);
-      }
+    if (err) {
+      console.error("Error fetching penalties:", err);
+      res.status(500).json({ error: "Database error" });
+    } else {
+      console.log("Penalties Data (Backend):", results); // Log data untuk verifikasi
+      res.json(results);
+    }
   });
 };
 
-
 // 7. Delete Penalty
 const deletePenalty = (req, res) => {
-    const { id } = req.params;
-    const query = `DELETE FROM denda WHERE id_denda = ?;`;
-    db.query(query, [id], (err) => {
-        if (err) {
-            console.error('Error deleting penalty:', err);
-            res.status(500).json({ error: 'Database error' });
-        } else {
-            res.json({ message: 'Denda berhasil dihapus' });
-        }
-    });
+  const { id } = req.params;
+  const query = `DELETE FROM denda WHERE id_denda = ?;`;
+  db.query(query, [id], (err) => {
+    if (err) {
+      console.error('Error deleting penalty:', err);
+      res.status(500).json({ error: 'Database error' });
+    } else {
+      res.json({ message: 'Denda berhasil dihapus' });
+    }
+  });
 };
 
 // 8. Calculate Late Fee

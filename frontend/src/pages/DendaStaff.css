@@ -1,5 +1,28 @@
 .denda-container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .btn-back,
+  .btn-add {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .btn-back {
+    background-color: #f44336;
+    color: white;
   }
   
   .denda-table {
@@ -12,28 +35,46 @@
   .denda-table td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: left;
+    text-align: center;
   }
   
   .denda-table th {
-    background-color: #dc3545;
-    color: white;
-  }
-  
-  .denda-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #f2f2f2;
   }
   
   .btn-delete {
-    background-color: #dc3545;
+    background-color: #f44336;
     color: white;
-    padding: 5px 10px;
     border: none;
     border-radius: 5px;
+    padding: 5px 10px;
     cursor: pointer;
   }
   
-  .btn-delete:hover {
-    background-color: #bd2130;
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .page-button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background-color: #2196f3;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .page-button.active {
+    background-color: white;
+    color: #442b2b;
+    border-color: #2196f3;
+  }
+  
+  .page-button:disabled {
+    background-color: #2196f3;
+    color: #ccc;
+    cursor: not-allowed;
   }
   

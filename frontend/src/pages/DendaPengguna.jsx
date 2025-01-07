@@ -12,7 +12,9 @@ const DendaPengguna = () => {
 
   const fetchPenalties = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/borrowing/penalties?userId=${userId}`);
+      const response = await axios.get(
+        `http://localhost:5000/api/borrowing/penalties?userId=${userId}`
+      );
       setPenalties(response.data);
     } catch (error) {
       console.error("Error fetching penalties:", error);
@@ -36,7 +38,7 @@ const DendaPengguna = () => {
           {penalties.map((penalty, index) => (
             <tr key={penalty.id_denda}>
               <td>{index + 1}</td>
-              <td>{penalty.judul || "Tidak Tersedia"}</td>
+              <td>{penalty.judul_buku || "Tidak Tersedia"}</td>
               <td>
                 {penalty.tanggal_denda
                   ? new Date(penalty.tanggal_denda).toLocaleDateString("id-ID")
