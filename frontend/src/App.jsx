@@ -99,6 +99,7 @@ const App = () => {
           <Route path="/tambah-buku" element={<TambahBuku />} />
           <Route path="/data-buku-edit" element={<DataBukuEdit />} />
           <Route path="/detail-buku" element={<DetailBuku />} />
+          <Route path="/cari-buku" element={<CariBuku />} />
 
        
 
