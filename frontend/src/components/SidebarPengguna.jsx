@@ -32,7 +32,7 @@ const SidebarPengguna = () => {
         </li>
 
         {/* Transaksi */}
-        <li onClick={() => navigate("/transaksi")}>
+        <li onClick={() => navigate("/transaksi-pengguna")}>
           <FontAwesomeIcon icon={faExchangeAlt} className="icon" /> Transaksi
         </li>
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import SearchFilter from "../components/SearchFilter"; // Komponen untuk pencarian
 import "./CariBuku.css";
 
 const CariBuku = () => {
@@ -8,22 +9,28 @@ const CariBuku = () => {
   const [categories, setCategories] = useState([]); // Daftar kategori
   const [selectedCategory, setSelectedCategory] = useState(""); // Kategori yang dipilih
 
-  // Fungsi untuk mengambil data buku dari server
+  // Fungsi untuk mengambil semua data buku
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/catalog/books") // URL endpoint backend untuk data buku
-      .then((response) => {
-        setBukuList(response.data); // Simpan data buku ke state
-      })
-      .catch((error) => {
-        console.error("Error fetching data from server:", error); // Tampilkan error jika ada
-      });
+    fetchBooks(); // Ambil data buku awal
+    fetchCategories(); // Ambil data kategori
   }, []);
 
-  // Fungsi untuk mengambil daftar kategori dari server
-  useEffect(() => {
+  // Ambil semua data buku
+  const fetchBooks = () => {
     axios
-      .get("http://localhost:5000/api/catalog/categories") // Endpoint untuk mendapatkan daftar kategori
+      .get("http://localhost:5000/api/catalog/books")
+      .then((response) => {
+        setBukuList(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching books:", error);
+      });
+  };
+
+  // Ambil daftar kategori dari server
+  const fetchCategories = () => {
+    axios
+      .get("http://localhost:5000/api/catalog/categories")
       .then((response) => {
         const serverCategories = response.data;
 
@@ -36,38 +43,45 @@ const CariBuku = () => {
           { id_kategori: 9995, nama_kategori: "Manajemen" },
         ];
 
-        // Gabungkan kategori dari server dan tambahan
         setCategories([...serverCategories, ...additionalCategories]);
       })
       .catch((error) => {
-        console.error("Error fetching categories from server:", error); // Tampilkan error jika ada
+        console.error("Error fetching categories:", error);
       });
-  }, []);
+  };
 
-  // Fungsi untuk menangani perubahan kategori
+  // Fungsi untuk pencarian buku berdasarkan kategori
   const handleCategoryChange = (e) => {
     const category = e.target.value;
     setSelectedCategory(category);
 
-    // Jika kategori kosong, ambil semua data buku
     if (category === "") {
-      axios
-        .get("http://localhost:5000/api/catalog/books")
-        .then((response) => {
-          setBukuList(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching data from server:", error);
-        });
+      // Jika kategori kosong, ambil semua data buku
+      fetchBooks();
     } else {
-      // Jika kategori dipilih, filter data buku berdasarkan kategori
       axios
         .get(`http://localhost:5000/api/catalog/books?category=${category}`)
         .then((response) => {
           setBukuList(response.data);
         })
         .catch((error) => {
-          console.error("Error fetching filtered data from server:", error);
+          console.error("Error filtering books by category:", error);
+        });
+    }
+  };
+
+  // Fungsi untuk pencarian buku berdasarkan keyword
+  const handleSearch = (keyword) => {
+    if (keyword.trim() === "") {
+      fetchBooks(); // Jika pencarian kosong, ambil semua buku
+    } else {
+      axios
+        .get(`http://localhost:5000/api/search/books?keyword=${keyword}`)
+        .then((response) => {
+          setBukuList(response.data);
+        })
+        .catch((error) => {
+          console.error("Error searching books:", error);
         });
     }
   };
@@ -81,7 +95,21 @@ const CariBuku = () => {
       </div>
 
       <div className="table-container">
-        
+        <div className="action-buttons">
+          <select
+            className="btn-secondary"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+          >
+            <option value="">Semua Kategori</option>
+            {categories.map((category) => (
+              <option key={category.id_kategori} value={category.nama_kategori}>
+                {category.nama_kategori}
+              </option>
+            ))}
+          </select>
+          <SearchFilter onSearch={handleSearch} />
+        </div>
 
         <table className="data-table">
           <thead>

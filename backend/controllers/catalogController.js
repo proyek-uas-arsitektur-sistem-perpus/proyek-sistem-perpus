@@ -1,9 +1,14 @@
 const db = require('../config/db');
 
-// Mendapatkan semua data buku
+// Mendapatkan semua data buku atau filter berdasarkan kategori
 const getAllBooks = (req, res) => {
-    const query = 'SELECT * FROM buku';
-    db.query(query, (err, results) => {
+    const { category } = req.query; // Ambil query parameter kategori
+
+    const query = category
+        ? 'SELECT * FROM buku WHERE kategori = ?'
+        : 'SELECT * FROM buku';
+
+    db.query(query, [category], (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
             res.status(500).json({ message: 'Failed to fetch data' });
@@ -32,15 +37,25 @@ const getBookById = (req, res) => {
 // Menambahkan buku baru
 const addBook = (req, res) => {
     const { kode_buku, judul, kategori, penerbit, tahun_terbit } = req.body;
-    const query = 'INSERT INTO buku (kode_buku, judul, kategori, penerbit, tahun_terbit) VALUES (?, ?, ?, ?, ?)';
-    db.query(query, [kode_buku, judul, kategori, penerbit, tahun_terbit], (err, results) => {
-        if (err) {
-            console.error('Error adding book:', err);
-            res.status(500).json({ message: 'Failed to add book' });
-        } else {
-            res.status(201).json({ message: 'Book added successfully', id: results.insertId });
+
+    if (!kode_buku || !judul || !kategori || !penerbit || !tahun_terbit) {
+        return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    const query =
+        'INSERT INTO buku (kode_buku, judul, kategori, penerbit, tahun_terbit) VALUES (?, ?, ?, ?, ?)';
+    db.query(
+        query,
+        [kode_buku, judul, kategori, penerbit, tahun_terbit],
+        (err, results) => {
+            if (err) {
+                console.error('Error adding book:', err);
+                res.status(500).json({ message: 'Failed to add book' });
+            } else {
+                res.status(201).json({ message: 'Book added successfully', id: results.insertId });
+            }
         }
-    });
+    );
 };
 
 // Menghapus buku berdasarkan ID
@@ -59,53 +74,54 @@ const deleteBook = (req, res) => {
     });
 };
 
+// Memperbarui buku berdasarkan ID
 const updateBook = (req, res) => {
-    const { id } = req.params; // Ambil ID buku dari parameter URL
-    const { kode_buku, judul, kategori, penerbit, tahun_terbit } = req.body; // Ambil data dari body request
-  
-    const query = `
-      UPDATE buku
-      SET kode_buku = ?, judul = ?, kategori = ?, penerbit = ?, tahun_terbit = ?
-      WHERE id_buku = ?
-    `;
-  
-    db.query(
-      query,
-      [kode_buku, judul, kategori, penerbit, tahun_terbit, id],
-      (err, result) => {
-        if (err) {
-          console.error("Error updating book:", err);
-          return res.status(500).json({ error: "Gagal memperbarui data buku." });
-        }
-  
-        if (result.affectedRows === 0) {
-          return res.status(404).json({ error: "Buku tidak ditemukan." });
-        }
-  
-        res.status(200).json({ message: "Data buku berhasil diperbarui." });
-      }
-    );
-  };
-  
+    const { id } = req.params;
+    const { kode_buku, judul, kategori, penerbit, tahun_terbit } = req.body;
 
+    if (!kode_buku || !judul || !kategori || !penerbit || !tahun_terbit) {
+        return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    const query = `
+        UPDATE buku
+        SET kode_buku = ?, judul = ?, kategori = ?, penerbit = ?, tahun_terbit = ?
+        WHERE id_buku = ?
+    `;
+    db.query(
+        query,
+        [kode_buku, judul, kategori, penerbit, tahun_terbit, id],
+        (err, result) => {
+            if (err) {
+                console.error('Error updating book:', err);
+                res.status(500).json({ message: 'Failed to update book' });
+            } else if (result.affectedRows === 0) {
+                res.status(404).json({ message: 'Book not found' });
+            } else {
+                res.status(200).json({ message: 'Book updated successfully' });
+            }
+        }
+    );
+};
+
+// Mendapatkan daftar kategori
 const getCategories = (req, res) => {
-    const query = "SELECT DISTINCT kategori AS nama_kategori FROM buku";
-  
+    const query = 'SELECT DISTINCT kategori AS nama_kategori FROM buku';
     db.query(query, (err, results) => {
-      if (err) {
-        console.error("Error fetching categories:", err);
-        res.status(500).json({ message: "Failed to fetch categories" });
-      } else {
-        res.status(200).json(results);
-      }
+        if (err) {
+            console.error('Error fetching categories:', err);
+            res.status(500).json({ message: 'Failed to fetch categories' });
+        } else {
+            res.status(200).json(results);
+        }
     });
-  };
+};
 
 module.exports = {
-    getCategories,
     getAllBooks,
     getBookById,
     addBook,
     deleteBook,
     updateBook,
+    getCategories,
 };

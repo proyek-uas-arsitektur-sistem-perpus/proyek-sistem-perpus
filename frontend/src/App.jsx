@@ -29,8 +29,9 @@ import PengembalianStaff from "./pages/PengembalianStaff";
 import DendaStaff from "./pages/DendaStaff";
 import TambahPeminjamanStaff from "./pages/TambahPeminjamanStaff";
 import DetailPeminjamanStaff from "./pages/DetailPinjamanStaff";
+import TransaksiPengguna from "./pages/TransaksiPengguna";
+import DendaPengguna from "./pages/DendaPengguna";
 import "./App.css";
-
 const App = () => {
   return (
     <Router>
@@ -98,15 +99,15 @@ const App = () => {
           <Route path="/tambah-buku" element={<TambahBuku />} />
           <Route path="/data-buku-edit" element={<DataBukuEdit />} />
           <Route path="/detail-buku" element={<DetailBuku />} />
+          <Route path="/cari-buku" element={<CariBuku />} />
 
        
 
           {/* Tambahkan route untuk halaman Kategori */}
           <Route path="/kategori" element={<Kategori />} />
 
-
-
-       
+          <Route path="/transaksi-pengguna" element={<TransaksiPengguna />} />
+          <Route path="/denda-pengguna" element={<DendaPengguna />} />
 
           {/* Tambahkan route untuk halaman Peminjaman */}
           <Route path="/peminjaman-staff" element={<PeminjamanStaff />} />

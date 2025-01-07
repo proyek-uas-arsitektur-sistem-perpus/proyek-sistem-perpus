@@ -1,64 +1,91 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import SearchFilter from "../components/SearchFilter"; // Komponen untuk pencarian
 import "./Databuku.css";
 
 const DataBuku = () => {
   const navigate = useNavigate();
 
   // State untuk menyimpan daftar buku dan kategori
-  const [bukuList, setBukuList] = useState([]);
+  const [bukuList, setBukuList] = useState([]); // Daftar buku
   const [categories, setCategories] = useState([]); // Daftar kategori
   const [selectedCategory, setSelectedCategory] = useState(""); // Kategori yang dipilih
 
   // Fungsi untuk mengambil data buku dari server
   useEffect(() => {
+    fetchBooks(); // Ambil data buku awal
+    fetchCategories(); // Ambil data kategori
+  }, []);
+
+  // Ambil data semua buku
+  const fetchBooks = () => {
     axios
-      .get("http://localhost:5000/api/catalog/books") // URL endpoint backend untuk data buku
+      .get("http://localhost:5000/api/catalog/books")
       .then((response) => {
         setBukuList(response.data); // Simpan data buku ke state
       })
       .catch((error) => {
-        console.error("Error fetching data from server:", error); // Tampilkan error jika ada
+        console.error("Error fetching books:", error);
       });
-  }, []);
+  };
 
-  // Fungsi untuk mengambil daftar kategori dari server
-  useEffect(() => {
+  // Ambil data kategori dari server
+  const fetchCategories = () => {
     axios
-      .get("http://localhost:5000/api/catalog/categories") // Endpoint untuk mendapatkan daftar kategori
+      .get("http://localhost:5000/api/catalog/categories")
       .then((response) => {
-        setCategories(response.data); // Simpan daftar kategori ke state
+        const serverCategories = response.data;
+
+        // Tambahkan kategori tambahan secara manual
+        const additionalCategories = [
+          { id_kategori: 9991, nama_kategori: "Teknik Informatika" },
+          { id_kategori: 9992, nama_kategori: "Sains" },
+          { id_kategori: 9993, nama_kategori: "Ilmu Komputer" },
+          { id_kategori: 9994, nama_kategori: "Desain" },
+          { id_kategori: 9995, nama_kategori: "Manajemen" },
+        ];
+
+        setCategories([...serverCategories, ...additionalCategories]); // Gabungkan kategori
       })
       .catch((error) => {
-        console.error("Error fetching categories from server:", error); // Tampilkan error jika ada
+        console.error("Error fetching categories:", error);
       });
-  }, []);
+  };
 
   // Fungsi untuk menangani perubahan kategori
   const handleCategoryChange = (e) => {
     const category = e.target.value;
     setSelectedCategory(category);
 
-    // Jika kategori kosong, ambil semua data buku
     if (category === "") {
-      axios
-        .get("http://localhost:5000/api/catalog/books")
-        .then((response) => {
-          setBukuList(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching data from server:", error);
-        });
+      // Jika kategori kosong, ambil semua data buku
+      fetchBooks();
     } else {
-      // Jika kategori dipilih, filter data buku berdasarkan kategori
+      // Filter data buku berdasarkan kategori
       axios
         .get(`http://localhost:5000/api/catalog/books?category=${category}`)
         .then((response) => {
           setBukuList(response.data);
         })
         .catch((error) => {
-          console.error("Error fetching filtered data from server:", error);
+          console.error("Error filtering books by category:", error);
+        });
+    }
+  };
+
+  // Fungsi untuk pencarian buku
+  const handleSearch = (keyword) => {
+    if (keyword.trim() === "") {
+      fetchBooks(); // Jika pencarian kosong, ambil semua buku
+    } else {
+      axios
+        .get(`http://localhost:5000/api/search/books?keyword=${keyword}`)
+        .then((response) => {
+          setBukuList(response.data); // Perbarui daftar buku dengan hasil pencarian
+        })
+        .catch((error) => {
+          console.error("Error searching books:", error);
         });
     }
   };
@@ -69,12 +96,12 @@ const DataBuku = () => {
 
   const handleDelete = (bukuId) => {
     axios
-      .delete(`http://localhost:5000/api/catalog/books/${bukuId}`) // Endpoint untuk DELETE
+      .delete(`http://localhost:5000/api/catalog/books/${bukuId}`)
       .then(() => {
-        setBukuList(bukuList.filter((buku) => buku.id_buku !== bukuId)); // Update state setelah menghapus
+        setBukuList(bukuList.filter((buku) => buku.id_buku !== bukuId));
       })
       .catch((error) => {
-        console.error("Error deleting book:", error); // Tampilkan error jika ada
+        console.error("Error deleting book:", error);
       });
   };
 
@@ -111,6 +138,7 @@ const DataBuku = () => {
               </option>
             ))}
           </select>
+          <SearchFilter onSearch={handleSearch} /> {/* Tambahkan komponen pencarian */}
         </div>
 
         <table className="data-table">

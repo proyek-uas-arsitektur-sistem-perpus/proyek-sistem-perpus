@@ -40,7 +40,10 @@ const Dashboardpengguna = () => {
               <p>Lihat riwayat transaksi Anda</p>
             </div>
             <i className="fas fa-history card-pengguna-icon"></i> {/* Ikon Transaksi */}
-            <div className="card-pengguna-footer">
+            <div className="card-pengguna-footer"
+            onClick={() => navigate("/transaksi-pengguna")} // Navigasi ke halaman TransaksiPengguna.jsx
+            style={{ cursor: "pointer" }} // Tambahkan kursor pointer untuk menunjukkan bahwa bisa diklik
+          >
               <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
             </div>
           </div>
@@ -51,7 +54,10 @@ const Dashboardpengguna = () => {
               <p>Kelola informasi profil Anda</p>
             </div>
             <i className="fas fa-user card-pengguna-icon"></i> {/* Ikon Profil Anggota */}
-            <div className="card-pengguna-footer">
+            <div className="card-pengguna-footer"
+            onClick={() => navigate("/profile-anggota")} // Navigasi ke halaman TransaksiPengguna.jsx
+            style={{ cursor: "pointer" }} // Tambahkan kursor pointer untuk menunjukkan bahwa bisa diklik
+          >
               <span>More info</span> <i className="fas fa-arrow-circle-right"></i>
             </div>
           </div>
