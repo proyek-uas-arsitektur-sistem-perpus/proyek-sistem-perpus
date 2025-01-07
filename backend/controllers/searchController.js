@@ -1,40 +1,28 @@
-const express = require('express');
-const router = express.Router();
+const db = require("../config/db");
 
-// Mock database of books
-const books = [
-  { id: 1, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', category: 'Fiction' },
-  { id: 2, title: 'To Kill a Mockingbird', author: 'Harper Lee', category: 'Classic' },
-  { id: 3, title: '1984', author: 'George Orwell', category: 'Dystopian' },
-  { id: 4, title: 'Moby Dick', author: 'Herman Melville', category: 'Adventure' },
-  { id: 5, title: 'Pride and Prejudice', author: 'Jane Austen', category: 'Romance' },
-];
+// Fungsi untuk mencari buku berdasarkan judul
+const searchBooks = (req, res) => {
+  const { keyword } = req.query;
+  const query = "SELECT * FROM buku WHERE judul LIKE ? OR kategori LIKE ?";
+  const searchParam = `%${keyword}%`;
 
-// Search controller
-router.get('/searchController', (req, res) => {
-  const { title, author, category } = req.query;
+  db.query(query, [searchParam, searchParam], (err, results) => {
+      if (err) {
+          console.error("Error searching books:", err);
+          res.status(500).json({ message: "Failed to search books" });
+      } else {
+          res.status(200).json(results);
+      }
+  });
 
-  let filteredBooks = books;
+  const likeKeyword = `%${keyword}%`;
+  db.query(query, [likeKeyword, likeKeyword, likeKeyword], (err, results) => {
+    if (err) {
+      console.error("Error searching books:", err);
+      return res.status(500).json({ error: "Gagal mencari buku." });
+    }
+    res.status(200).json(results);
+  });
+};
 
-  if (title) {
-    filteredBooks = filteredBooks.filter((book) =>
-      book.title.toLowerCase().includes(title.toLowerCase())
-    );
-  }
-
-  if (author) {
-    filteredBooks = filteredBooks.filter((book) =>
-      book.author.toLowerCase().includes(author.toLowerCase())
-    );
-  }
-
-  if (category) {
-    filteredBooks = filteredBooks.filter((book) =>
-      book.category.toLowerCase().includes(category.toLowerCase())
-    );
-  }
-
-  res.json(filteredBooks);
-});
-
-module.exports = router;
+module.exports = { searchBooks };
