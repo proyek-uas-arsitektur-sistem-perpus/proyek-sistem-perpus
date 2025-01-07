@@ -27,10 +27,11 @@ import LaporanStock from "./pages/LaporanStock";
 import PeminjamanStaff from "./pages/PeminjamanStaff";
 import PengembalianStaff from "./pages/PengembalianStaff";
 import DendaStaff from "./pages/DendaStaff";
-import TambahPeminjaman from "./pages/TambahPeminjamanStaff";
-import DetailPeminjaman from "./pages/DetailPinjamanStaff";
+import TambahPeminjamanStaff from "./pages/TambahPeminjamanStaff";
+import DetailPeminjamanStaff from "./pages/DetailPinjamanStaff";
+import TransaksiPengguna from "./pages/TransaksiPengguna";
+import DendaPengguna from "./pages/DendaPengguna";
 import "./App.css";
-
 const App = () => {
   return (
     <Router>
@@ -105,9 +106,8 @@ const App = () => {
           {/* Tambahkan route untuk halaman Kategori */}
           <Route path="/kategori" element={<Kategori />} />
 
-
-
-       
+          <Route path="/transaksi-pengguna" element={<TransaksiPengguna />} />
+          <Route path="/denda-pengguna" element={<DendaPengguna />} />
 
           {/* Tambahkan route untuk halaman Peminjaman */}
           <Route path="/peminjaman-staff" element={<PeminjamanStaff />} />
@@ -122,10 +122,10 @@ const App = () => {
           <Route path="/kategori" element={<Kategori />} />
 
           {/* Tambahkan route untuk halaman Tambah Peminjaman */}
-          <Route path="/peminjaman-staff/tambah" element={<TambahPeminjaman />} />
+          <Route path="/peminjaman-staff/tambah" element={<TambahPeminjamanStaff />} />
 
           {/* Tambahkan route untuk halaman DetailPeminjam */}
-          <Route path="/peminjaman-staff/:id" element={<DetailPeminjaman />} />
+          <Route path="/peminjaman-staff/detail/:id" element={<DetailPeminjamanStaff />} />
 
           {/* Rute tambahan untuk TambahDataPengguna dan EditDataPengguna */}
           <Route path="/data-pengguna/tambah" element={<TambahDataPengguna />} />

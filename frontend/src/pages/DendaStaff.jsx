@@ -11,7 +11,7 @@ const DendaStaff = () => {
 
   const fetchPenalties = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/penalties');
+      const response = await axios.get('http://localhost:5000/api/borrowing/penalties');
       setPenalties(response.data);
     } catch (error) {
       console.error('Error fetching penalties:', error);
