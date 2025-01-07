@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
 const catalogRoutes = require('./routes/catalogRoutes');
 const borrowingRoutes = require('./routes/borrowingRoutes');
+const stockRoutes = require ('./routes/stockRoutes');
 const searchRoutes = require("./routes/searchRoutes");
 
 const app = express();
@@ -16,8 +17,10 @@ app.use('/api/user', userRoutes);
 app.use('/api/borrowing', borrowingRoutes);
 // Rute untuk katalog buku
 app.use('/api/catalog', catalogRoutes); // Tambahkan rute katalog
-app.use("/api/search", searchRoutes); 
+app.use("/api/search", searchRoutes);
 
+// Rute untuk ke stock
+app.use('/api/stock', stockRoutes);
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
