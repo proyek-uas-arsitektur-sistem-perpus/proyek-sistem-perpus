@@ -2,19 +2,17 @@ const db = require('../config/db');
 
 // Mendapatkan semua data buku atau filter berdasarkan kategori
 const getAllBooks = (req, res) => {
-    const { category } = req.query; // Ambil query parameter kategori
-
+    const { category } = req.query;
     const query = category
         ? 'SELECT * FROM buku WHERE kategori = ?'
         : 'SELECT * FROM buku';
 
     db.query(query, [category], (err, results) => {
         if (err) {
-            console.error('Error fetching data:', err);
-            res.status(500).json({ message: 'Failed to fetch data' });
-        } else {
-            res.status(200).json(results);
+            console.error('Error fetching books:', err);
+            return res.status(500).json({ message: 'Terjadi kesalahan pada server' });
         }
+        res.status(200).json(results);
     });
 };
 
@@ -110,10 +108,9 @@ const getCategories = (req, res) => {
     db.query(query, (err, results) => {
         if (err) {
             console.error('Error fetching categories:', err);
-            res.status(500).json({ message: 'Failed to fetch categories' });
-        } else {
-            res.status(200).json(results);
+            return res.status(500).json({ message: 'Terjadi kesalahan pada server' });
         }
+        res.status(200).json(results);
     });
 };
 

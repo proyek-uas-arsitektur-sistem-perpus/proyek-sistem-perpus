@@ -34,7 +34,6 @@ const TambahBuku = () => {
     // Data yang akan dikirim ke backend
     const newBuku = {
       kode_buku: `BK${Math.floor(Math.random() * 1000)}`, // Generate kode_buku unik
-      isbn: formData.isbn,
       judul: formData.judul,
       kategori: formData.kategori,
       penerbit: formData.penerbit,
@@ -70,16 +69,7 @@ const TambahBuku = () => {
             required
           />
         </div>
-        <div className="form-group">
-          <label>ISBN</label>
-          <input
-            type="text"
-            name="isbn"
-            value={formData.isbn}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      
         <div className="form-group">
           <label>Judul Buku</label>
           <input
