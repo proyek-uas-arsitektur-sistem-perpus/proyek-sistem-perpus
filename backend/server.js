@@ -13,6 +13,10 @@ app.use(bodyParser.json());
 
 // Rute untuk pengguna
 app.use('/api/user', userRoutes);
+
+// Gunakan rute untuk pengguna
+app.use('/api', userRoutes);
+
 // Rute untuk peminjaman
 app.use('/api/borrowing', borrowingRoutes);
 // Rute untuk katalog buku
