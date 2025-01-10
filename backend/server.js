@@ -24,8 +24,10 @@ app.use('/api/catalog', catalogRoutes); // Tambahkan rute katalog
 app.use("/api/search", searchRoutes);
 
 // Rute untuk ke stock
-app.use('/api/stock', stockRoutes);
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+const server = app.listen(5000, 'localhost', () => {
+  console.log('Server running on port 5000');
+});
+
+server.on('error', (err) => {
+  console.error('Server error:', err.message);
 });
