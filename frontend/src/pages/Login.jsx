@@ -67,9 +67,6 @@ const Login = () => {
             <p>
               Belum punya akun? <a href="/register">Daftar</a>
             </p>
-            <p>
-              <a href="/lupa-password">Lupa Password?</a>
-            </p>
           </div>
         </div>
       </div>
