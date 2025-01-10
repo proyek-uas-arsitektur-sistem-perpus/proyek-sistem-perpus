@@ -1,4 +1,4 @@
-const db = require('../config/db');
+const db = require('../../UserManagement/config/db');
 
 // Mendapatkan semua data buku atau filter berdasarkan kategori
 const getAllBooks = (req, res) => {
