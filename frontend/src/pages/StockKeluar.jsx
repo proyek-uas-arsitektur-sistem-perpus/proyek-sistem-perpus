@@ -143,7 +143,7 @@ const StockKeluar = () => {
         {/* Tombol Submit dan Cancel */}
         <div className="form-buttons">
           <button type="button" className="btn cancel" onClick={handleCancel}>
-            Cancel
+            Back
           </button>
           <button type="submit" className="btn submit" onClick={handleSubmit}>
             Tambahkan

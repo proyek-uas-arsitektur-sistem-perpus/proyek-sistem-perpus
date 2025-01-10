@@ -78,6 +78,32 @@ const getLaporanStokKeluar = (req, res) => {
   });
 };
 
+const getLaporanStok = (req, res) => {
+    const query = `
+      SELECT 
+        s.tgl_stock, 
+        s.kode_buku, 
+        b.judul, 
+        SUM(CASE WHEN s.jumlah > 0 THEN s.jumlah ELSE 0 END) AS masuk,
+        SUM(CASE WHEN s.jumlah < 0 THEN ABS(s.jumlah) ELSE 0 END) AS keluar,
+        (SUM(CASE WHEN s.jumlah > 0 THEN s.jumlah ELSE 0 END) - 
+         SUM(CASE WHEN s.jumlah < 0 THEN ABS(s.jumlah) ELSE 0 END)) AS sisa,
+        GROUP_CONCAT(DISTINCT s.keterangan SEPARATOR '; ') AS keterangan
+      FROM stock s
+      JOIN buku b ON s.kode_buku = b.kode_buku
+      GROUP BY s.kode_buku, s.tgl_stock
+      ORDER BY s.tgl_stock DESC;
+    `;
+  
+    db.query(query, (err, results) => {
+      if (err) {
+        console.error("Error saat mengambil laporan stok:", err);
+        res.status(500).send("Gagal mengambil laporan stok");
+        return;
+      }
+      res.status(200).json(results);
+    });
+  };
 
 
 module.exports = {
@@ -85,4 +111,5 @@ module.exports = {
   addStock,
   getLaporanStokMasuk,
   getLaporanStokKeluar,
+  getLaporanStok,
 };

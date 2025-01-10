@@ -4,6 +4,7 @@ const {
   addStock,
   getLaporanStokMasuk,
   getLaporanStokKeluar,
+  getLaporanStok, 
 } = require("../controllers/stockController");
 
 const router = express.Router();
@@ -20,5 +21,7 @@ router.get("/laporan/masuk", getLaporanStokMasuk);
 // Endpoint untuk mendapatkan laporan stok keluar
 router.get("/laporan/keluar", getLaporanStokKeluar);
 
+// Endpoint untuk mendapatkan laporan stok gabungan
+router.get("/laporan-stok", getLaporanStok);
 
 module.exports = router;
