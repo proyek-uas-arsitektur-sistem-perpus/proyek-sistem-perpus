@@ -21,6 +21,7 @@ import Kategori from "./pages/Kategori";
 import DataPengguna from "./pages/DataPengguna";
 import TambahDataPengguna from "./pages/TambahDataPengguna";
 import EditDataPengguna from "./pages/EditDataPengguna";
+import HapusDataPengguna from "./pages/HapusDataPengguna"; 
 import StockMasuk from "./pages/StockMasuk";
 import StockKeluar from "./pages/StockKeluar";
 import LaporanStock from "./pages/LaporanStock";
@@ -93,6 +94,7 @@ const App = () => {
           <Route path="/data-pengguna" element={<DataPengguna />} />
           <Route path="/data-pengguna/tambah" element={<TambahDataPengguna />} />
           <Route path="/data-pengguna/edit/:id" element={<EditDataPengguna />} />
+          <Route path="/data-pengguna/hapus/:id" element={<HapusDataPengguna />} /> 
 
           {/* Halaman Buku */}
           <Route path="/data-buku" element={<DataBuku />} />

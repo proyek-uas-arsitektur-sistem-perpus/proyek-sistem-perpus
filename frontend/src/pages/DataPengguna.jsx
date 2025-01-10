@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash, faArrowLeft, faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -6,34 +6,53 @@ import "./DataPengguna.css";
 
 const DataPengguna = () => {
   const navigate = useNavigate();
+  const [data, setData] = useState([]); // State untuk menyimpan data pengguna
+  const [loading, setLoading] = useState(true); // State untuk indikator loading
 
-  // Gunakan state untuk menyimpan data pengguna
-  const [data, setData] = useState([
-    { id: "001", nik: "320123456789", nama: "John Doe", email: "john.doe@gmail.com", telp: "08123456789", alamat: "Jakarta" },
-    { id: "002", nik: "320987654321", nama: "Jane Smith", email: "jane.smith@gmail.com", telp: "08198765432", alamat: "Bandung" },
-    { id: "003", nik: "320456789012", nama: "Alice Johnson", email: "alice.johnson@gmail.com", telp: "08134567890", alamat: "Surabaya" },
-    { id: "004", nik: "320654321098", nama: "Bob Brown", email: "bob.brown@gmail.com", telp: "08145678901", alamat: "Yogyakarta" },
-    { id: "005", nik: "320789012345", nama: "Charlie Green", email: "charlie.green@gmail.com", telp: "08156789012", alamat: "Medan" },
-  ]);
+  // Fetch data dari API saat komponen dimuat
+  useEffect(() => {
+    fetch("http://localhost:5000/api/user/users")
+      .then((response) => response.json())
+      .then((result) => {
+        setData(result); // Simpan data ke state
+        setLoading(false); // Matikan indikator loading
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      });
+  }, []);
 
+  // Fungsi untuk navigasi ke form tambah pengguna
   const handleTambah = () => {
     navigate("/data-pengguna/tambah");
   };
 
+  // Fungsi untuk kembali ke dashboard
   const handleKembali = () => {
     navigate("/dashboard");
   };
 
+  // Fungsi untuk navigasi ke form edit pengguna
   const handleEdit = (id) => {
     navigate(`/data-pengguna/edit/${id}`);
   };
 
+  // Fungsi untuk menghapus data pengguna
   const handleDelete = (id) => {
     if (window.confirm(`Apakah Anda yakin ingin menghapus pengguna dengan ID ${id}?`)) {
-      // Filter data untuk menghapus pengguna berdasarkan ID
-      const updatedData = data.filter((user) => user.id !== id);
-      setData(updatedData); // Perbarui state dengan data yang baru
-      alert(`Pengguna dengan ID ${id} berhasil dihapus.`);
+      fetch(`http://localhost:5000/api/user/users/${id}`, {
+        method: "DELETE",
+      })
+        .then((response) => {
+          if (response.ok) {
+            setData(data.filter((user) => user.id_anggota_perpustakaan !== id)); // Hapus data dari state
+            alert(`Pengguna dengan ID ${id} berhasil dihapus.`);
+          } else {
+            alert("Gagal menghapus data.");
+          }
+        })
+        .catch((error) => console.error("Error deleting data:", error));
     }
   };
 
@@ -48,47 +67,49 @@ const DataPengguna = () => {
         </button>
       </div>
 
-      <table className="data-table">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>No ID</th>
-            <th>NIK</th>
-            <th>Nama</th>
-            <th>Email</th>
-            <th>Nomor Telepon</th>
-            <th>Alamat</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((user, index) => (
-            <tr key={user.id}>
-              <td>{index + 1}</td>
-              <td>{user.id}</td>
-              <td>{user.nik}</td>
-              <td>{user.nama}</td>
-              <td>{user.email}</td>
-              <td>{user.telp}</td>
-              <td>{user.alamat}</td> <br></br>
-              <td className="action-buttons">
-                <button
-                  className="action-button edit"
-                  onClick={() => handleEdit(user.id)}
-                >
-                  <FontAwesomeIcon icon={faEdit} /> Edit
-                </button>
-                <button
-                  className="action-button delete"
-                  onClick={() => handleDelete(user.id)}
-                >
-                  <FontAwesomeIcon icon={faTrash} /> Hapus
-                </button>
-              </td>
+      {loading ? (
+        <p>Loading data...</p> // Indikator loading
+      ) : (
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>No ID</th>
+              <th>NIK</th>
+              <th>Nama</th>
+              <th>Email</th>
+              <th>Nomor Telepon</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.map((user, index) => (
+              <tr key={user.id_anggota_perpustakaan}>
+                <td>{index + 1}</td>
+                <td>{user.id_anggota_perpustakaan}</td>
+                <td>{user.nik}</td>
+                <td>{user.nama_anggota}</td>
+                <td>{user.email}</td>
+                <td>{user.no_telepon}</td>
+                <td className="action-buttons">
+                  <button
+                    className="action-button edit"
+                    onClick={() => handleEdit(user.id_anggota_perpustakaan)}
+                  >
+                    <FontAwesomeIcon icon={faEdit} /> Edit
+                  </button>
+                  <button
+                    className="action-button delete"
+                    onClick={() => handleDelete(user.id_anggota_perpustakaan)}
+                  >
+                    <FontAwesomeIcon icon={faTrash} /> Hapus
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
 
       <div className="pagination">
         <span>
